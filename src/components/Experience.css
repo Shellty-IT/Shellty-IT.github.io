@@ -2,7 +2,7 @@
     position: relative;
     padding: clamp(64px, 8vh, 96px) 20px;
     color: #f1f5f9;
-    background-color: #0d1520;
+    background-color: transparent;
 }
 
 .exp__container {

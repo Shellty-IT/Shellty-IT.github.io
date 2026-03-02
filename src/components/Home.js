@@ -58,6 +58,9 @@ export default function Home() {
         return () => clearInterval(blinkTimer);
     }, []);
 
+    /**
+     * @param {React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>} e
+     */
     const handleMagnet = (e) => {
         const btn = e.currentTarget;
         const rect = btn.getBoundingClientRect();
@@ -74,8 +77,14 @@ export default function Home() {
     const GITHUB_CV_RAW = `https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/cv/${CV_FILE}`;
     const GITHUB_CV_CDN = `https://cdn.jsdelivr.net/gh/Shellty-IT/Shellty-IT.github.io@main/public/cv/${CV_FILE}`;
 
+    /**
+     * @param {React.MouseEvent<HTMLAnchorElement>} e
+     */
     const downloadCV = async (e) => {
         e.preventDefault();
+        /**
+         * @param {string} url
+         */
         const tryDownload = async (url) => {
             const res = await fetch(url, { mode: 'cors', cache: 'no-store' });
             if (!res.ok) throw new Error(`HTTP ${res.status}`);

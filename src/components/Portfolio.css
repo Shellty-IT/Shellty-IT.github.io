@@ -1,7 +1,7 @@
 .portfolio-container {
     position: relative;
     padding: clamp(32px, 5vw, 56px) 0;
-    background-color: #0d1520;
+    background-color: transparent;
     overflow: hidden;
 }
 

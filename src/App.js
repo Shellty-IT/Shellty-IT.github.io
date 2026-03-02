@@ -9,12 +9,16 @@ import Skills from "./components/Skills";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
+import CloudBackground from "./background/CloudBackground";
 
 import './App.css';
 
 function App() {
     return (
         <Router>
+            {/* ▼ Tło WebGL — fixed, pod całą zawartością */}
+            <CloudBackground />
+
             <CustomCursor />
             <Navbar />
 
@@ -28,7 +32,6 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </main>
-
         </Router>
     );
 }

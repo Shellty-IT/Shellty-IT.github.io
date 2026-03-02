@@ -1,5 +1,5 @@
 :root {
-    --color-bg: #0d1520;
+    --color-bg: transparent;
 
     --color-royal: #0062b0;
     --color-royal-soft: rgba(0, 98, 176, 0.15);
@@ -31,22 +31,24 @@
 }
 
 html {
-    background-color: var(--color-bg);
+    background-color: #010714;
 }
 
 body {
     margin: 0;
-    background-color: var(--color-bg);
+    background-color: transparent;
     color: var(--color-text);
     min-height: 100vh;
 }
 
 #root {
     min-height: 100vh;
-    background-color: var(--color-bg);
+    background-color: transparent;
 }
 
 .main-content {
+    position: relative;
+    z-index: 1;
     padding-top: 0;
 }
 
@@ -54,4 +56,26 @@ body {
     .main-content {
         padding-top: 0;
     }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(12, 192, 255, 0.15);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(12, 192, 255, 0.3);
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(12, 192, 255, 0.15) transparent;
 }

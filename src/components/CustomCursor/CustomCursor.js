@@ -4,11 +4,10 @@ import './CustomCursor.css';
 const TRAIL_COUNT = 24;
 const INTERACTIVE = 'a, button, input, textarea, select, [role="button"], label, [data-cursor]';
 
-/* Generuj rozmiar i styl dla każdej kropki trail */
 const getTrailStyle = (i) => {
-    const progress = i / (TRAIL_COUNT - 1);  /* 0 → 1 */
-    const size = 8 - progress * 6;            /* 8px → 2px */
-    const alpha = 0.7 - progress * 0.65;      /* 0.7 → 0.05 */
+    const progress = i / (TRAIL_COUNT - 1);
+    const size = 8 - progress * 6;
+    const alpha = 0.7 - progress * 0.65;
     const glowAlpha = alpha * 0.5;
     const glowSize = Math.max(1, 6 - progress * 5);
 
@@ -39,48 +38,46 @@ const CustomCursor = () => {
     const isHovering = useRef(false);
     const raf = useRef(null);
 
-    const lerp = (a, b, t) => a + (b - a) * t;
-
     const animate = useCallback(() => {
-        const { x: mx, y: my } = mouse.current;
+        const mx = mouse.current.x;
+        const my = mouse.current.y;
 
-        /* --- Dot: prawie instant --- */
-        dotPos.current.x = lerp(dotPos.current.x, mx, 0.55);
-        dotPos.current.y = lerp(dotPos.current.y, my, 0.55);
+        // ── Dot — bardzo szybki (prawie natychmiastowy) ──────
+        dotPos.current.x += (mx - dotPos.current.x) * 0.8;
+        dotPos.current.y += (my - dotPos.current.y) * 0.8;
 
         if (dotRef.current) {
             dotRef.current.style.transform =
-                `translate(${dotPos.current.x}px, ${dotPos.current.y}px)`;
+                `translate3d(${dotPos.current.x}px,${dotPos.current.y}px,0)`;
         }
 
-        /* --- Ring: smooth follow --- */
-        ringPos.current.x = lerp(ringPos.current.x, mx, 0.12);
-        ringPos.current.y = lerp(ringPos.current.y, my, 0.12);
-        ringScale.current.current = lerp(
-            ringScale.current.current,
-            ringScale.current.target,
-            0.1
-        );
+        ringPos.current.x += (mx - ringPos.current.x) * 0.2;
+        ringPos.current.y += (my - ringPos.current.y) * 0.2;
+        ringScale.current.current += (ringScale.current.target - ringScale.current.current) * 0.12;
 
         if (ringRef.current) {
             ringRef.current.style.transform =
-                `translate(${ringPos.current.x}px, ${ringPos.current.y}px) scale(${ringScale.current.current})`;
+                `translate3d(${ringPos.current.x}px,${ringPos.current.y}px,0) scale(${ringScale.current.current})`;
         }
 
-        /* --- Trail: kaskadowo za PIERŚCIENIEM (pojawiają się za nim) --- */
         for (let i = 0; i < TRAIL_COUNT; i++) {
-            /* Pierwszy trail podąża za ringPos, reszta za poprzednim */
             const prev = i === 0 ? ringPos.current : trails.current[i - 1];
+            const trail = trails.current[i];
 
-            /* Prędkość maleje z każdym elementem: 0.38 → ~0.06 */
-            const speed = 0.38 - (i / (TRAIL_COUNT - 1)) * 0.32;
+            const speed = 0.45 - (i / (TRAIL_COUNT - 1)) * 0.35;
 
-            trails.current[i].x = lerp(trails.current[i].x, prev.x, speed);
-            trails.current[i].y = lerp(trails.current[i].y, prev.y, speed);
+            const nx = trail.x + (prev.x - trail.x) * speed;
+            const ny = trail.y + (prev.y - trail.y) * speed;
 
-            if (trailRefs.current[i]) {
+            const dx = nx - trail.x;
+            const dy = ny - trail.y;
+
+            trail.x = nx;
+            trail.y = ny;
+
+            if (trailRefs.current[i] && (dx * dx + dy * dy) > 0.09) {
                 trailRefs.current[i].style.transform =
-                    `translate(${trails.current[i].x}px, ${trails.current[i].y}px)`;
+                    `translate3d(${nx}px,${ny}px,0)`;
             }
         }
 
@@ -109,7 +106,8 @@ const CustomCursor = () => {
         };
 
         const onMouseMove = (e) => {
-            mouse.current = { x: e.clientX, y: e.clientY };
+            mouse.current.x = e.clientX;
+            mouse.current.y = e.clientY;
 
             if (!isVisible.current) {
                 isVisible.current = true;
@@ -137,7 +135,7 @@ const CustomCursor = () => {
             resetPositions(e.clientX, e.clientY);
         };
 
-        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mousemove', onMouseMove, { passive: true });
         document.documentElement.addEventListener('mouseleave', onMouseLeave);
         document.documentElement.addEventListener('mouseenter', onMouseEnter);
 
@@ -153,7 +151,6 @@ const CustomCursor = () => {
 
     return (
         <div className="cursor-container">
-            {/* Trail — dużo kropek, startują ZA pierścieniem */}
             {Array.from({ length: TRAIL_COUNT }).map((_, i) => {
                 const s = getTrailStyle(i);
                 return (
@@ -172,11 +169,7 @@ const CustomCursor = () => {
                     />
                 );
             })}
-
-            {/* Pierścień — jeden */}
             <div ref={ringRef} className="cursor-ring" />
-
-            {/* Kropka centralna */}
             <div ref={dotRef} className="cursor-dot" />
         </div>
     );

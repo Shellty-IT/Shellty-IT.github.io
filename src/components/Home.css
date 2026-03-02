@@ -2,9 +2,9 @@
     position: relative;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: clamp(20px, 3vh, 40px) 24px 0;
+    padding: calc(clamp(20px, 3vh, 40px) + 55px) 24px 0;
     color: #f1f5f9;
-    background-color: #0d1520;
+    background-color: transparent;
     overflow: hidden;
     box-sizing: border-box;
 }
