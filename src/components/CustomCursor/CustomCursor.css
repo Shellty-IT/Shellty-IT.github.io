@@ -1,3 +1,9 @@
+/* src/components/CustomCursor.css */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+    cursor: none !important;
+}
+
 .cursor-container {
     position: fixed;
     top: 0;
@@ -19,13 +25,11 @@
     border-radius: 50%;
     background: #00E5FF;
     opacity: 0;
-
     box-shadow:
             0 0 4px 1px #00E5FF,
             0 0 10px 3px rgba(0, 229, 255, 0.6),
             0 0 22px 6px rgba(0, 229, 255, 0.3),
             0 0 45px 12px rgba(0, 229, 255, 0.1);
-
     will-change: transform, opacity;
     transition:
             opacity 0.3s ease,
@@ -60,12 +64,10 @@
     border-radius: 50%;
     border: 1.5px solid rgba(0, 229, 255, 0.55);
     opacity: 0;
-
     box-shadow:
             0 0 6px rgba(0, 229, 255, 0.3),
             0 0 14px rgba(0, 229, 255, 0.12),
             inset 0 0 6px rgba(0, 229, 255, 0.06);
-
     will-change: transform, opacity;
     transition:
             opacity 0.3s ease,
@@ -111,10 +113,6 @@
                 0 0 50px rgba(0, 229, 255, 0.15),
                 inset 0 0 14px rgba(0, 229, 255, 0.12);
     }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    .cursor-container { display: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

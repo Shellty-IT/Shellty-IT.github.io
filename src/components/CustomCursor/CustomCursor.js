@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+// src/components/CustomCursor.js
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import './CustomCursor.css';
 
 const TRAIL_COUNT = 24;
 const INTERACTIVE = 'a, button, input, textarea, select, [role="button"], label, [data-cursor]';
+const POINTER_QUERY = '(hover: hover) and (pointer: fine)';
 
 const getTrailStyle = (i) => {
     const progress = i / (TRAIL_COUNT - 1);
@@ -22,6 +24,11 @@ const getTrailStyle = (i) => {
 };
 
 const CustomCursor = () => {
+    const [hasPointer, setHasPointer] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.matchMedia(POINTER_QUERY).matches;
+    });
+
     const dotRef = useRef(null);
     const ringRef = useRef(null);
     const trailRefs = useRef([]);
@@ -38,11 +45,26 @@ const CustomCursor = () => {
     const isHovering = useRef(false);
     const raf = useRef(null);
 
+    useEffect(() => {
+        const mql = window.matchMedia(POINTER_QUERY);
+        const onChange = (e) => setHasPointer(e.matches);
+        mql.addEventListener('change', onChange);
+        return () => mql.removeEventListener('change', onChange);
+    }, []);
+
+    useEffect(() => {
+        if (hasPointer) {
+            document.documentElement.classList.add('has-custom-cursor');
+        } else {
+            document.documentElement.classList.remove('has-custom-cursor');
+        }
+        return () => document.documentElement.classList.remove('has-custom-cursor');
+    }, [hasPointer]);
+
     const animate = useCallback(() => {
         const mx = mouse.current.x;
         const my = mouse.current.y;
 
-        // ── Dot — bardzo szybki (prawie natychmiastowy) ──────
         dotPos.current.x += (mx - dotPos.current.x) * 0.8;
         dotPos.current.y += (my - dotPos.current.y) * 0.8;
 
@@ -63,15 +85,11 @@ const CustomCursor = () => {
         for (let i = 0; i < TRAIL_COUNT; i++) {
             const prev = i === 0 ? ringPos.current : trails.current[i - 1];
             const trail = trails.current[i];
-
             const speed = 0.45 - (i / (TRAIL_COUNT - 1)) * 0.35;
-
             const nx = trail.x + (prev.x - trail.x) * speed;
             const ny = trail.y + (prev.y - trail.y) * speed;
-
             const dx = nx - trail.x;
             const dy = ny - trail.y;
-
             trail.x = nx;
             trail.y = ny;
 
@@ -85,6 +103,8 @@ const CustomCursor = () => {
     }, []);
 
     useEffect(() => {
+        if (!hasPointer) return;
+
         const show = () => {
             if (dotRef.current) dotRef.current.style.opacity = '1';
             if (ringRef.current) ringRef.current.style.opacity = '1';
@@ -147,7 +167,9 @@ const CustomCursor = () => {
             document.documentElement.removeEventListener('mouseenter', onMouseEnter);
             cancelAnimationFrame(raf.current);
         };
-    }, [animate]);
+    }, [hasPointer, animate]);
+
+    if (!hasPointer) return null;
 
     return (
         <div className="cursor-container">
