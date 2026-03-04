@@ -1,25 +1,37 @@
 {
   "files": {
-    "main.css": "./static/css/main.f379d2ea.css",
-    "main.js": "./static/js/main.d24c75ba.js",
+    "main.css": "./static/css/main.34c0232a.css",
+    "main.js": "./static/js/main.e6a766fc.js",
     "static/js/453.16a4f57f.chunk.js": "./static/js/453.16a4f57f.chunk.js",
+    "static/media/skills_glow.png": "./static/media/skills_glow.665bbceb930030698a6d.png",
+    "static/media/skills.png": "./static/media/skills.1eea458e2e2a6904d2db.png",
+    "static/media/home_glow.png": "./static/media/home_glow.929a1e1a63643000a36b.png",
     "static/media/ksef_master_ang.jpg": "./static/media/ksef_master_ang.aa3872ab19aed08e9501.jpg",
+    "static/media/home.png": "./static/media/home.fc58aedd4584e4a4ba59.png",
     "static/media/mobile_cook.jpg": "./static/media/mobile_cook.bb6317e08ac22587dc1c.jpg",
+    "static/media/experience_glow.png": "./static/media/experience_glow.9b8a267311411cd4c09c.png",
+    "static/media/portfolio_glow.png": "./static/media/portfolio_glow.ff395f840b618a2263bd.png",
+    "static/media/experience.png": "./static/media/experience.a6009722dcc503469ec8.png",
     "static/media/smart_quoute_ang.jpg": "./static/media/smart_quoute_ang.c9fdacb23806616432dc.jpg",
+    "static/media/portfolio.png": "./static/media/portfolio.3f1fca3eec5e11674508.png",
+    "static/media/about_glow.png": "./static/media/about_glow.4d99cbb7a19a2e3d227b.png",
     "static/media/postlio.jpg": "./static/media/postlio.492c29478da272321c93.jpg",
+    "static/media/contact_glow.png": "./static/media/contact_glow.121bc3217245a633b62c.png",
     "static/media/postlio_ang.jpg": "./static/media/postlio_ang.a5aaad6eb39057970e03.jpg",
+    "static/media/about.png": "./static/media/about.67d2a6d35b049665cbc0.png",
+    "static/media/contact.png": "./static/media/contact.ffeaab727929f20a1717.png",
     "static/media/ksef-master.jpg": "./static/media/ksef-master.4fa6f29673880ebf067e.jpg",
     "static/media/mobisalon.jpg": "./static/media/mobisalon.144a4a605aa8476eb88c.jpg",
     "static/media/shellty_blog.jpg": "./static/media/shellty_blog.c76fb19c0e8bef2d2d51.jpg",
     "static/media/one_page_animals.jpg": "./static/media/one_page_animals.d755806544ebecba9eda.jpg",
     "static/media/smartquote.jpg": "./static/media/smartquote.2f52e82d1f6e956f8182.jpg",
     "index.html": "./index.html",
-    "main.f379d2ea.css.map": "./static/css/main.f379d2ea.css.map",
-    "main.d24c75ba.js.map": "./static/js/main.d24c75ba.js.map",
+    "main.34c0232a.css.map": "./static/css/main.34c0232a.css.map",
+    "main.e6a766fc.js.map": "./static/js/main.e6a766fc.js.map",
     "453.16a4f57f.chunk.js.map": "./static/js/453.16a4f57f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f379d2ea.css",
-    "static/js/main.d24c75ba.js"
+    "static/css/main.34c0232a.css",
+    "static/js/main.e6a766fc.js"
   ]
 }
