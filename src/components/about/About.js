@@ -16,6 +16,11 @@ import GlowIcon from "../glowIcon/GlowIcon";
 import aboutIcon from "../../assets/icons/about/about.png";
 import aboutGlow from "../../assets/icons/about/about_glow.png";
 
+import portfolioIcon from "../../assets/icons/portfolio/portfolio.png";
+import portfolioGlow from "../../assets/icons/portfolio/portfolio_glow.png";
+import contactIcon from "../../assets/icons/contact/contact.png";
+import contactGlow from "../../assets/icons/contact/contact_glow.png";
+
 const RING_SIZE = 88;
 const RING_STROKE = 10;
 
@@ -190,10 +195,24 @@ const About = () => {
                         </p>
 
                         <div className="about__actions">
-                            <HashLink smooth to="/experience#experience" className="btn btn--primary">
-                                {t("about.ctaExperience")}
+                            <HashLink smooth to="/portfolio#portfolio" className="btn btn--outline">
+                                <GlowIcon
+                                    src={portfolioIcon}
+                                    srcGlow={portfolioGlow}
+                                    alt=""
+                                    size={42}
+                                    className="btn-glow-icon"
+                                />
+                                {t("nav.portfolio")}
                             </HashLink>
-                            <HashLink smooth to="/contact#contact" className="btn btn--outline">
+                            <HashLink smooth to="/contact#contact" className="btn btn--outline btn--contact">
+                                <GlowIcon
+                                    src={contactIcon}
+                                    srcGlow={contactGlow}
+                                    alt=""
+                                    size={42}
+                                    className="btn-glow-icon btn-glow-icon--contact"
+                                />
                                 {t("about.ctaContact")}
                             </HashLink>
                         </div>

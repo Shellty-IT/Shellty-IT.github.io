@@ -151,20 +151,23 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 18px;
+    padding: 10px 20px;
     border-radius: 12px;
-    color: #0d1520;
-    background-color: #0cc0ff;
+    color: #f1f5f9;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    box-shadow: 0 8px 24px rgba(12, 192, 255, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .overlay-cta:hover {
+    background-color: rgba(12, 192, 255, 0.08);
+    border-color: #0cc0ff;
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(12, 192, 255, 0.5);
+    box-shadow: 0 0 15px rgba(12, 192, 255, 0.4), 0 0 5px rgba(12, 192, 255, 0.2);
+    color: #fff;
 }
 
 .project-content {
@@ -264,31 +267,37 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    border-radius: 12px;
     text-decoration: none;
-    color: white;
+    color: #f1f5f9;
     font-size: 0.9rem;
     font-weight: 600;
-    background-color: rgba(12, 192, 255, 0.15);
-    border: 1px solid rgba(12, 192, 255, 0.3);
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .project-link:hover {
-    transform: translateY(-2px);
-    background-color: rgba(12, 192, 255, 0.25);
-    border-color: rgba(12, 192, 255, 0.45);
+    background-color: rgba(12, 192, 255, 0.08);
+    border-color: #0cc0ff;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 15px rgba(12, 192, 255, 0.4), 0 0 5px rgba(12, 192, 255, 0.2);
+    color: #fff;
 }
 
 .project-link.subtle {
     background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: white;
+    box-shadow: none;
 }
 
 .project-link.subtle:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+    box-shadow: none;
 }
 
 .skeleton {
