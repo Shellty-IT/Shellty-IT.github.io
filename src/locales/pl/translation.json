@@ -42,7 +42,6 @@
     "videoInviteDirMobile": " poniżej.",
     "video": {
       "vimeoId": "1166225581",
-      "title": "Prezentacja wideo",
       "playAria": "Odtwórz prezentację wideo",
       "iframeTitle": "Prezentacja wideo – Tomasz Skorupski"
     },
@@ -88,14 +87,33 @@
       "cert6Name": "Nauka konfiguracji sprzętu i zarządzania sieciami komputerowymi (Navoica, 2026)",
       "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert9.pdf"
     },
-    "softSkillsTitle": "Umiejętności miękkie",
-    "soft": {
-      "pass": "Pasja",
-      "account": "Odpowiedzialność",
-      "team": "Praca zespołowa",
-      "creativity": "Kreatywność",
-      "flex": "Elastyczność",
-      "lead": "Przywództwo"
+    "softSkillsTitle": "Cechy",
+    "traits": {
+      "closeAria": "Zamknij",
+      "responsibility": {
+        "name": "Odpowiedzialność",
+        "desc": "Dowożę zadania na czas i zgodnie z ustaleniami."
+      },
+      "passion": {
+        "name": "Pasja",
+        "desc": "Stale się rozwijam i podnoszę jakość w projektach."
+      },
+      "teamwork": {
+        "name": "Praca zespołowa",
+        "desc": "Dzielę się wiedzą i pracuję z zespołem na wspólny wynik."
+      },
+      "independence": {
+        "name": "Samodzielność",
+        "desc": "Sam analizuję problemy i wdrażam rozwiązania, nie czekając na instrukcje."
+      },
+      "creativity": {
+        "name": "Kreatywność",
+        "desc": "Proponuję alternatywy i przekuwam je w konkretne funkcje."
+      },
+      "flexibility": {
+        "name": "Elastyczność",
+        "desc": "Szybko adaptuję się do zmieniających się wymagań i nowych środowisk."
+      }
     }
   },
   "skills": {

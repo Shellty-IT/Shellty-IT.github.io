@@ -41,7 +41,6 @@
     "videoInviteDirMobile": " below.",
     "video": {
       "vimeoId": "1166222682",
-      "title": "Video presentation",
       "playAria": "Play video introduction",
       "iframeTitle": "Video introduction – Tomasz Skorupski"
     },
@@ -87,14 +86,33 @@
       "cert6Name": "Hardware Configuration and Computer Network Administration (Navoica, 2026)",
       "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert10.pdf"
     },
-    "softSkillsTitle": "Soft skills",
-    "soft": {
-      "pass": "Passion",
-      "account": "Accountability",
-      "team": "Teamwork",
-      "creativity": "Creativity",
-      "flex": "Flexibility",
-      "lead": "Leadership"
+    "softSkillsTitle": "Traits",
+    "traits": {
+      "closeAria": "Close",
+      "responsibility": {
+        "name": "Responsibility",
+        "desc": "I deliver tasks on time and as agreed."
+      },
+      "passion": {
+        "name": "Passion",
+        "desc": "I constantly develop and raise quality in projects."
+      },
+      "teamwork": {
+        "name": "Teamwork",
+        "desc": "I share knowledge and work with the team toward a common goal."
+      },
+      "independence": {
+        "name": "Independence",
+        "desc": "I analyze problems and implement solutions independently, without waiting for instructions."
+      },
+      "creativity": {
+        "name": "Creativity",
+        "desc": "I propose alternatives and turn them into concrete features."
+      },
+      "flexibility": {
+        "name": "Flexibility",
+        "desc": "I quickly adapt to changing requirements and new environments."
+      }
     }
   },
   "experience": {

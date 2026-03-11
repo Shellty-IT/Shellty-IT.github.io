@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
-import experienceIcon from "../../assets/icons/experience/experience2.png";
+import experienceIcon from "../../assets/icons/experience/experience.png";
 import experienceGlow from "../../assets/icons/experience/experience_glow.png";
 
 const Experience = () => {
