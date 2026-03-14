@@ -29,6 +29,14 @@
     gap: 0;
 }
 
+.exp__header-hover-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+}
+
 .exp__header .glow-icon {
     margin-top: var(--icon-margin-top);
     margin-bottom: var(--icon-margin-bottom);
@@ -47,6 +55,19 @@
     background-clip: text;
     color: transparent;
     margin: 0;
+    transition: filter 0.35s ease;
+}
+
+.exp__title.hovered {
+    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+}
+
+.exp__header .glow-icon.hovered .glow-icon-base {
+    opacity: 0;
+}
+
+.exp__header .glow-icon.hovered .glow-icon-lit {
+    opacity: 1;
 }
 
 .exp__kicker {

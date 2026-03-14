@@ -84,6 +84,7 @@ const Portfolio = () => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const [isLoading, setIsLoading] = useState(true);
+    const [titleHovered, setTitleHovered] = useState(false);
 
     useEffect(() => {
         const tm = setTimeout(() => setIsLoading(false), 350);
@@ -220,14 +221,23 @@ const Portfolio = () => {
             <div className="gradient-background" aria-hidden="true"></div>
             <div className="content-wrapper">
                 <header className="portfolio-header animate-fade-in">
-                    <GlowIcon
-                        src={portfolioIcon}
-                        srcGlow={portfolioGlow}
-                        alt="Portfolio"
-                        size={200}
-                        floating
-                    />
-                    <h1 className="portfolio-title">{t('portfolio.title')}</h1>
+                    <div
+                        className="portfolio-header-hover-area"
+                        onMouseEnter={() => setTitleHovered(true)}
+                        onMouseLeave={() => setTitleHovered(false)}
+                    >
+                        <GlowIcon
+                            src={portfolioIcon}
+                            srcGlow={portfolioGlow}
+                            alt="Portfolio"
+                            size={200}
+                            floating
+                            className={titleHovered ? 'hovered' : ''}
+                        />
+                        <h1 className={`portfolio-title ${titleHovered ? 'hovered' : ''}`}>
+                            {t('portfolio.title')}
+                        </h1>
+                    </div>
                     <p className="portfolio-subtitle">
                         <Trans
                             i18nKey="portfolio.subtitleHtml"

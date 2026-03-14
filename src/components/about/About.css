@@ -27,6 +27,14 @@
     gap: 0;
 }
 
+.about__header-hover-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+}
+
 .about__header .glow-icon {
     margin-bottom: -10px;
 }
@@ -42,6 +50,19 @@
     background-clip: text;
     color: transparent;
     margin: 0;
+    transition: filter 0.35s ease;
+}
+
+.about__title.hovered {
+    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+}
+
+.about__header .glow-icon.hovered .glow-icon-base {
+    opacity: 0;
+}
+
+.about__header .glow-icon.hovered .glow-icon-lit {
+    opacity: 1;
 }
 
 .about__kicker {

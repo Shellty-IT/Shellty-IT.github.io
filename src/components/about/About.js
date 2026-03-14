@@ -201,6 +201,8 @@ const About = () => {
         ? TRAITS_DATA.find((tr) => tr.key === mobileSheetKey)
         : null;
 
+    const [titleHovered, setTitleHovered] = useState(false);
+
     return (
         <section id="about" className="about">
             <span className="about__blob about__blob--a" />
@@ -208,8 +210,23 @@ const About = () => {
 
             <div className="about__container">
                 <header className="about__header animate-fade-in">
-                    <GlowIcon src={aboutIcon} srcGlow={aboutGlow} alt="About" size={220} floating />
-                    <h2 className="about__title">{t("about.title")}</h2>
+                    <div
+                        className="about__header-hover-area"
+                        onMouseEnter={() => setTitleHovered(true)}
+                        onMouseLeave={() => setTitleHovered(false)}
+                    >
+                        <GlowIcon
+                            src={aboutIcon}
+                            srcGlow={aboutGlow}
+                            alt="About"
+                            size={220}
+                            floating
+                            className={titleHovered ? 'hovered' : ''}
+                        />
+                        <h2 className={`about__title ${titleHovered ? 'hovered' : ''}`}>
+                            {t("about.title")}
+                        </h2>
+                    </div>
                 </header>
 
                 <div className="about__grid">

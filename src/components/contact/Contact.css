@@ -28,6 +28,14 @@
     gap: 0;
 }
 
+.contact-header-hover-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+}
+
 .contact-header .glow-icon {
     margin-top: var(--icon-margin-top);
     margin-bottom: var(--icon-margin-bottom);
@@ -46,6 +54,19 @@
     background-clip: text;
     color: transparent;
     margin: 0 0 8px;
+    transition: filter 0.35s ease;
+}
+
+.contact-title.hovered {
+    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+}
+
+.contact-header .glow-icon.hovered .glow-icon-base {
+    opacity: 0;
+}
+
+.contact-header .glow-icon.hovered .glow-icon-lit {
+    opacity: 1;
 }
 
 .contact-subtitle {

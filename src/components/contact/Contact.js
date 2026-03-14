@@ -12,6 +12,7 @@ export default function Contact() {
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [touched, setTouched] = useState({ name: false, email: false, message: false });
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
+    const [titleHovered, setTitleHovered] = useState(false);
 
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
 
@@ -78,14 +79,23 @@ export default function Contact() {
     return (
         <section className="contact-section" id="contact">
             <header className="contact-header">
-                <GlowIcon
-                    src={contactIcon}
-                    srcGlow={contactGlow}
-                    alt="Contact"
-                    size={300}
-                    floating
-                />
-                <h2 className="contact-title">{t("contact.title")}</h2>
+                <div
+                    className="contact-header-hover-area"
+                    onMouseEnter={() => setTitleHovered(true)}
+                    onMouseLeave={() => setTitleHovered(false)}
+                >
+                    <GlowIcon
+                        src={contactIcon}
+                        srcGlow={contactGlow}
+                        alt="Contact"
+                        size={300}
+                        floating
+                        className={titleHovered ? 'hovered' : ''}
+                    />
+                    <h2 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
+                        {t("contact.title")}
+                    </h2>
+                </div>
                 <p className="contact-subtitle">{t("contact.subtitle")}</p>
             </header>
 

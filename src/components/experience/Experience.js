@@ -1,5 +1,4 @@
-// src/components/experience/experience.js
-import React from "react";
+import React, { useState } from "react";
 import "./Experience.css";
 import {
     FaBuilding,
@@ -17,191 +16,101 @@ import GlowIcon from "../glowIcon/GlowIcon";
 import experienceIcon from "../../assets/icons/experience/experience.png";
 import experienceGlow from "../../assets/icons/experience/experience_glow.png";
 
+const TAG_ICONS = {
+    servers: FaServer,
+    net: FaNetworkWired,
+    db: FaDatabase,
+    tools: FaCode,
+    print: FaPrint,
+    mon: FaCogs,
+    backup: FaDatabase,
+    win: FaServer,
+    pos: FaCogs,
+    cfg: FaNetworkWired,
+};
+
+const JOBS = [
+    { key: "streetcom", bulletCount: 4, tags: ["servers", "net", "db", "tools"] },
+    { key: "ata", bulletCount: 4, tags: ["print", "net", "mon"] },
+    { key: "hisert", bulletCount: 4, tags: ["servers", "net", "backup"] },
+    { key: "rzgw", bulletCount: 4, tags: ["net", "win"] },
+    { key: "exorigo", bulletCount: 3, tags: ["pos", "cfg"] },
+    { key: "wasko", bulletCount: 3, tags: [] },
+    { key: "eot", bulletCount: 3, tags: [] },
+];
+
 const Experience = () => {
-    const { t } = useTranslation();
+    const { t: rawT } = useTranslation();
+    const [titleHovered, setTitleHovered] = useState(false);
+
+    /** @type {function(string): string} */
+    const t = rawT;
 
     return (
         <section id="experience" className="exp">
             <div className="exp__container">
                 <header className="exp__header">
-                    <GlowIcon
-                        src={experienceIcon}
-                        srcGlow={experienceGlow}
-                        alt="Experience"
-                        size={240}
-                        floating
-                    />
-                    <h2 className="exp__title">{t("experience.title")}</h2>
+                    <div
+                        className="exp__header-hover-area"
+                        onMouseEnter={() => setTitleHovered(true)}
+                        onMouseLeave={() => setTitleHovered(false)}
+                    >
+                        <GlowIcon
+                            src={experienceIcon}
+                            srcGlow={experienceGlow}
+                            alt="Experience"
+                            size={240}
+                            floating
+                            className={titleHovered ? "hovered" : ""}
+                        />
+                        <h2 className={`exp__title ${titleHovered ? "hovered" : ""}`}>
+                            {t("experience.title")}
+                        </h2>
+                    </div>
                 </header>
 
                 <ol className="exp__timeline">
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.streetcom.where")}
+                    {JOBS.map(({ key, bulletCount, tags }) => (
+                        <li key={key} className="exp__item">
+                            <div className="exp__pin" aria-hidden="true" />
+                            <div className="exp__card">
+                                <div className="exp__top">
+                                    <div className="exp__where">
+                                        <FaBuilding /> {t(`experience.jobs.${key}.where`)}
+                                    </div>
+                                    <div className="exp__meta">
+                    <span className="exp__meta-item">
+                      <FaCalendarAlt /> {t(`experience.jobs.${key}.date`)}
+                    </span>
+                                        <span className="exp__meta-item">
+                      <FaMapMarkerAlt /> {t(`experience.jobs.${key}.loc`)}
+                    </span>
+                                    </div>
                                 </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.streetcom.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.streetcom.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.streetcom.bullets.0")}</li>
-                                <li>{t("experience.jobs.streetcom.bullets.1")}</li>
-                                <li>{t("experience.jobs.streetcom.bullets.2")}</li>
-                                <li>{t("experience.jobs.streetcom.bullets.3")}</li>
-                            </ul>
-                            <div className="exp__tags">
-                                <span className="tag"><FaServer /> {t("experience.jobs.streetcom.tags.servers")}</span>
-                                <span className="tag"><FaNetworkWired /> {t("experience.jobs.streetcom.tags.net")}</span>
-                                <span className="tag"><FaDatabase /> {t("experience.jobs.streetcom.tags.db")}</span>
-                                <span className="tag"><FaCode /> {t("experience.jobs.streetcom.tags.tools")}</span>
-                            </div>
-                        </div>
-                    </li>
 
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.ata.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.ata.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.ata.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.ata.bullets.0")}</li>
-                                <li>{t("experience.jobs.ata.bullets.1")}</li>
-                                <li>{t("experience.jobs.ata.bullets.2")}</li>
-                                <li>{t("experience.jobs.ata.bullets.3")}</li>
-                            </ul>
-                            <div className="exp__tags">
-                                <span className="tag"><FaPrint /> {t("experience.jobs.ata.tags.print")}</span>
-                                <span className="tag"><FaNetworkWired /> {t("experience.jobs.ata.tags.net")}</span>
-                                <span className="tag"><FaCogs /> {t("experience.jobs.ata.tags.mon")}</span>
-                            </div>
-                        </div>
-                    </li>
+                                <ul className="exp__bullets">
+                                    {Array.from({ length: bulletCount }, (_, i) => (
+                                        <li key={i}>
+                                            {t(`experience.jobs.${key}.bullets.${i}`)}
+                                        </li>
+                                    ))}
+                                </ul>
 
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.hisert.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.hisert.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.hisert.loc")}</span>
-                                </div>
+                                {tags.length > 0 && (
+                                    <div className="exp__tags">
+                                        {tags.map((tag) => {
+                                            const Icon = TAG_ICONS[tag];
+                                            return (
+                                                <span key={tag} className="tag">
+                          <Icon /> {t(`experience.jobs.${key}.tags.${tag}`)}
+                        </span>
+                                            );
+                                        })}
+                                    </div>
+                                )}
                             </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.hisert.bullets.0")}</li>
-                                <li>{t("experience.jobs.hisert.bullets.1")}</li>
-                                <li>{t("experience.jobs.hisert.bullets.2")}</li>
-                                <li>{t("experience.jobs.hisert.bullets.3")}</li>
-                            </ul>
-                            <div className="exp__tags">
-                                <span className="tag"><FaServer /> {t("experience.jobs.hisert.tags.servers")}</span>
-                                <span className="tag"><FaNetworkWired /> {t("experience.jobs.hisert.tags.net")}</span>
-                                <span className="tag"><FaDatabase /> {t("experience.jobs.hisert.tags.backup")}</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.rzgw.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.rzgw.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.rzgw.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.rzgw.bullets.0")}</li>
-                                <li>{t("experience.jobs.rzgw.bullets.1")}</li>
-                                <li>{t("experience.jobs.rzgw.bullets.2")}</li>
-                                <li>{t("experience.jobs.rzgw.bullets.3")}</li>
-                            </ul>
-                            <div className="exp__tags">
-                                <span className="tag"><FaNetworkWired /> {t("experience.jobs.rzgw.tags.net")}</span>
-                                <span className="tag"><FaServer /> {t("experience.jobs.rzgw.tags.win")}</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.exorigo.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.exorigo.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.exorigo.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.exorigo.bullets.0")}</li>
-                                <li>{t("experience.jobs.exorigo.bullets.1")}</li>
-                                <li>{t("experience.jobs.exorigo.bullets.2")}</li>
-                            </ul>
-                            <div className="exp__tags">
-                                <span className="tag"><FaCogs /> {t("experience.jobs.exorigo.tags.pos")}</span>
-                                <span className="tag"><FaNetworkWired /> {t("experience.jobs.exorigo.tags.cfg")}</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.wasko.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.wasko.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.wasko.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.wasko.bullets.0")}</li>
-                                <li>{t("experience.jobs.wasko.bullets.1")}</li>
-                                <li>{t("experience.jobs.wasko.bullets.2")}</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li className="exp__item">
-                        <div className="exp__pin" aria-hidden="true" />
-                        <div className="exp__card">
-                            <div className="exp__top">
-                                <div className="exp__where">
-                                    <FaBuilding /> {t("experience.jobs.eot.where")}
-                                </div>
-                                <div className="exp__meta">
-                                    <span className="exp__meta-item"><FaCalendarAlt /> {t("experience.jobs.eot.date")}</span>
-                                    <span className="exp__meta-item"><FaMapMarkerAlt /> {t("experience.jobs.eot.loc")}</span>
-                                </div>
-                            </div>
-                            <ul className="exp__bullets">
-                                <li>{t("experience.jobs.eot.bullets.0")}</li>
-                                <li>{t("experience.jobs.eot.bullets.1")}</li>
-                                <li>{t("experience.jobs.eot.bullets.2")}</li>
-                            </ul>
-                        </div>
-                    </li>
+                        </li>
+                    ))}
                 </ol>
             </div>
         </section>

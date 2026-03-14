@@ -48,6 +48,7 @@ import skillsGlow from "../../assets/icons/skills/skills_glow.png";
 const Skills = () => {
     const { t, i18n } = useTranslation();
     const isEN = i18n.language?.startsWith("en");
+    const [titleHovered, setTitleHovered] = useState(false);
 
     const LEVELS = useMemo(() => (
         isEN
@@ -187,16 +188,23 @@ const Skills = () => {
         <section id="skills" className="skills">
             <div className="skills__container">
                 <header className="skills__header">
-                    <GlowIcon
-                        src={skillsIcon}
-                        srcGlow={skillsGlow}
-                        alt="Skills"
-                        size={200}
-                        floating
-                    />
-                    <h2 className="skills__title">
-                        {t("skills.title")}
-                    </h2>
+                    <div
+                        className="skills__header-hover-area"
+                        onMouseEnter={() => setTitleHovered(true)}
+                        onMouseLeave={() => setTitleHovered(false)}
+                    >
+                        <GlowIcon
+                            src={skillsIcon}
+                            srcGlow={skillsGlow}
+                            alt="Skills"
+                            size={200}
+                            floating
+                            className={titleHovered ? 'hovered' : ''}
+                        />
+                        <h2 className={`skills__title ${titleHovered ? 'hovered' : ''}`}>
+                            {t("skills.title")}
+                        </h2>
+                    </div>
                     <dl className="skills__legend" aria-label={t("skills.legend.aria", { defaultValue: "Legenda poziomów umiejętności" })}>
                         <div className="legend-item">
                             <dt><b>{t("skills.legend.adv")}</b></dt>
