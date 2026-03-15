@@ -1,16 +1,15 @@
-// src/components/CloudBackground.js
 import React, { useRef, useEffect } from 'react';
 import './CloudBackground.css';
 
 const CONFIG = {
-    nodes: { small: 25, medium: 10, large: 4 },
-    scrollNodes: { small: 25, medium: 8, large: 3 },
+    nodes: { small: 20, medium: 8, large: 3 },
+    scrollNodes: { small: 20, medium: 6, large: 2 },
     maxConnectionDist: 220,
     maxConnectionsPerNode: 4,
     connectionBaseOpacity: 0.045,
     flowSpawnChance: 0.005,
     flowSpawnScrollMultiplier: 4,
-    maxPulses: 40,
+    maxPulses: 25,
     pulseSpeedRange: [0.2, 0.5],
     driftSpeed: 0.1,
     flowSpeedRange: [0.15, 0.4],
@@ -22,8 +21,8 @@ const CONFIG = {
     mouseAuraOpacity: 0.06,
     mouseLerp: 0.15,
     scrollBrightness: 0.6,
-    starCount: 120,
-    ambientParticleCount: 25,
+    starCount: 80,
+    ambientParticleCount: 15,
     autoscaleChance: 0.0008,
     autoscaleFadeDuration: 3.0,
     maxDPR: 0.75,
@@ -31,6 +30,8 @@ const CONFIG = {
     fpsWindow: 60,
     fpsLowThreshold: 22,
     fpsHighThreshold: 28,
+    starRedrawInterval: 10,
+    connectionRebuildInterval: 4,
     layers: [
         { depth: 0.15, brightness: 0.22 },
         { depth: 0.45, brightness: 0.55 },
@@ -245,12 +246,12 @@ class QualityManager {
         if (this.quality === 'high') {
             this.quality = 'medium';
             this.starsVisible = true;
-            this.maxActivePulses = 25;
+            this.maxActivePulses = 15;
             this.dprMultiplier = 0.8;
         } else if (this.quality === 'medium') {
             this.quality = 'low';
             this.starsVisible = false;
-            this.maxActivePulses = 15;
+            this.maxActivePulses = 8;
             this.dprMultiplier = 0.6;
         }
     }
@@ -259,7 +260,7 @@ class QualityManager {
         if (this.quality === 'low') {
             this.quality = 'medium';
             this.starsVisible = true;
-            this.maxActivePulses = 25;
+            this.maxActivePulses = 15;
             this.dprMultiplier = 0.8;
         } else if (this.quality === 'medium') {
             this.quality = 'high';
@@ -278,6 +279,8 @@ class CloudEngine {
         this.height = 0;
         this.nodes = [];
         this.connections = [];
+        this.connectionsByLayer = [[], [], [], []];
+        this.nodesByLayer = [[], [], [], []];
         this.stars = [];
         this.ambientParticles = [];
         this.scrollProgress = 0;
@@ -290,6 +293,7 @@ class CloudEngine {
         this.timeSinceLastFrame = 0;
         this.starCanvas = document.createElement('canvas');
         this.starCtx = this.starCanvas.getContext('2d');
+        this.starFrameCounter = 0;
         this.pulsePool = [];
         for (let i = 0; i < CONFIG.maxPulses; i++) {
             this.pulsePool.push(new DataPulse());
@@ -377,6 +381,8 @@ class CloudEngine {
     _generate() {
         this.nodes = [];
         this.connections = [];
+        this.connectionsByLayer = [[], [], [], []];
+        this.nodesByLayer = [[], [], [], []];
         this.activePulses = [];
         const m = 80, w = this.width, h = this.height;
         this.stars = [];
@@ -416,11 +422,22 @@ class CloudEngine {
             const threshold = 0.3 + w2 * 0.25;
             spawn(lgPerWave, 'large', [2, 2, 3, 3], threshold);
         }
+        this._rebuildLookups();
+    }
+
+    _rebuildLookups() {
         this._buildConnections();
+        this.nodesByLayer = [[], [], [], []];
+        for (const n of this.nodes) {
+            if (n.layerIndex >= 0 && n.layerIndex < 4) {
+                this.nodesByLayer[n.layerIndex].push(n);
+            }
+        }
     }
 
     _buildConnections() {
         this.connections = [];
+        this.connectionsByLayer = [[], [], [], []];
         const maxD = CONFIG.maxConnectionDist;
         const maxC = CONFIG.maxConnectionsPerNode;
         for (const n of this.nodes) n.connectionCount = 0;
@@ -440,7 +457,11 @@ class CloudEngine {
             const take = Math.min(cands.length, maxC - a.connectionCount);
             for (let k = 0; k < take; k++) {
                 const b = cands[k].node;
-                this.connections.push(new Connection(a, b));
+                const conn = new Connection(a, b);
+                this.connections.push(conn);
+                if (conn.layer >= 0 && conn.layer < 4) {
+                    this.connectionsByLayer[conn.layer].push(conn);
+                }
                 a.connectionCount++;
                 b.connectionCount++;
             }
@@ -515,8 +536,20 @@ class CloudEngine {
             n.opacity = 0;
             n.fadeTimer = 0;
             this.nodes.push(n);
+            if (n.layerIndex >= 0 && n.layerIndex < 4) {
+                this.nodesByLayer[n.layerIndex].push(n);
+            }
         }
+        const prevLen = this.nodes.length;
         this.nodes = this.nodes.filter(n => n.alive);
+        if (this.nodes.length !== prevLen) {
+            this.nodesByLayer = [[], [], [], []];
+            for (const n of this.nodes) {
+                if (n.layerIndex >= 0 && n.layerIndex < 4) {
+                    this.nodesByLayer[n.layerIndex].push(n);
+                }
+            }
+        }
         for (const p of this.ambientParticles) p.update(dt);
         const rate = CONFIG.flowSpawnChance
             * (1 + this.scrollProgress * CONFIG.flowSpawnScrollMultiplier);
@@ -535,9 +568,9 @@ class CloudEngine {
         for (const p of this.activePulses) p.update(dt);
         this.activePulses = this.activePulses.filter(p => p.alive);
         this.lastConnectionRebuild += dt;
-        if (this.lastConnectionRebuild > 2) {
+        if (this.lastConnectionRebuild > CONFIG.connectionRebuildInterval) {
             this.lastConnectionRebuild = 0;
-            this._buildConnections();
+            this._rebuildLookups();
         }
     }
 
@@ -572,7 +605,11 @@ class CloudEngine {
             c._drawCPY = my + c.bendY;
         }
         if (this.quality.starsVisible) {
-            this._renderStarLayer(time);
+            this.starFrameCounter++;
+            if (this.starFrameCounter >= CONFIG.starRedrawInterval) {
+                this.starFrameCounter = 0;
+                this._renderStarLayer(time);
+            }
             ctx.globalAlpha = scrollBoost;
             ctx.drawImage(this.starCanvas, 0, 0);
         }
@@ -595,36 +632,24 @@ class CloudEngine {
         }
         for (let L = 0; L < 4; L++) {
             const br = CONFIG.layers[L].brightness * scrollBoost;
-            ctx.strokeStyle = 'rgba(12,160,220,1)';
-            ctx.lineWidth = 3;
-            for (const c of this.connections) {
-                if (c.layer !== L) continue;
+            const layerConns = this.connectionsByLayer[L];
+            const layerNodes = this.nodesByLayer[L];
+
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = 'rgba(12,176,240,1)';
+            for (const c of layerConns) {
                 const a = c.nodeA, b = c.nodeB;
                 const nA = Math.min(a.opacity, b.opacity);
                 if (nA < 0.01) continue;
                 const pB = 1 + Math.max(a.mouseProximity, b.mouseProximity)
                     * CONFIG.mouseBrightnessBoost;
-                ctx.globalAlpha = c.opacity * br * 0.35 * nA * pB;
+                ctx.globalAlpha = c.opacity * br * 0.7 * nA * pB;
                 ctx.beginPath();
                 ctx.moveTo(a.drawX, a.drawY);
                 ctx.quadraticCurveTo(c._drawCPX, c._drawCPY, b.drawX, b.drawY);
                 ctx.stroke();
             }
-            ctx.strokeStyle = 'rgba(12,192,255,1)';
-            ctx.lineWidth = 0.5;
-            for (const c of this.connections) {
-                if (c.layer !== L) continue;
-                const a = c.nodeA, b = c.nodeB;
-                const nA = Math.min(a.opacity, b.opacity);
-                if (nA < 0.01) continue;
-                const pB = 1 + Math.max(a.mouseProximity, b.mouseProximity)
-                    * CONFIG.mouseBrightnessBoost;
-                ctx.globalAlpha = c.opacity * br * nA * pB;
-                ctx.beginPath();
-                ctx.moveTo(a.drawX, a.drawY);
-                ctx.quadraticCurveTo(c._drawCPX, c._drawCPY, b.drawX, b.drawY);
-                ctx.stroke();
-            }
+
             for (const p of this.activePulses) {
                 if (p.conn.layer !== L) continue;
                 const pos = p.getPosition();
@@ -638,8 +663,8 @@ class CloudEngine {
                     s * 3, s * 3
                 );
             }
-            for (const node of this.nodes) {
-                if (node.layerIndex !== L) continue;
+
+            for (const node of layerNodes) {
                 if (node.opacity < 0.01) continue;
                 const int = node.pulse(time);
                 const vis = CONFIG.visual[node.type];
@@ -703,6 +728,8 @@ class CloudEngine {
         this.stop();
         this.nodes = [];
         this.connections = [];
+        this.connectionsByLayer = [[], [], [], []];
+        this.nodesByLayer = [[], [], [], []];
         this.activePulses = [];
         this.stars = [];
         this.ambientParticles = [];

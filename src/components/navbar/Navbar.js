@@ -5,23 +5,23 @@ import { useTranslation } from 'react-i18next';
 import './Navbar.css';
 import GlowIcon from '../glowIcon/GlowIcon';
 
-import homeIcon from '../../assets/icons/home/home.png';
-import homeGlow from '../../assets/icons/home/home_glow.png';
+import homeIcon from '../../assets/icons/home/home.webp';
+import homeGlow from '../../assets/icons/home/home_glow.webp';
 
-import aboutIcon from '../../assets/icons/about/about.png';
-import aboutGlow from '../../assets/icons/about/about_glow.png';
+import aboutIcon from '../../assets/icons/about/about.webp';
+import aboutGlow from '../../assets/icons/about/about_glow.webp';
 
-import experienceIcon from '../../assets/icons/experience/experience.png';
-import experienceGlow from '../../assets/icons/experience/experience_glow.png';
+import experienceIcon from '../../assets/icons/experience/experience.webp';
+import experienceGlow from '../../assets/icons/experience/experience_glow.webp';
 
-import skillsIcon from '../../assets/icons/skills/skills.png';
-import skillsGlow from '../../assets/icons/skills/skills_glow.png';
+import skillsIcon from '../../assets/icons/skills/skills.webp';
+import skillsGlow from '../../assets/icons/skills/skills_glow.webp';
 
-import portfolioIcon from '../../assets/icons/portfolio/portfolio.png';
-import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.png';
+import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
+import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
-import contactIcon from '../../assets/icons/contact/contact.png';
-import contactGlow from '../../assets/icons/contact/contact_glow.png';
+import contactIcon from '../../assets/icons/contact/contact.webp';
+import contactGlow from '../../assets/icons/contact/contact_glow.webp';
 
 const Navbar = () => {
     const { t, i18n } = useTranslation();

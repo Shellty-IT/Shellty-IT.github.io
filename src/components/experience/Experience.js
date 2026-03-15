@@ -13,8 +13,8 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
-import experienceIcon from "../../assets/icons/experience/experience.png";
-import experienceGlow from "../../assets/icons/experience/experience_glow.png";
+import experienceIcon from "../../assets/icons/experience/experience.webp";
+import experienceGlow from "../../assets/icons/experience/experience_glow.webp";
 
 const TAG_ICONS = {
     servers: FaServer,

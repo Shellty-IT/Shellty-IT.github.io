@@ -4,19 +4,19 @@ import './Portfolio.css';
 import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
 
-import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.jpg';
-import ksefThumbnail from '../../assets/thumbnails/ksef-master.jpg';
-import ksefThumbnailAng from '../../assets/thumbnails/ksef_master_ang.jpg';
-import smartquoteThumbnail from '../../assets/thumbnails/smartquote.jpg';
-import smartquoteThumbnailAng from '../../assets/thumbnails/smart_quoute_ang.jpg';
-import postlioThumbnail from '../../assets/thumbnails/postlio.jpg';
-import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.jpg';
-import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.jpg';
-import animalsThumbnail from '../../assets/thumbnails/one_page_animals.jpg';
-import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.jpg';
+import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
+import ksefThumbnail from '../../assets/thumbnails/ksef-master.webp';
+import ksefThumbnailAng from '../../assets/thumbnails/ksef_master_ang.webp';
+import smartquoteThumbnail from '../../assets/thumbnails/smartquote.webp';
+import smartquoteThumbnailAng from '../../assets/thumbnails/smart_quoute_ang.webp';
+import postlioThumbnail from '../../assets/thumbnails/postlio.webp';
+import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.webp';
+import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
+import animalsThumbnail from '../../assets/thumbnails/one_page_animals.webp';
+import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
 import GlowIcon from '../glowIcon/GlowIcon';
-import portfolioIcon from '../../assets/icons/portfolio/portfolio.png';
-import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.png';
+import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
+import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
 const CopyButton = ({ text, label }) => {
     const [copied, setCopied] = useState(false);

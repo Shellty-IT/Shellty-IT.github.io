@@ -1,4 +1,3 @@
-// src/components/skills/skills.js
 import React, { useMemo, useState } from "react";
 import "./Skills.css";
 import {
@@ -42,8 +41,38 @@ import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { FaMobileAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
-import skillsIcon from "../../assets/icons/skills/skills.png";
-import skillsGlow from "../../assets/icons/skills/skills_glow.png";
+import skillsIcon from "../../assets/icons/skills/skills.webp";
+import skillsGlow from "../../assets/icons/skills/skills_glow.webp";
+
+const SkillItem = ({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) => {
+    const value = LEVELS[level] || 50;
+    return (
+        <div className="sk-item glass">
+            <div className="sk-head">
+                <div className="sk-icons">
+                    <Icon className="sk-icon" />
+                    {Twin && <Twin className="sk-icon sk-icon--twin" />}
+                    {suffixIcons && suffixIcons.map((S, i) => <S key={i} className="sk-icon sk-icon--mini" />)}
+                </div>
+                <div className="sk-title">
+                    {Array.isArray(name) ? (
+                        <div className="sk-names sk-names--column">
+                            {name.map((n, i) => (
+                                <span key={i} className="sk-name-text">{n}</span>
+                            ))}
+                        </div>
+                    ) : (
+                        name
+                    )}
+                </div>
+                <div className={`sk-level sk-level--${level}`}>{level}</div>
+            </div>
+            <div className="sk-bar">
+                <div className="sk-bar__fill" style={{ width: `${value}%` }} />
+            </div>
+        </div>
+    );
+};
 
 const Skills = () => {
     const { t, i18n } = useTranslation();
@@ -52,8 +81,8 @@ const Skills = () => {
 
     const LEVELS = useMemo(() => (
         isEN
-            ? { Advanced: 80, Intermediate: 65, Basics: 45}
-            : { Zaawansowany: 80, "Średniozaawansowany": 65, Podstawy:45 }
+            ? { Advanced: 80, Intermediate: 65, Basics: 45 }
+            : { Zaawansowany: 80, "Średniozaawansowany": 65, Podstawy: 45 }
     ), [isEN]);
 
     const GROUPS = useMemo(() => [
@@ -147,37 +176,6 @@ const Skills = () => {
         }
     ], [t]);
 
-    const SkillItem = ({ name, level, Icon, twinIcon: Twin, suffixIcons }) => {
-        const value = LEVELS[level] || 50;
-        return (
-            <div className="sk-item glass">
-                <div className="sk-head">
-                    <div className="sk-icons">
-                        <Icon className="sk-icon" />
-                        {Twin && <Twin className="sk-icon sk-icon--twin" />}
-                        {suffixIcons && suffixIcons.map((S, i) => <S key={i} className="sk-icon sk-icon--mini" />)}
-                    </div>
-                    <div className="sk-title">
-                        {Array.isArray(name) ? (
-                            <div className="sk-names sk-names--column">
-                                {name.map((n, i) => (
-                                    <span key={i} className="sk-name-text">{n}</span>
-                                ))}
-                            </div>
-                        ) : (
-                            name
-                        )}
-                    </div>
-                    <div className={`sk-level sk-level--${level}`}>{level}</div>
-                </div>
-
-                <div className="sk-bar">
-                    <div className="sk-bar__fill" style={{ width: `${value}%` }} />
-                </div>
-            </div>
-        );
-    };
-
     const [active, setActive] = useState("all");
     const items = useMemo(() => {
         if (active === "all") return GROUPS;
@@ -244,9 +242,10 @@ const Skills = () => {
                         <h3 className="sk-group__title">{group.label}</h3>
                         <div className="sk-grid">
                             {group.items.map((s) => (
-                                <SkillItem 
-                                    key={`${group.key}:${s.id ?? (Array.isArray(s.name) ? s.name.join('-') : s.name) ?? (s.Icon?.name || 'item')}`} 
-                                    {...s} 
+                                <SkillItem
+                                    key={`${group.key}:${s.id ?? (Array.isArray(s.name) ? s.name.join('-') : s.name) ?? (s.Icon?.name || 'item')}`}
+                                    {...s}
+                                    LEVELS={LEVELS}
                                 />
                             ))}
                         </div>

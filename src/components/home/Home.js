@@ -4,13 +4,12 @@ import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from "react-i18next";
 import LogoSVG from "../../assets/logo/logo_vertical";
 
-import cvIcon from '../../assets/icons/cv/cv.png';
-import cvGlowIcon from '../../assets/icons/cv/cv_glow.png';
-import portfolioIcon from '../../assets/icons/portfolio/portfolio.png';
-import portfolioGlowIcon from '../../assets/icons/portfolio/portfolio_glow.png';
-import contactIcon from '../../assets/icons/contact/contact.png';
-import contactGlowIcon from '../../assets/icons/contact/contact_glow.png';
-import GlowIcon from "../glowIcon/GlowIcon";
+import cvIcon from '../../assets/icons/cv/cv.webp';
+import cvGlowIcon from '../../assets/icons/cv/cv_glow.webp';
+import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
+import portfolioGlowIcon from '../../assets/icons/portfolio/portfolio_glow.webp';
+import contactIcon from '../../assets/icons/contact/contact.webp';
+import contactGlowIcon from '../../assets/icons/contact/contact_glow.webp';
 
 const ROLES_PL = [
     "Specjalista IT",

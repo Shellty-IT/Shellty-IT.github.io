@@ -14,25 +14,25 @@ import {
 import { useTranslation, Trans } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
 
-import aboutIcon from "../../assets/icons/about/about.png";
-import aboutGlow from "../../assets/icons/about/about_glow.png";
-import portfolioIcon from "../../assets/icons/portfolio/portfolio.png";
-import portfolioGlow from "../../assets/icons/portfolio/portfolio_glow.png";
-import contactIcon from "../../assets/icons/contact/contact.png";
-import contactGlow from "../../assets/icons/contact/contact_glow.png";
+import aboutIcon from "../../assets/icons/about/about.webp";
+import aboutGlow from "../../assets/icons/about/about_glow.webp";
+import portfolioIcon from "../../assets/icons/portfolio/portfolio.webp";
+import portfolioGlow from "../../assets/icons/portfolio/portfolio_glow.webp";
+import contactIcon from "../../assets/icons/contact/contact.webp";
+import contactGlow from "../../assets/icons/contact/contact_glow.webp";
 
-import responsibilityIcon from "../../assets/icons/responsibility/responsibility.png";
-import responsibilityGlow from "../../assets/icons/responsibility/responsibility_glow.png";
-import passionIcon from "../../assets/icons/passion/passion.png";
-import passionGlow from "../../assets/icons/passion/passion_glow.png";
-import teamworkIcon from "../../assets/icons/teamwork/teamwork.png";
-import teamworkGlow from "../../assets/icons/teamwork/teamwork_glow.png";
-import independenceIcon from "../../assets/icons/independence/independence.png";
-import independenceGlow from "../../assets/icons/independence/independence_glow.png";
-import creativityIcon from "../../assets/icons/creativity/creativity.png";
-import creativityGlow from "../../assets/icons/creativity/creativity_glow.png";
-import flexibilityIcon from "../../assets/icons/flexibility/flexibility.png";
-import flexibilityGlow from "../../assets/icons/flexibility/flexibility_glow.png";
+import responsibilityIcon from "../../assets/icons/responsibility/responsibility.webp";
+import responsibilityGlow from "../../assets/icons/responsibility/responsibility_glow.webp";
+import passionIcon from "../../assets/icons/passion/passion.webp";
+import passionGlow from "../../assets/icons/passion/passion_glow.webp";
+import teamworkIcon from "../../assets/icons/teamwork/teamwork.webp";
+import teamworkGlow from "../../assets/icons/teamwork/teamwork_glow.webp";
+import independenceIcon from "../../assets/icons/independence/independence.webp";
+import independenceGlow from "../../assets/icons/independence/independence_glow.webp";
+import creativityIcon from "../../assets/icons/creativity/creativity.webp";
+import creativityGlow from "../../assets/icons/creativity/creativity_glow.webp";
+import flexibilityIcon from "../../assets/icons/flexibility/flexibility.webp";
+import flexibilityGlow from "../../assets/icons/flexibility/flexibility_glow.webp";
 
 
 const TRAITS_DATA = [
@@ -119,7 +119,7 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                     onClick={onClose}
                     aria-label={t("about.traits.closeAria")}
                 >
-                    ×
+
                 </button>
                 <div className="trait-sheet__header">
                     <img src={iconGlow} alt="" aria-hidden="true" className="trait-sheet__icon" />

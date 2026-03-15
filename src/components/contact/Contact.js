@@ -3,8 +3,8 @@ import React, { useState, useRef } from "react";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
-import contactIcon from "../../assets/icons/contact/contact.png";
-import contactGlow from "../../assets/icons/contact/contact_glow.png";
+import contactIcon from "../../assets/icons/contact/contact.webp";
+import contactGlow from "../../assets/icons/contact/contact_glow.webp";
 
 export default function Contact() {
     const { t } = useTranslation();
