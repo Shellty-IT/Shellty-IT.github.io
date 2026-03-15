@@ -225,6 +225,10 @@ export default function Home() {
                     <div className="visual-orb" aria-hidden="true" />
                     <div className="visual-card glass">
                         <LogoSVG />
+                        <div className="visual-logo-text">
+                            <span className="visual-logo-shell">Shell</span>
+                            <span className="visual-logo-ty">ty</span>
+                        </div>
                         <div className="visual-caption">
                             {t("home.caption")}
                         </div>
