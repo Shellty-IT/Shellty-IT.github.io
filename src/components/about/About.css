@@ -850,6 +850,7 @@
     }
 
     .dna {
+        margin-bottom: -5px;
         width: 140px;
         height: 140px;
     }
