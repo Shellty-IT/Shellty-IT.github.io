@@ -1,5 +1,3 @@
-/* src/components/about/About.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 .about {
@@ -20,7 +18,7 @@
 
 .about__header {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,10 +31,6 @@
     align-items: center;
     cursor: pointer;
     width: fit-content;
-}
-
-.about__header .glow-icon {
-    margin-bottom: -10px;
 }
 
 .about__title {
@@ -57,19 +51,171 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
 }
 
-.about__header .glow-icon.hovered .glow-icon-base {
-    opacity: 0;
-}
-
-.about__header .glow-icon.hovered .glow-icon-lit {
-    opacity: 1;
-}
-
 .about__kicker {
     margin-top: 0.6rem;
     color: #94a3b8;
     letter-spacing: 0.4px;
     font-size: 1.05rem;
+}
+
+.dna {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -10px;
+    cursor: pointer;
+    will-change: auto;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.dna__stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dna__star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.dna__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: opacity;
+}
+
+.dna__img--base {
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 2;
+}
+
+.dna__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 3;
+}
+
+.dna--hidden .dna__star,
+.dna--hidden .dna__img--base,
+.dna--hidden .dna__img--lit {
+    opacity: 0;
+}
+
+.dna--stars .dna__star {
+    animation: starAppear 0.7s ease-out forwards;
+}
+
+.dna--stars .dna__star:nth-child(1) { animation-delay: 0s; }
+.dna--stars .dna__star:nth-child(2) { animation-delay: 0.08s; }
+.dna--stars .dna__star:nth-child(3) { animation-delay: 0.16s; }
+.dna--stars .dna__star:nth-child(4) { animation-delay: 0.24s; }
+.dna--stars .dna__star:nth-child(5) { animation-delay: 0.32s; }
+.dna--stars .dna__star:nth-child(6) { animation-delay: 0.40s; }
+.dna--stars .dna__star:nth-child(7) { animation-delay: 0.48s; }
+.dna--stars .dna__star:nth-child(8) { animation-delay: 0.56s; }
+
+@keyframes starAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+.dna--forming .dna__star {
+    animation: starAppear 0.7s ease-out forwards;
+}
+
+.dna--forming .dna__img--base {
+    opacity: 0.5;
+    transition: opacity 1.2s ease;
+}
+
+.dna--visible .dna__star {
+    animation: starFade 0.8s ease-out forwards;
+}
+
+@keyframes starFade {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+.dna--visible .dna__img--base {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.dna--visible .dna__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.dna--pulse .dna__img--lit {
+    animation: dnaBreathe 1.6s ease-in-out forwards;
+}
+
+.dna--pulse .dna__img--base {
+    animation: dnaBaseDim 1.6s ease-in-out forwards;
+}
+
+@keyframes dnaBreathe {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.35; }
+    45%  { opacity: 0.8; }
+    65%  { opacity: 0.6; }
+    100% { opacity: 0; }
+}
+
+@keyframes dnaBaseDim {
+    0%   { opacity: 1; }
+    45%  { opacity: 0.35; }
+    65%  { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.dna--visible:hover .dna__img--lit {
+    opacity: 0.85;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+.dna--visible:hover .dna__img--base {
+    opacity: 0.25;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .about__grid {
@@ -649,7 +795,7 @@
 
 @keyframes sheetSlideUp {
     from { transform: translateY(100%); }
-    to   { transform: translateY(0);    }
+    to   { transform: translateY(0); }
 }
 
 @keyframes sheetOverlayIn {
@@ -685,6 +831,11 @@
 @media (max-width: 720px) {
     .about { padding-top: 0; }
     .about__header { margin-bottom: 0.1rem; }
+
+    .dna {
+        width: 160px;
+        height: 160px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -696,5 +847,35 @@
     .trait-item__icon {
         width: 48px;
         height: 48px;
+    }
+
+    .dna {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dna {
+        animation: none !important;
+    }
+
+    .dna__star,
+    .dna__img--base,
+    .dna__img--lit {
+        animation: none !important;
+        transition: opacity 0.01s !important;
+    }
+
+    .dna--visible .dna__img--base {
+        opacity: 1;
+    }
+
+    .dna--visible:hover .dna__img--lit {
+        opacity: 0.85;
+    }
+
+    .dna--visible:hover .dna__img--base {
+        opacity: 0.25;
     }
 }

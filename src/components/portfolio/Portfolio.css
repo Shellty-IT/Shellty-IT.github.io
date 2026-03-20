@@ -1,4 +1,4 @@
-/* src/components/portfolio/portfolio.css */
+/* src/components/portfolio/Portfolio.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
@@ -38,10 +38,6 @@
     width: fit-content;
 }
 
-.portfolio-header .glow-icon {
-    margin-bottom: -25px;
-}
-
 .portfolio-title {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(20px, 3.5vw, 36px);
@@ -60,18 +56,175 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
 }
 
-.portfolio-header .glow-icon.hovered .glow-icon-base {
-    opacity: 0;
-}
-
-.portfolio-header .glow-icon.hovered .glow-icon-lit {
-    opacity: 1;
-}
-
 .portfolio-subtitle {
     color: #94a3b8;
     margin-top: 8px;
     font-size: 1.05rem;
+}
+
+.pf-icon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -25px;
+    cursor: pointer;
+    will-change: auto;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.pf-icon__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pf-icon__node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.pf-icon__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: opacity;
+}
+
+.pf-icon__img--base {
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 2;
+}
+
+.pf-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 3;
+}
+
+.pf-icon--hidden .pf-icon__node,
+.pf-icon--hidden .pf-icon__img--base,
+.pf-icon--hidden .pf-icon__img--lit {
+    opacity: 0;
+}
+
+.pf-icon--nodes .pf-icon__node {
+    animation: pfNodeActivate 0.6s ease-out forwards;
+}
+
+.pf-icon--nodes .pf-icon__node:nth-child(1) { animation-delay: 0s; }
+.pf-icon--nodes .pf-icon__node:nth-child(2) { animation-delay: 0.07s; }
+.pf-icon--nodes .pf-icon__node:nth-child(3) { animation-delay: 0.14s; }
+.pf-icon--nodes .pf-icon__node:nth-child(4) { animation-delay: 0.21s; }
+.pf-icon--nodes .pf-icon__node:nth-child(5) { animation-delay: 0.28s; }
+.pf-icon--nodes .pf-icon__node:nth-child(6) { animation-delay: 0.35s; }
+.pf-icon--nodes .pf-icon__node:nth-child(7) { animation-delay: 0.42s; }
+.pf-icon--nodes .pf-icon__node:nth-child(8) { animation-delay: 0.49s; }
+.pf-icon--nodes .pf-icon__node:nth-child(9) { animation-delay: 0.56s; }
+
+@keyframes pfNodeActivate {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+    70% {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+}
+
+.pf-icon--forming .pf-icon__node {
+    animation: pfNodeActivate 0.6s ease-out forwards;
+}
+
+.pf-icon--forming .pf-icon__img--base {
+    opacity: 0.5;
+    transition: opacity 1.2s ease;
+}
+
+.pf-icon--visible .pf-icon__node {
+    animation: pfNodeFade 0.8s ease-out forwards;
+}
+
+@keyframes pfNodeFade {
+    0% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+.pf-icon--visible .pf-icon__img--base {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.pf-icon--visible .pf-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.pf-icon--pulse .pf-icon__img--lit {
+    animation: pfBreathe 1.6s ease-in-out forwards;
+}
+
+.pf-icon--pulse .pf-icon__img--base {
+    animation: pfBaseDim 1.6s ease-in-out forwards;
+}
+
+@keyframes pfBreathe {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.3; }
+    45%  { opacity: 0.75; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 0; }
+}
+
+@keyframes pfBaseDim {
+    0%   { opacity: 1; }
+    45%  { opacity: 0.4; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 1; }
+}
+
+.pf-icon--visible:hover .pf-icon__img--lit {
+    opacity: 0.85;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+.pf-icon--visible:hover .pf-icon__img--base {
+    opacity: 0.25;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .projects-grid {
@@ -88,6 +241,11 @@
 
     .portfolio-container {
         padding-top: 0px;
+    }
+
+    .pf-icon {
+        width: 160px;
+        height: 160px;
     }
 }
 
@@ -397,13 +555,6 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .animate-fade-in,
-    .animate-slide-up {
-        animation: none !important;
-    }
-}
-
 #portfolio {
     scroll-margin-top: 80px;
 }
@@ -539,6 +690,13 @@
     color: #10b981;
 }
 
+@media (max-width: 480px) {
+    .pf-icon {
+        width: 140px;
+        height: 140px;
+    }
+}
+
 @media (max-width: 420px) {
     .test-account {
         padding: 14px 12px;
@@ -562,5 +720,35 @@
         width: 30px;
         height: 30px;
         font-size: 0.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-icon {
+        animation: none !important;
+    }
+
+    .animate-fade-in,
+    .animate-slide-up {
+        animation: none !important;
+    }
+
+    .pf-icon__node,
+    .pf-icon__img--base,
+    .pf-icon__img--lit {
+        animation: none !important;
+        transition: opacity 0.01s !important;
+    }
+
+    .pf-icon--visible .pf-icon__img--base {
+        opacity: 1;
+    }
+
+    .pf-icon--visible:hover .pf-icon__img--lit {
+        opacity: 0.85;
+    }
+
+    .pf-icon--visible:hover .pf-icon__img--base {
+        opacity: 0.25;
     }
 }

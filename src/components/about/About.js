@@ -1,5 +1,4 @@
-// src/components/about/About.js
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { HashLink } from "react-router-hash-link";
 import "./About.css";
 import {
@@ -34,7 +33,6 @@ import creativityGlow from "../../assets/icons/creativity/creativity_glow.webp";
 import flexibilityIcon from "../../assets/icons/flexibility/flexibility.webp";
 import flexibilityGlow from "../../assets/icons/flexibility/flexibility_glow.webp";
 
-
 const TRAITS_DATA = [
     { key: "responsibility", icon: responsibilityIcon, glow: responsibilityGlow },
     { key: "passion",        icon: passionIcon,        glow: passionGlow },
@@ -42,6 +40,17 @@ const TRAITS_DATA = [
     { key: "independence",   icon: independenceIcon,   glow: independenceGlow },
     { key: "creativity",     icon: creativityIcon,     glow: creativityGlow },
     { key: "flexibility",    icon: flexibilityIcon,    glow: flexibilityGlow },
+];
+
+const DNA_STARS = [
+    { id: 0, x: "18%", y: "22%" },
+    { id: 1, x: "72%", y: "15%" },
+    { id: 2, x: "45%", y: "50%" },
+    { id: 3, x: "28%", y: "75%" },
+    { id: 4, x: "80%", y: "65%" },
+    { id: 5, x: "55%", y: "85%" },
+    { id: 6, x: "12%", y: "48%" },
+    { id: 7, x: "88%", y: "38%" },
 ];
 
 const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
@@ -60,9 +69,7 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
             onMouseLeave={() => setHovered(false)}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            onClick={() => {
-                if (isMobile) onMobileTap(traitKey);
-            }}
+            onClick={() => { if (isMobile) onMobileTap(traitKey); }}
             onKeyDown={(e) => {
                 if (e.key === "Escape") {
                     setFocused(false);
@@ -78,17 +85,16 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
                 className="trait-item__icon"
             />
             <span className="trait-item__label">
-        {t(`about.traits.${traitKey}.name`)}
-      </span>
-
+                {t(`about.traits.${traitKey}.name`)}
+            </span>
             {!isMobile && (
                 <span
                     role="tooltip"
                     id={tooltipId}
                     className={`trait-item__tooltip${showTooltip ? " trait-item__tooltip--visible" : ""}`}
                 >
-          {t(`about.traits.${traitKey}.desc`)}
-        </span>
+                    {t(`about.traits.${traitKey}.desc`)}
+                </span>
             )}
         </button>
     );
@@ -118,9 +124,7 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                     className="trait-sheet__close"
                     onClick={onClose}
                     aria-label={t("about.traits.closeAria")}
-                >
-
-                </button>
+                />
                 <div className="trait-sheet__header">
                     <img src={iconGlow} alt="" aria-hidden="true" className="trait-sheet__icon" />
                     <span className="trait-sheet__name">{t(`about.traits.${traitKey}.name`)}</span>
@@ -159,11 +163,11 @@ const VideoCard = ({ vimeoId, t }) => {
                             />
                         )}
                         <span className="about__video-play-icon" aria-hidden="true">
-              <svg viewBox="0 0 68 48" width="68" height="48" xmlns="http://www.w3.org/2000/svg">
-                <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="rgba(12,192,255,.85)" />
-                <path d="M45 24L27 14v20" fill="#fff" />
-              </svg>
-            </span>
+                            <svg viewBox="0 0 68 48" width="68" height="48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="rgba(12,192,255,.85)" />
+                                <path d="M45 24L27 14v20" fill="#fff" />
+                            </svg>
+                        </span>
                     </button>
                 ) : (
                     <iframe
@@ -183,7 +187,6 @@ const About = () => {
     const { t } = useTranslation();
     const vimeoId = t("about.video.vimeoId");
 
-    /* ── mobile detection ── */
     const [isMobile, setIsMobile] = useState(false);
     const [mobileSheetKey, setMobileSheetKey] = useState(null);
 
@@ -203,6 +206,74 @@ const About = () => {
 
     const [titleHovered, setTitleHovered] = useState(false);
 
+    const [dnaPhase, setDnaPhase] = useState("hidden");
+    const dnaRef = useRef(null);
+    const pulseTimer = useRef(null);
+
+    useEffect(() => {
+        const el = dnaRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && dnaPhase === "hidden") {
+                    setDnaPhase("stars");
+                }
+            },
+            { threshold: 0.25 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [dnaPhase]);
+
+    useEffect(() => {
+        if (dnaPhase !== "stars") return;
+        const t1 = setTimeout(() => setDnaPhase("forming"), 900);
+        return () => clearTimeout(t1);
+    }, [dnaPhase]);
+
+    useEffect(() => {
+        if (dnaPhase !== "forming") return;
+        const t2 = setTimeout(() => setDnaPhase("visible"), 1200);
+        return () => clearTimeout(t2);
+    }, [dnaPhase]);
+
+    useEffect(() => {
+        if (dnaPhase !== "visible") return;
+
+        const t3 = setTimeout(() => {
+            dnaRef.current?.classList.add("dna--pulse");
+            setTimeout(() => {
+                dnaRef.current?.classList.remove("dna--pulse");
+            }, 1600);
+        }, 600);
+
+        return () => clearTimeout(t3);
+    }, [dnaPhase]);
+
+    useEffect(() => {
+        if (dnaPhase !== "visible") return;
+
+        const schedule = () => {
+            const delay = 6000 + Math.random() * 2000;
+            pulseTimer.current = setTimeout(() => {
+                dnaRef.current?.classList.add("dna--pulse");
+                setTimeout(() => {
+                    dnaRef.current?.classList.remove("dna--pulse");
+                }, 1600);
+                schedule();
+            }, delay);
+        };
+
+        const initial = setTimeout(schedule, 3000);
+
+        return () => {
+            clearTimeout(initial);
+            clearTimeout(pulseTimer.current);
+        };
+    }, [dnaPhase]);
+
     return (
         <section id="about" className="about">
             <span className="about__blob about__blob--a" />
@@ -211,26 +282,46 @@ const About = () => {
             <div className="about__container">
                 <header className="about__header animate-fade-in">
                     <div
+                        ref={dnaRef}
+                        className={`dna dna--${dnaPhase}`}
+                    >
+                        <div className="dna__stars" aria-hidden="true">
+                            {DNA_STARS.map((s) => (
+                                <span
+                                    key={s.id}
+                                    className="dna__star"
+                                    style={{ left: s.x, top: s.y }}
+                                />
+                            ))}
+                        </div>
+                        <img
+                            src={aboutIcon}
+                            alt=""
+                            aria-hidden="true"
+                            className="dna__img dna__img--base"
+                            draggable="false"
+                        />
+                        <img
+                            src={aboutGlow}
+                            alt=""
+                            aria-hidden="true"
+                            className="dna__img dna__img--lit"
+                            draggable="false"
+                        />
+                    </div>
+
+                    <div
                         className="about__header-hover-area"
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <GlowIcon
-                            src={aboutIcon}
-                            srcGlow={aboutGlow}
-                            alt="About"
-                            size={220}
-                            floating
-                            className={titleHovered ? 'hovered' : ''}
-                        />
-                        <h2 className={`about__title ${titleHovered ? 'hovered' : ''}`}>
+                        <h2 className={`about__title ${titleHovered ? "hovered" : ""}`}>
                             {t("about.title")}
                         </h2>
                     </div>
                 </header>
 
                 <div className="about__grid">
-                    {/* ── left column ── */}
                     <div className="about__text animate-slide-up">
                         <p><Trans i18nKey="about.p1" components={{ strong: <strong /> }} /></p>
 
@@ -309,11 +400,8 @@ const About = () => {
                                 </ul>
                             </div>
 
-
                             <div className="about__traits-block">
-                                <h4 className="about__traits-title">
-                                    {t("about.softSkillsTitle")}
-                                </h4>
+                                <h4 className="about__traits-title">{t("about.softSkillsTitle")}</h4>
                                 <div className="traits-grid">
                                     {TRAITS_DATA.map((trait) => (
                                         <TraitItem

@@ -1,11 +1,8 @@
-/* src/components/contact/contact.css */
+/* src/components/contact/Contact.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 .contact-section {
-    --icon-margin-top: 0px;
-    --icon-margin-bottom: -90px;
-    --icon-scale: 1;
     --section-padding-top: 60px;
 
     min-height: 60vh;
@@ -36,13 +33,6 @@
     width: fit-content;
 }
 
-.contact-header .glow-icon {
-    margin-top: var(--icon-margin-top);
-    margin-bottom: var(--icon-margin-bottom);
-    transform: scale(var(--icon-scale));
-    transition: transform 0.3s ease, margin 0.3s ease;
-}
-
 .contact-title {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(20px, 3.5vw, 36px);
@@ -61,20 +51,176 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
 }
 
-.contact-header .glow-icon.hovered .glow-icon-base {
-    opacity: 0;
-}
-
-.contact-header .glow-icon.hovered .glow-icon-lit {
-    opacity: 1;
-}
-
 .contact-subtitle {
     font-size: 1rem;
     color: #94a3b8;
     line-height: 1.7;
     white-space: nowrap;
     margin: 0;
+}
+
+.ct-icon {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin-bottom: -65px;
+    cursor: pointer;
+    will-change: auto;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.ct-icon__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ct-icon__node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.ct-icon__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: opacity;
+}
+
+.ct-icon__img--base {
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 2;
+}
+
+.ct-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 3;
+}
+
+.ct-icon--hidden .ct-icon__node,
+.ct-icon--hidden .ct-icon__img--base,
+.ct-icon--hidden .ct-icon__img--lit {
+    opacity: 0;
+}
+
+.ct-icon--nodes .ct-icon__node {
+    animation: ctNodeActivate 0.6s ease-out forwards;
+}
+
+.ct-icon--nodes .ct-icon__node:nth-child(1) { animation-delay: 0s; }
+.ct-icon--nodes .ct-icon__node:nth-child(2) { animation-delay: 0.08s; }
+.ct-icon--nodes .ct-icon__node:nth-child(3) { animation-delay: 0.16s; }
+.ct-icon--nodes .ct-icon__node:nth-child(4) { animation-delay: 0.24s; }
+.ct-icon--nodes .ct-icon__node:nth-child(5) { animation-delay: 0.32s; }
+.ct-icon--nodes .ct-icon__node:nth-child(6) { animation-delay: 0.40s; }
+.ct-icon--nodes .ct-icon__node:nth-child(7) { animation-delay: 0.48s; }
+.ct-icon--nodes .ct-icon__node:nth-child(8) { animation-delay: 0.56s; }
+
+@keyframes ctNodeActivate {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+    70% {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+}
+
+.ct-icon--forming .ct-icon__node {
+    animation: ctNodeActivate 0.6s ease-out forwards;
+}
+
+.ct-icon--forming .ct-icon__img--base {
+    opacity: 0.5;
+    transition: opacity 1.2s ease;
+}
+
+.ct-icon--visible .ct-icon__node {
+    animation: ctNodeFade 0.8s ease-out forwards;
+}
+
+@keyframes ctNodeFade {
+    0% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+.ct-icon--visible .ct-icon__img--base {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.ct-icon--visible .ct-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.ct-icon--pulse .ct-icon__img--lit {
+    animation: ctBreathe 1.6s ease-in-out forwards;
+}
+
+.ct-icon--pulse .ct-icon__img--base {
+    animation: ctBaseDim 1.6s ease-in-out forwards;
+}
+
+@keyframes ctBreathe {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.3; }
+    45%  { opacity: 0.75; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 0; }
+}
+
+@keyframes ctBaseDim {
+    0%   { opacity: 1; }
+    45%  { opacity: 0.4; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 1; }
+}
+
+.ct-icon--visible:hover .ct-icon__img--lit {
+    opacity: 0.85;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+.ct-icon--visible:hover .ct-icon__img--base {
+    opacity: 0.25;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .contact-card {
@@ -260,13 +406,15 @@
     scroll-margin-top: 80px;
 }
 
-/* ===== TABLET ===== */
 @media (max-width: 800px) {
     .contact-section {
-        --icon-margin-top: -20px;
-        --icon-margin-bottom: -85px;
-        --icon-scale: 0.9;
         --section-padding-top: 40px;
+    }
+
+    .ct-icon {
+        width: 190px;
+        height: 190px;
+        margin-bottom: -85px;
     }
 
     .contact-subtitle {
@@ -276,13 +424,15 @@
     }
 }
 
-/* ===== MOBILE ===== */
 @media (max-width: 640px) {
     .contact-section {
-        --icon-margin-top: -100px;
-        --icon-margin-bottom: -80px;
-        --icon-scale: 0.75;
         --section-padding-top: 20px;
+    }
+
+    .ct-icon {
+        width: 160px;
+        height: 160px;
+        margin-bottom: -80px;
     }
 
     .contact-header {
@@ -315,13 +465,15 @@
     }
 }
 
-/* ===== BARDZO MAŁE EKRANY ===== */
 @media (max-width: 380px) {
     .contact-section {
-        --icon-margin-top: -50px;
-        --icon-margin-bottom: -65px;
-        --icon-scale: 0.65;
         --section-padding-top: 10px;
+    }
+
+    .ct-icon {
+        width: 140px;
+        height: 140px;
+        margin-bottom: -65px;
     }
 
     .contact-card {
@@ -330,5 +482,30 @@
 
     .contact-title {
         font-size: 1.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ct-icon {
+        animation: none !important;
+    }
+
+    .ct-icon__node,
+    .ct-icon__img--base,
+    .ct-icon__img--lit {
+        animation: none !important;
+        transition: opacity 0.01s !important;
+    }
+
+    .ct-icon--visible .ct-icon__img--base {
+        opacity: 1;
+    }
+
+    .ct-icon--visible:hover .ct-icon__img--lit {
+        opacity: 0.85;
+    }
+
+    .ct-icon--visible:hover .ct-icon__img--base {
+        opacity: 0.25;
     }
 }

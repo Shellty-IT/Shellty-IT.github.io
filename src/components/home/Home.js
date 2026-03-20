@@ -34,6 +34,8 @@ export default function Home() {
     const [roleIndex, setRoleIndex] = useState(0);
     const [reverse, setReverse] = useState(false);
     const [blink, setBlink] = useState(true);
+    const [logoGlow, setLogoGlow] = useState(false);
+
 
     useEffect(() => {
         setSubIndex(0);
@@ -63,6 +65,14 @@ export default function Home() {
     useEffect(() => {
         const blinkTimer = setInterval(() => setBlink((b) => !b), 420);
         return () => clearInterval(blinkTimer);
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLogoGlow(true);
+            setTimeout(() => setLogoGlow(false), 1500);
+        }, 7000);
+        return () => clearInterval(interval);
     }, []);
 
     const handleMagnet = (e) => {
@@ -224,7 +234,9 @@ export default function Home() {
                 <div className="hero-visual">
                     <div className="visual-orb" aria-hidden="true" />
                     <div className="visual-card glass">
-                        <LogoSVG />
+                        <div className={`logo-auto-glow${logoGlow ? ' is-glowing' : ''}`}>
+                            <LogoSVG />
+                        </div>
                         <div className="visual-logo-text">
                             <span className="visual-logo-shell">Shell</span>
                             <span className="visual-logo-ty">ty</span>

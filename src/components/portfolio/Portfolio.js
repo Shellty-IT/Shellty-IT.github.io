@@ -1,5 +1,5 @@
-// src/components/portfolio/portfolio.js
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
+// src/components/portfolio/Portfolio.js
+import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import './Portfolio.css';
 import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
@@ -14,9 +14,21 @@ import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.webp';
 import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
 import animalsThumbnail from '../../assets/thumbnails/one_page_animals.webp';
 import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
-import GlowIcon from '../glowIcon/GlowIcon';
+
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
+
+const ICON_NODES = [
+    { id: 0, x: "15%", y: "15%" },
+    { id: 1, x: "50%", y: "8%" },
+    { id: 2, x: "85%", y: "15%" },
+    { id: 3, x: "25%", y: "45%" },
+    { id: 4, x: "75%", y: "45%" },
+    { id: 5, x: "15%", y: "80%" },
+    { id: 6, x: "50%", y: "88%" },
+    { id: 7, x: "85%", y: "80%" },
+    { id: 8, x: "50%", y: "50%" },
+];
 
 const CopyButton = ({ text, label }) => {
     const [copied, setCopied] = useState(false);
@@ -86,10 +98,78 @@ const Portfolio = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [titleHovered, setTitleHovered] = useState(false);
 
+    const [iconPhase, setIconPhase] = useState("hidden");
+    const iconRef = useRef(null);
+    const pulseTimer = useRef(null);
+
     useEffect(() => {
         const tm = setTimeout(() => setIsLoading(false), 350);
         return () => clearTimeout(tm);
     }, []);
+
+    useEffect(() => {
+        const el = iconRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && iconPhase === "hidden") {
+                    setIconPhase("nodes");
+                }
+            },
+            { threshold: 0.25 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "nodes") return;
+        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
+        return () => clearTimeout(t1);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "forming") return;
+        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
+        return () => clearTimeout(t2);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const t3 = setTimeout(() => {
+            iconRef.current?.classList.add("pf-icon--pulse");
+            setTimeout(() => {
+                iconRef.current?.classList.remove("pf-icon--pulse");
+            }, 1600);
+        }, 600);
+
+        return () => clearTimeout(t3);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const schedule = () => {
+            const delay = 6000 + Math.random() * 2000;
+            pulseTimer.current = setTimeout(() => {
+                iconRef.current?.classList.add("pf-icon--pulse");
+                setTimeout(() => {
+                    iconRef.current?.classList.remove("pf-icon--pulse");
+                }, 1600);
+                schedule();
+            }, delay);
+        };
+
+        const initial = setTimeout(schedule, 3000);
+
+        return () => {
+            clearTimeout(initial);
+            clearTimeout(pulseTimer.current);
+        };
+    }, [iconPhase]);
 
     const projects = useMemo(() => ([
         {
@@ -222,18 +302,39 @@ const Portfolio = () => {
             <div className="content-wrapper">
                 <header className="portfolio-header animate-fade-in">
                     <div
+                        ref={iconRef}
+                        className={`pf-icon pf-icon--${iconPhase}`}
+                    >
+                        <div className="pf-icon__nodes" aria-hidden="true">
+                            {ICON_NODES.map((n) => (
+                                <span
+                                    key={n.id}
+                                    className="pf-icon__node"
+                                    style={{ left: n.x, top: n.y }}
+                                />
+                            ))}
+                        </div>
+                        <img
+                            src={portfolioIcon}
+                            alt=""
+                            aria-hidden="true"
+                            className="pf-icon__img pf-icon__img--base"
+                            draggable="false"
+                        />
+                        <img
+                            src={portfolioGlow}
+                            alt=""
+                            aria-hidden="true"
+                            className="pf-icon__img pf-icon__img--lit"
+                            draggable="false"
+                        />
+                    </div>
+
+                    <div
                         className="portfolio-header-hover-area"
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <GlowIcon
-                            src={portfolioIcon}
-                            srcGlow={portfolioGlow}
-                            alt="Portfolio"
-                            size={200}
-                            floating
-                            className={titleHovered ? 'hovered' : ''}
-                        />
                         <h1 className={`portfolio-title ${titleHovered ? 'hovered' : ''}`}>
                             {t('portfolio.title')}
                         </h1>

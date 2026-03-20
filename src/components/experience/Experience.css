@@ -1,11 +1,6 @@
-/* src/components/experience/experience.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 .exp {
-    --icon-margin-top: 0px;
-    --icon-margin-bottom: -35px;
-    --icon-scale: 1;
     --section-padding-top: 110px;
 
     position: relative;
@@ -37,13 +32,6 @@
     width: fit-content;
 }
 
-.exp__header .glow-icon {
-    margin-top: var(--icon-margin-top);
-    margin-bottom: var(--icon-margin-bottom);
-    transform: scale(var(--icon-scale));
-    transition: transform 0.3s ease, margin 0.3s ease;
-}
-
 .exp__title {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(20px, 3.5vw, 36px);
@@ -62,18 +50,175 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
 }
 
-.exp__header .glow-icon.hovered .glow-icon-base {
-    opacity: 0;
-}
-
-.exp__header .glow-icon.hovered .glow-icon-lit {
-    opacity: 1;
-}
-
 .exp__kicker {
     color: #94a3b8;
     margin-top: 8px;
     font-size: 1.05rem;
+}
+
+.exp-icon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -25px;
+    cursor: pointer;
+    will-change: auto;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.exp-icon__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.exp-icon__node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.exp-icon__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: opacity;
+}
+
+.exp-icon__img--base {
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 2;
+}
+
+.exp-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 3;
+}
+
+.exp-icon--hidden .exp-icon__node,
+.exp-icon--hidden .exp-icon__img--base,
+.exp-icon--hidden .exp-icon__img--lit {
+    opacity: 0;
+}
+
+.exp-icon--nodes .exp-icon__node {
+    animation: expNodeActivate 0.6s ease-out forwards;
+}
+
+.exp-icon--nodes .exp-icon__node:nth-child(1) { animation-delay: 0s; }
+.exp-icon--nodes .exp-icon__node:nth-child(2) { animation-delay: 0.07s; }
+.exp-icon--nodes .exp-icon__node:nth-child(3) { animation-delay: 0.14s; }
+.exp-icon--nodes .exp-icon__node:nth-child(4) { animation-delay: 0.21s; }
+.exp-icon--nodes .exp-icon__node:nth-child(5) { animation-delay: 0.28s; }
+.exp-icon--nodes .exp-icon__node:nth-child(6) { animation-delay: 0.35s; }
+.exp-icon--nodes .exp-icon__node:nth-child(7) { animation-delay: 0.42s; }
+.exp-icon--nodes .exp-icon__node:nth-child(8) { animation-delay: 0.49s; }
+.exp-icon--nodes .exp-icon__node:nth-child(9) { animation-delay: 0.56s; }
+
+@keyframes expNodeActivate {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+    70% {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+}
+
+.exp-icon--forming .exp-icon__node {
+    animation: expNodeActivate 0.6s ease-out forwards;
+}
+
+.exp-icon--forming .exp-icon__img--base {
+    opacity: 0.5;
+    transition: opacity 1.2s ease;
+}
+
+.exp-icon--visible .exp-icon__node {
+    animation: expNodeFade 0.8s ease-out forwards;
+}
+
+@keyframes expNodeFade {
+    0% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+.exp-icon--visible .exp-icon__img--base {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.exp-icon--visible .exp-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.exp-icon--pulse .exp-icon__img--lit {
+    animation: expBreathe 1.6s ease-in-out forwards;
+}
+
+.exp-icon--pulse .exp-icon__img--base {
+    animation: expBaseDim 1.6s ease-in-out forwards;
+}
+
+@keyframes expBreathe {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.3; }
+    45%  { opacity: 0.75; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 0; }
+}
+
+@keyframes expBaseDim {
+    0%   { opacity: 1; }
+    45%  { opacity: 0.4; }
+    65%  { opacity: 0.55; }
+    100% { opacity: 1; }
+}
+
+.exp-icon--visible:hover .exp-icon__img--lit {
+    opacity: 0.85;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+.exp-icon--visible:hover .exp-icon__img--base {
+    opacity: 0.25;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .exp__timeline {
@@ -217,23 +362,27 @@
     scroll-margin-top: 80px;
 }
 
-/* ===== TABLET ===== */
 @media (max-width: 800px) {
     .exp {
-        --icon-margin-top: -15px;
-        --icon-margin-bottom: -40px;
-        --icon-scale: 0.9;
         --section-padding-top: 80px;
+    }
+
+    .exp-icon {
+        width: 170px;
+        height: 170px;
+        margin-bottom: -40px;
     }
 }
 
-/* ===== MOBILE ===== */
 @media (max-width: 720px) {
     .exp {
-        --icon-margin-top: -80px;
-        --icon-margin-bottom: -35px;
-        --icon-scale: 0.75;
         --section-padding-top: 40px;
+    }
+
+    .exp-icon {
+        width: 140px;
+        height: 140px;
+        margin-bottom: -35px;
     }
 
     .exp__item {
@@ -260,13 +409,15 @@
     }
 }
 
-/* ===== BARDZO MAŁE EKRANY ===== */
 @media (max-width: 380px) {
     .exp {
-        --icon-margin-top: -40px;
-        --icon-margin-bottom: -50px;
-        --icon-scale: 0.65;
         --section-padding-top: 20px;
+    }
+
+    .exp-icon {
+        width: 120px;
+        height: 120px;
+        margin-bottom: -50px;
     }
 
     .exp__card {
@@ -279,5 +430,30 @@
 
     .exp__meta {
         font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exp-icon {
+        animation: none !important;
+    }
+
+    .exp-icon__node,
+    .exp-icon__img--base,
+    .exp-icon__img--lit {
+        animation: none !important;
+        transition: opacity 0.01s !important;
+    }
+
+    .exp-icon--visible .exp-icon__img--base {
+        opacity: 1;
+    }
+
+    .exp-icon--visible:hover .exp-icon__img--lit {
+        opacity: 0.85;
+    }
+
+    .exp-icon--visible:hover .exp-icon__img--base {
+        opacity: 0.25;
     }
 }

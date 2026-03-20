@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+// src/components/skills/Skills.js
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import "./Skills.css";
 import {
     FaWindows,
@@ -40,9 +41,21 @@ import {
 import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { FaMobileAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import GlowIcon from "../glowIcon/GlowIcon";
+
 import skillsIcon from "../../assets/icons/skills/skills.webp";
 import skillsGlow from "../../assets/icons/skills/skills_glow.webp";
+
+const ICON_NODES = [
+    { id: 0, x: "20%", y: "12%" },
+    { id: 1, x: "80%", y: "12%" },
+    { id: 2, x: "10%", y: "42%" },
+    { id: 3, x: "50%", y: "35%" },
+    { id: 4, x: "90%", y: "42%" },
+    { id: 5, x: "25%", y: "72%" },
+    { id: 6, x: "50%", y: "88%" },
+    { id: 7, x: "75%", y: "72%" },
+    { id: 8, x: "50%", y: "55%" },
+];
 
 const SkillItem = ({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) => {
     const value = LEVELS[level] || 50;
@@ -78,6 +91,74 @@ const Skills = () => {
     const { t, i18n } = useTranslation();
     const isEN = i18n.language?.startsWith("en");
     const [titleHovered, setTitleHovered] = useState(false);
+
+    const [iconPhase, setIconPhase] = useState("hidden");
+    const iconRef = useRef(null);
+    const pulseTimer = useRef(null);
+
+    useEffect(() => {
+        const el = iconRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && iconPhase === "hidden") {
+                    setIconPhase("nodes");
+                }
+            },
+            { threshold: 0.25 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "nodes") return;
+        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
+        return () => clearTimeout(t1);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "forming") return;
+        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
+        return () => clearTimeout(t2);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const t3 = setTimeout(() => {
+            iconRef.current?.classList.add("sk-icon-wrap--pulse");
+            setTimeout(() => {
+                iconRef.current?.classList.remove("sk-icon-wrap--pulse");
+            }, 1600);
+        }, 600);
+
+        return () => clearTimeout(t3);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const schedule = () => {
+            const delay = 6000 + Math.random() * 2000;
+            pulseTimer.current = setTimeout(() => {
+                iconRef.current?.classList.add("sk-icon-wrap--pulse");
+                setTimeout(() => {
+                    iconRef.current?.classList.remove("sk-icon-wrap--pulse");
+                }, 1600);
+                schedule();
+            }, delay);
+        };
+
+        const initial = setTimeout(schedule, 3000);
+
+        return () => {
+            clearTimeout(initial);
+            clearTimeout(pulseTimer.current);
+        };
+    }, [iconPhase]);
 
     const LEVELS = useMemo(() => (
         isEN
@@ -187,22 +268,44 @@ const Skills = () => {
             <div className="skills__container">
                 <header className="skills__header">
                     <div
+                        ref={iconRef}
+                        className={`sk-icon-wrap sk-icon-wrap--${iconPhase}`}
+                    >
+                        <div className="sk-icon-wrap__nodes" aria-hidden="true">
+                            {ICON_NODES.map((n) => (
+                                <span
+                                    key={n.id}
+                                    className="sk-icon-wrap__node"
+                                    style={{ left: n.x, top: n.y }}
+                                />
+                            ))}
+                        </div>
+                        <img
+                            src={skillsIcon}
+                            alt=""
+                            aria-hidden="true"
+                            className="sk-icon-wrap__img sk-icon-wrap__img--base"
+                            draggable="false"
+                        />
+                        <img
+                            src={skillsGlow}
+                            alt=""
+                            aria-hidden="true"
+                            className="sk-icon-wrap__img sk-icon-wrap__img--lit"
+                            draggable="false"
+                        />
+                    </div>
+
+                    <div
                         className="skills__header-hover-area"
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <GlowIcon
-                            src={skillsIcon}
-                            srcGlow={skillsGlow}
-                            alt="Skills"
-                            size={200}
-                            floating
-                            className={titleHovered ? 'hovered' : ''}
-                        />
                         <h2 className={`skills__title ${titleHovered ? 'hovered' : ''}`}>
                             {t("skills.title")}
                         </h2>
                     </div>
+
                     <dl className="skills__legend" aria-label={t("skills.legend.aria", { defaultValue: "Legenda poziomów umiejętności" })}>
                         <div className="legend-item">
                             <dt><b>{t("skills.legend.adv")}</b></dt>

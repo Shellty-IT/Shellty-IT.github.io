@@ -1,10 +1,21 @@
-// src/components/contact/contact.js
-import React, { useState, useRef } from "react";
+// src/components/contact/Contact.js
+import React, { useState, useRef, useEffect } from "react";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
-import GlowIcon from "../glowIcon/GlowIcon";
+
 import contactIcon from "../../assets/icons/contact/contact.webp";
 import contactGlow from "../../assets/icons/contact/contact_glow.webp";
+
+const ICON_NODES = [
+    { id: 0, x: "25%", y: "15%" },
+    { id: 1, x: "75%", y: "15%" },
+    { id: 2, x: "12%", y: "45%" },
+    { id: 3, x: "50%", y: "38%" },
+    { id: 4, x: "88%", y: "45%" },
+    { id: 5, x: "30%", y: "75%" },
+    { id: 6, x: "50%", y: "90%" },
+    { id: 7, x: "70%", y: "75%" },
+];
 
 export default function Contact() {
     const { t } = useTranslation();
@@ -14,7 +25,75 @@ export default function Contact() {
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
     const [titleHovered, setTitleHovered] = useState(false);
 
+    const [iconPhase, setIconPhase] = useState("hidden");
+    const iconRef = useRef(null);
+    const pulseTimer = useRef(null);
+
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
+
+    useEffect(() => {
+        const el = iconRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && iconPhase === "hidden") {
+                    setIconPhase("nodes");
+                }
+            },
+            { threshold: 0.25 }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "nodes") return;
+        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
+        return () => clearTimeout(t1);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "forming") return;
+        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
+        return () => clearTimeout(t2);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const t3 = setTimeout(() => {
+            iconRef.current?.classList.add("ct-icon--pulse");
+            setTimeout(() => {
+                iconRef.current?.classList.remove("ct-icon--pulse");
+            }, 1600);
+        }, 600);
+
+        return () => clearTimeout(t3);
+    }, [iconPhase]);
+
+    useEffect(() => {
+        if (iconPhase !== "visible") return;
+
+        const schedule = () => {
+            const delay = 6000 + Math.random() * 2000;
+            pulseTimer.current = setTimeout(() => {
+                iconRef.current?.classList.add("ct-icon--pulse");
+                setTimeout(() => {
+                    iconRef.current?.classList.remove("ct-icon--pulse");
+                }, 1600);
+                schedule();
+            }, delay);
+        };
+
+        const initial = setTimeout(schedule, 3000);
+
+        return () => {
+            clearTimeout(initial);
+            clearTimeout(pulseTimer.current);
+        };
+    }, [iconPhase]);
 
     const emailOk = (v) =>
         /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).toLowerCase());
@@ -80,18 +159,39 @@ export default function Contact() {
         <section className="contact-section" id="contact">
             <header className="contact-header">
                 <div
+                    ref={iconRef}
+                    className={`ct-icon ct-icon--${iconPhase}`}
+                >
+                    <div className="ct-icon__nodes" aria-hidden="true">
+                        {ICON_NODES.map((n) => (
+                            <span
+                                key={n.id}
+                                className="ct-icon__node"
+                                style={{ left: n.x, top: n.y }}
+                            />
+                        ))}
+                    </div>
+                    <img
+                        src={contactIcon}
+                        alt=""
+                        aria-hidden="true"
+                        className="ct-icon__img ct-icon__img--base"
+                        draggable="false"
+                    />
+                    <img
+                        src={contactGlow}
+                        alt=""
+                        aria-hidden="true"
+                        className="ct-icon__img ct-icon__img--lit"
+                        draggable="false"
+                    />
+                </div>
+
+                <div
                     className="contact-header-hover-area"
                     onMouseEnter={() => setTitleHovered(true)}
                     onMouseLeave={() => setTitleHovered(false)}
                 >
-                    <GlowIcon
-                        src={contactIcon}
-                        srcGlow={contactGlow}
-                        alt="Contact"
-                        size={300}
-                        floating
-                        className={titleHovered ? 'hovered' : ''}
-                    />
                     <h2 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
                         {t("contact.title")}
                     </h2>
