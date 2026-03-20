@@ -63,7 +63,7 @@
     position: relative;
     width: 280px;
     height: 280px;
-    margin-bottom: -65px;
+    margin-bottom: -85px;
     cursor: pointer;
     will-change: auto;
     animation: iconFloat 3s ease-in-out infinite;
