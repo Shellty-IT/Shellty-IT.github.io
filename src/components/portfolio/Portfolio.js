@@ -17,6 +17,8 @@ import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
+import { createPortal } from 'react-dom';
+
 const ICON_NODES = [
     { id: 0, x: "15%", y: "15%" },
     { id: 1, x: "50%", y: "8%" },
@@ -92,8 +94,6 @@ const TestAccountBox = ({ account, t }) => {
 };
 
 const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
-    const overlayRef = useRef(null);
-
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
@@ -114,31 +114,31 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
         return () => window.removeEventListener('keydown', handleKey);
     }, [isOpen, onClose]);
 
-    const handleOverlayClick = useCallback((e) => {
-        if (e.target === overlayRef.current) onClose();
-    }, [onClose]);
-
     if (!isOpen) return null;
 
     const embedUrl = videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/') + '?autoplay=1&title=0&byline=0&portrait=0';
 
-    return (
-        <div className="video-modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
-            <div className="video-modal-container">
-                <button className="video-modal-close" onClick={onClose} aria-label="Close" type="button">
-                    <FaTimes />
-                </button>
-                <div className="video-modal-content">
-                    <iframe
-                        src={embedUrl}
-                        title={title}
-                        frameBorder="0"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowFullScreen
-                    />
-                </div>
+    return createPortal(
+        <div className="video-modal-overlay" onClick={onClose}>
+            <button
+                className="video-modal-close"
+                onClick={(e) => { e.stopPropagation(); onClose(); }}
+                aria-label="Close"
+                type="button"
+            >
+                <FaTimes />
+            </button>
+            <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+                <iframe
+                    src={embedUrl}
+                    title={title}
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                />
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

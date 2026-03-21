@@ -727,17 +727,6 @@
     animation: videoModalFadeIn 0.3s ease both;
 }
 
-.video-modal-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 .video-modal-close {
     position: fixed;
     top: 20px;
