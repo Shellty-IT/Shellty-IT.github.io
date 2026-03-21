@@ -1,5 +1,3 @@
-/* src/components/portfolio/Portfolio.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 .portfolio-container {
@@ -480,6 +478,31 @@
     box-shadow: none;
 }
 
+.project-link--video {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.project-link--video::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(12, 192, 255, 0.06), rgba(139, 92, 246, 0.06));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-link--video:hover::before {
+    opacity: 1;
+}
+
+.project-link--video:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3), 0 0 5px rgba(12, 192, 255, 0.2);
+}
+
 .skeleton {
     pointer-events: none;
 }
@@ -691,10 +714,116 @@
     color: #10b981;
 }
 
+.video-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    animation: videoModalFadeIn 0.3s ease both;
+}
+
+.video-modal-container {
+    position: relative;
+    width: min(92vw, 1100px);
+    animation: videoModalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f1f5f9;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    z-index: 2;
+}
+
+.video-modal-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.08);
+}
+
+.video-modal-close:active {
+    transform: scale(0.95);
+}
+
+.video-modal-content {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 85vh;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+            0 0 0 1px rgba(12, 192, 255, 0.08),
+            0 25px 80px rgba(0, 0, 0, 0.5),
+            0 0 60px rgba(12, 192, 255, 0.06);
+    background: #000;
+    margin: 0 auto;
+}
+
+.video-modal-content iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@keyframes videoModalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes videoModalScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
 @media (max-width: 480px) {
     .pf-icon {
         width: 140px;
         height: 140px;
+    }
+
+    .video-modal-container {
+        width: 95vw;
+    }
+
+    .video-modal-close {
+        top: -44px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .video-modal-content {
+        border-radius: 12px;
     }
 }
 
@@ -751,5 +880,10 @@
 
     .pf-icon--visible:hover .pf-icon__img--base {
         opacity: 0.25;
+    }
+
+    .video-modal-overlay,
+    .video-modal-container {
+        animation: none !important;
     }
 }

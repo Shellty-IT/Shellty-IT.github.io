@@ -1,7 +1,6 @@
-// src/components/portfolio/Portfolio.js
 import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import './Portfolio.css';
-import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay, FaTimes } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
 
 import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
@@ -92,11 +91,63 @@ const TestAccountBox = ({ account, t }) => {
     );
 };
 
+const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
+    const overlayRef = useRef(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleKey = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [isOpen, onClose]);
+
+    const handleOverlayClick = useCallback((e) => {
+        if (e.target === overlayRef.current) onClose();
+    }, [onClose]);
+
+    if (!isOpen) return null;
+
+    const embedUrl = videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/') + '?autoplay=1&title=0&byline=0&portrait=0';
+
+    return (
+        <div className="video-modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
+            <div className="video-modal-container">
+                <button className="video-modal-close" onClick={onClose} aria-label="Close" type="button">
+                    <FaTimes />
+                </button>
+                <div className="video-modal-content">
+                    <iframe
+                        src={embedUrl}
+                        title={title}
+                        frameBorder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowFullScreen
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Portfolio = () => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const [isLoading, setIsLoading] = useState(true);
     const [titleHovered, setTitleHovered] = useState(false);
+    const [videoModal, setVideoModal] = useState({ open: false, url: '', title: '' });
 
     const [iconPhase, setIconPhase] = useState("hidden");
     const iconRef = useRef(null);
@@ -171,6 +222,14 @@ const Portfolio = () => {
         };
     }, [iconPhase]);
 
+    const openVideo = useCallback((url, title) => {
+        setVideoModal({ open: true, url, title });
+    }, []);
+
+    const closeVideo = useCallback(() => {
+        setVideoModal({ open: false, url: '', title: '' });
+    }, []);
+
     const projects = useMemo(() => ([
         {
             id: "postlio",
@@ -235,6 +294,7 @@ const Portfolio = () => {
             image: shelltyBlogThumbnail,
             demoLink: 'https://shellty-blog.onrender.com',
             githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
+            videoLink: 'https://vimeo.com/1175749805',
             title: t('portfolio.projects.shelltyBlog.title'),
             subtitle: t('portfolio.projects.shelltyBlog.subtitle'),
             description: t('portfolio.projects.shelltyBlog.description'),
@@ -439,6 +499,15 @@ const Portfolio = () => {
                                                     <FaGithub /> {t('portfolio.actions.code')}
                                                 </a>
                                             )}
+                                            {project.videoLink && (
+                                                <button
+                                                    type="button"
+                                                    className="project-link project-link--video"
+                                                    onClick={() => openVideo(project.videoLink, project.title)}
+                                                >
+                                                    <FaPlay /> {t('portfolio.actions.videoPresentation')}
+                                                </button>
+                                            )}
                                             {project.caseStudyLink && (
                                                 <a href={project.caseStudyLink} target="_blank" rel="noopener noreferrer" className="project-link subtle">
                                                     {t('portfolio.actions.case', { defaultValue: 'Case study' })}
@@ -452,6 +521,13 @@ const Portfolio = () => {
                     )}
                 </section>
             </div>
+
+            <VideoModal
+                isOpen={videoModal.open}
+                onClose={closeVideo}
+                videoUrl={videoModal.url}
+                title={videoModal.title}
+            />
         </div>
     );
 };

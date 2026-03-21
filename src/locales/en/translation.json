@@ -293,7 +293,8 @@
     "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. Please note that I use free cloud backend servers, which may result in a so-called cold start.",
     "actions": {
       "demo": "View",
-      "code": "Code"
+      "code": "Code",
+      "videoPresentation": "Video presentation"
     },
     "testAccount": {
       "title": "Test account",

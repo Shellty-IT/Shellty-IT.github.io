@@ -190,7 +190,8 @@
     "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość dotychczasowych realizacji powstawała na rzecz pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Równolegle tworzę serię autorskich projektów demonstracyjnych - wkrótce pojawią się tutaj nowe pozycje. Proszę wziąć pod uwagę, że korzystam z darmowych serwerów backendowych w chmurze, co może wiązać się z występowaniem zjawiska tzw. cold startu.",
     "actions": {
       "demo": "Zobacz",
-      "code": "Kod"
+      "code": "Kod",
+      "videoPresentation": "Prezentacja wideo"
     },
     "testAccount": {
       "title": "Konto testowe",
