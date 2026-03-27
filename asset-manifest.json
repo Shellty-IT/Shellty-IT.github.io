@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "./static/css/main.8080958a.css",
-    "main.js": "./static/js/main.e101f4ad.js",
+    "main.js": "./static/js/main.0a696c01.js",
     "static/css/407.ab679ad3.chunk.css": "./static/css/407.ab679ad3.chunk.css",
-    "static/js/407.43ad6715.chunk.js": "./static/js/407.43ad6715.chunk.js",
+    "static/js/407.ffafea5d.chunk.js": "./static/js/407.ffafea5d.chunk.js",
     "static/css/330.0234d7ef.chunk.css": "./static/css/330.0234d7ef.chunk.css",
     "static/js/330.0e7bf847.chunk.js": "./static/js/330.0e7bf847.chunk.js",
     "static/css/355.7c78d37f.chunk.css": "./static/css/355.7c78d37f.chunk.css",
@@ -19,6 +19,7 @@
     "static/js/863.888e82ba.chunk.js": "./static/js/863.888e82ba.chunk.js",
     "static/media/portfolio.webp": "./static/media/portfolio.72de46b9cbbfb0eba1c5.webp",
     "static/media/ksef_master_ang.webp": "./static/media/ksef_master_ang.c2d719e635429fce75e7.webp",
+    "static/media/flexibility_glow.webp": "./static/media/flexibility_glow.9e7340cb058ab4205109.webp",
     "static/media/skills.webp": "./static/media/skills.d0b23a4cb26e9650c18f.webp",
     "static/media/skills_glow.webp": "./static/media/skills_glow.6f9e81d5b57bc8c72561.webp",
     "static/media/creativity_glow.webp": "./static/media/creativity_glow.d7db394557879732910d.webp",
@@ -27,7 +28,7 @@
     "static/media/home.webp": "./static/media/home.5dc87cda1275766ef799.webp",
     "static/media/smart_quoute_ang.webp": "./static/media/smart_quoute_ang.40a64817502e00a16e8b.webp",
     "static/media/teamwork_glow.webp": "./static/media/teamwork_glow.af091e5d7c3b6521da77.webp",
-    "static/media/flexibility_glow.webp": "./static/media/flexibility_glow.35bc4e95575f745e24f0.webp",
+    "static/media/independence_glow.webp": "./static/media/independence_glow.2ca2d280764b6900a026.webp",
     "static/media/postlio.webp": "./static/media/postlio.938b28858ca05b6dc97f.webp",
     "static/media/mobisalon.webp": "./static/media/mobisalon.2ba886c67e8683a14267.webp",
     "static/media/postlio_ang.webp": "./static/media/postlio_ang.6f27020f397fc9b7bb85.webp",
@@ -40,13 +41,12 @@
     "static/media/contact_glow.webp": "./static/media/contact_glow.b82f3001937021883f5e.webp",
     "static/media/portfolio_glow.webp": "./static/media/portfolio_glow.2095e82532ac6f4cdd79.webp",
     "static/media/about_glow.webp": "./static/media/about_glow.93e400f45b49044ce6c5.webp",
-    "static/media/passion_glow.webp": "./static/media/passion_glow.67b3141a7457f455f6a6.webp",
     "static/media/shellty_blog.webp": "./static/media/shellty_blog.04c6f3b597fc7d999755.webp",
     "static/media/about.webp": "./static/media/about.4ba3d6e409221aa593f0.webp",
+    "static/media/passion_glow.webp": "./static/media/passion_glow.d2818a34d7fb96af9558.webp",
     "static/media/experience.webp": "./static/media/experience.88b923024d3901585cd8.webp",
-    "static/media/responsibility_glow.webp": "./static/media/responsibility_glow.a43a6998856b388b17ee.webp",
     "static/media/responsibility.webp": "./static/media/responsibility.17551f47b86553837a9f.webp",
-    "static/media/independence_glow.webp": "./static/media/independence_glow.6758b4051b269bf35fc7.webp",
+    "static/media/responsibility_glow.webp": "./static/media/responsibility_glow.e598451733debaea975a.webp",
     "static/media/passion.webp": "./static/media/passion.bc8c368674f66b5172b7.webp",
     "static/media/cv_glow.webp": "./static/media/cv_glow.a51c2e83e6e65817198c.webp",
     "static/media/creativity.webp": "./static/media/creativity.4658d3e721989c3cd30e.webp",
@@ -55,9 +55,9 @@
     "static/media/cv.webp": "./static/media/cv.8eb4ee8c55a3a29f0944.webp",
     "index.html": "./index.html",
     "main.8080958a.css.map": "./static/css/main.8080958a.css.map",
-    "main.e101f4ad.js.map": "./static/js/main.e101f4ad.js.map",
+    "main.0a696c01.js.map": "./static/js/main.0a696c01.js.map",
     "407.ab679ad3.chunk.css.map": "./static/css/407.ab679ad3.chunk.css.map",
-    "407.43ad6715.chunk.js.map": "./static/js/407.43ad6715.chunk.js.map",
+    "407.ffafea5d.chunk.js.map": "./static/js/407.ffafea5d.chunk.js.map",
     "330.0234d7ef.chunk.css.map": "./static/css/330.0234d7ef.chunk.css.map",
     "330.0e7bf847.chunk.js.map": "./static/js/330.0e7bf847.chunk.js.map",
     "355.7c78d37f.chunk.css.map": "./static/css/355.7c78d37f.chunk.css.map",
@@ -74,6 +74,6 @@
   },
   "entrypoints": [
     "static/css/main.8080958a.css",
-    "static/js/main.e101f4ad.js"
+    "static/js/main.0a696c01.js"
   ]
 }
