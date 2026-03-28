@@ -11,23 +11,24 @@ html.has-custom-cursor * {
     height: 100%;
     pointer-events: none;
     z-index: 99999;
-    contain: layout style size;
+    contain: strict;
 }
 
+/* ── DOT ── */
 .cursor-dot {
     position: absolute;
     top: 0;
     left: 0;
-    width: 7px;
-    height: 7px;
-    margin-left: -3.5px;
-    margin-top: -3.5px;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    margin-top: -4.5px;
     border-radius: 50%;
     background: #00E5FF;
     opacity: 0;
     box-shadow:
-            0 0 6px 2px #00E5FF,
-            0 0 20px 5px rgba(0, 229, 255, 0.3);
+            0 0 8px 3px rgba(0, 229, 255, 0.45),
+            0 0 22px 6px rgba(0, 229, 255, 0.18);
     will-change: transform;
     transition:
             opacity 0.3s ease,
@@ -40,30 +41,31 @@ html.has-custom-cursor * {
 }
 
 .cursor-dot.hovering {
-    width: 12px;
-    height: 12px;
-    margin-left: -6px;
-    margin-top: -6px;
+    width: 14px;
+    height: 14px;
+    margin-left: -7px;
+    margin-top: -7px;
     background: #ffffff;
     box-shadow:
-            0 0 8px 3px #00E5FF,
-            0 0 30px 8px rgba(0, 229, 255, 0.4);
+            0 0 10px 4px rgba(0, 229, 255, 0.55),
+            0 0 30px 8px rgba(0, 229, 255, 0.25);
 }
 
+/* ── RING ── */
 .cursor-ring {
     position: absolute;
     top: 0;
     left: 0;
-    width: 30px;
-    height: 30px;
-    margin-left: -15px;
-    margin-top: -15px;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
     border-radius: 50%;
     border: 1.5px solid rgba(0, 229, 255, 0.55);
     opacity: 0;
     box-shadow:
-            0 0 6px rgba(0, 229, 255, 0.3),
-            inset 0 0 6px rgba(0, 229, 255, 0.06);
+            0 0 6px rgba(0, 229, 255, 0.2),
+            inset 0 0 6px rgba(0, 229, 255, 0.04);
     will-change: transform;
     transition:
             opacity 0.3s ease,
@@ -76,11 +78,12 @@ html.has-custom-cursor * {
     border-width: 2.5px;
     border-color: rgba(0, 229, 255, 0.95);
     box-shadow:
-            0 0 12px rgba(0, 229, 255, 0.6),
-            inset 0 0 10px rgba(0, 229, 255, 0.1);
+            0 0 12px rgba(0, 229, 255, 0.5),
+            inset 0 0 10px rgba(0, 229, 255, 0.08);
     animation: ring-pulse 2s ease-in-out infinite;
 }
 
+/* ── TRAIL ── */
 .cursor-trail-dot {
     position: absolute;
     top: 0;
@@ -95,14 +98,14 @@ html.has-custom-cursor * {
     0%, 100% {
         border-color: rgba(0, 229, 255, 0.8);
         box-shadow:
-                0 0 10px rgba(0, 229, 255, 0.5),
-                inset 0 0 8px rgba(0, 229, 255, 0.08);
+                0 0 10px rgba(0, 229, 255, 0.4),
+                inset 0 0 8px rgba(0, 229, 255, 0.06);
     }
     50% {
         border-color: rgba(0, 229, 255, 1);
         box-shadow:
-                0 0 16px rgba(0, 229, 255, 0.7),
-                inset 0 0 14px rgba(0, 229, 255, 0.12);
+                0 0 16px rgba(0, 229, 255, 0.6),
+                inset 0 0 14px rgba(0, 229, 255, 0.1);
     }
 }
 

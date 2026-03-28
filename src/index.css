@@ -44,10 +44,6 @@ code {
     background: rgba(148, 163, 184, 0.5);
 }
 
-*, *::before, *::after {
-    cursor: none !important;
-}
-
 .about__title,
 .exp__title,
 .skills__title,

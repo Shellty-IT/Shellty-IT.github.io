@@ -1,4 +1,3 @@
-/* src/components/CloudBackground.css */
 .cloud-bg-wrapper {
     position: fixed;
     top: 0;
@@ -8,6 +7,7 @@
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    contain: strict;
     background:
             radial-gradient(
                     ellipse 70% 55% at 50% 45%,
@@ -69,6 +69,7 @@
                     transparent 70%
             );
     animation: nebulaFloat 60s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 .cloud-bg-wrapper::after {
@@ -92,6 +93,7 @@
                     transparent 70%
             );
     animation: nebulaFloat2 45s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 @keyframes nebulaFloat {
