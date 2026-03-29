@@ -1,38 +1,36 @@
 import React, { useRef, useEffect } from 'react';
 import './CloudBackground.css';
 
-/* ───────── CONFIG ───────── */
 const CONFIG = {
-    nodes:       { small: 15, medium: 6, large: 2 },
-    scrollNodes: { small: 15, medium: 4, large: 2 },
+    nodes:       { small: 12, medium: 5, large: 2 },
+    scrollNodes: { small: 10, medium: 3, large: 1 },
     maxConnectionDist: 220,
-    maxConnectionsPerNode: 4,
-    connectionBaseOpacity: 0.045,
+    maxConnectionsPerNode: 3,
+    connectionBaseOpacity: 0.04,
     flowSpawnChance: 0.005,
-    flowSpawnScrollMultiplier: 4,
-    maxPulses: 18,
+    flowSpawnScrollMultiplier: 3,
+    maxPulses: 14,
     pulseSpeedRange: [0.2, 0.5],
     driftSpeed: 0.1,
     flowSpeedRange: [0.15, 0.4],
-    mouseInteractRadius: 220,
-    mouseRepelForce: 22,
-    mouseBrightnessBoost: 0.6,
-    mouseSizeBoost: 0.18,
-    mouseAuraRadius: 280,
-    mouseAuraOpacity: 0.06,
-    mouseLerp: 0.27,
+    mouseInteractRadius: 200,
+    mouseRepelForce: 20,
+    mouseBrightnessBoost: 0.5,
+    mouseSizeBoost: 0.15,
+    mouseAuraRadius: 260,
+    mouseAuraOpacity: 0.05,
+    mouseLerp: 0.25,
     scrollBrightness: 0.6,
-    starCount: 55,
-    ambientParticleCount: 10,
-    autoscaleChance: 0.0008,
+    starCount: 40,
+    ambientParticleCount: 8,
+    autoscaleChance: 0.0006,
     autoscaleFadeDuration: 3.0,
-    maxDPR: 0.75,
-    targetFPS: 30,
-    fpsWindow: 60,
-    fpsLowThreshold: 22,
-    fpsHighThreshold: 28,
-    starRedrawInterval: 5,
-    connectionRebuildInterval: 4,
+    maxDPR: 0.65,
+    fpsWindow: 40,
+    fpsLowThreshold: 20,
+    fpsHighThreshold: 27,
+    starRedrawInterval: 8,
+    connectionRebuildInterval: 6,
     layers: [
         { depth: 0.15, brightness: 0.22 },
         { depth: 0.45, brightness: 0.55 },
@@ -46,7 +44,30 @@ const CONFIG = {
     },
 };
 
-/* ───────── HELPERS ───────── */
+const QUALITY = {
+    high: {
+        quality: 'high', drawBloom: true, drawRings: true,
+        starsVisible: true, ambientVisible: true,
+        maxActivePulses: 14, dprMultiplier: 1.0, targetFPS: 30, startLayer: 0,
+    },
+    medium: {
+        quality: 'medium', drawBloom: false, drawRings: false,
+        starsVisible: true, ambientVisible: true,
+        maxActivePulses: 8, dprMultiplier: 0.8, targetFPS: 28, startLayer: 0,
+    },
+    low: {
+        quality: 'low', drawBloom: false, drawRings: false,
+        starsVisible: false, ambientVisible: true,
+        maxActivePulses: 4, dprMultiplier: 0.6, targetFPS: 22, startLayer: 1,
+    },
+    minimal: {
+        quality: 'minimal', drawBloom: false, drawRings: false,
+        starsVisible: false, ambientVisible: false,
+        maxActivePulses: 2, dprMultiplier: 0.45, targetFPS: 18, startLayer: 2,
+    },
+};
+const Q_ORDER = ['high', 'medium', 'low', 'minimal'];
+
 function createSprite(size, stops) {
     const c = document.createElement('canvas');
     c.width = size; c.height = size;
@@ -59,7 +80,6 @@ function createSprite(size, stops) {
     return c;
 }
 
-/* ───────── CLASSES ───────── */
 class ComputeNode {
     constructor(x, y, type, layerIndex, scrollThreshold) {
         this.baseX = x; this.baseY = y;
@@ -82,10 +102,7 @@ class ComputeNode {
         this.mouseProximity = 0;
         this.opacity = scrollThreshold === 0 ? 1 : 0;
         this.targetOpacity = scrollThreshold === 0 ? 1 : 0;
-        this.alive = true;
-        this.fadingIn = false;
-        this.fadingOut = false;
-        this.fadeTimer = 0;
+        this.alive = true; this.fadingIn = false; this.fadingOut = false; this.fadeTimer = 0;
     }
     update(time, dt, scrollProgress) {
         this.x = this.baseX + Math.cos(this.driftAngle + time * this.driftSpeed) * this.driftRadius;
@@ -139,11 +156,10 @@ class AmbientParticle {
 }
 
 class Connection {
-    constructor(nodeA, nodeB) {
-        this.nodeA = nodeA; this.nodeB = nodeB;
-        this.layer = Math.min(nodeA.layerIndex, nodeB.layerIndex);
-        this.opacity = CONFIG.connectionBaseOpacity + Math.random() * CONFIG.connectionBaseOpacity * 0.5;
-        const dx = nodeB.baseX - nodeA.baseX, dy = nodeB.baseY - nodeA.baseY;
+    constructor(a, b) {
+        this.nodeA = a; this.nodeB = b;
+        this.layer = Math.min(a.layerIndex, b.layerIndex);
+        const dx = b.baseX - a.baseX, dy = b.baseY - a.baseY;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
         const bend = (Math.random() - 0.5) * dist * 0.3;
         this.bendX = (-dy / dist) * bend; this.bendY = (dx / dist) * bend;
@@ -155,57 +171,48 @@ class DataPulse {
     constructor() { this.conn = null; this.progress = 0; this.speed = 0; this.alive = false; this.size = 0; }
     init(conn) {
         this.conn = conn; this.progress = 0;
-        this.speed = CONFIG.flowSpeedRange[0] + Math.random() * (CONFIG.flowSpeedRange[1] - CONFIG.flowSpeedRange[0]);
+        this.speed = CONFIG.flowSpeedRange[0]
+            + Math.random() * (CONFIG.flowSpeedRange[1] - CONFIG.flowSpeedRange[0]);
         this.alive = true; this.size = 3 + Math.random() * 4;
     }
     update(dt) { this.progress += this.speed * dt; if (this.progress > 1) this.alive = false; }
     getPosition() {
-        const t = this.progress, omt = 1 - t, a = this.conn.nodeA, b = this.conn.nodeB;
+        const t = this.progress, o = 1 - t, a = this.conn.nodeA, b = this.conn.nodeB;
         return {
-            x: omt * omt * a.drawX + 2 * omt * t * this.conn._drawCPX + t * t * b.drawX,
-            y: omt * omt * a.drawY + 2 * omt * t * this.conn._drawCPY + t * t * b.drawY,
+            x: o * o * a.drawX + 2 * o * t * this.conn._drawCPX + t * t * b.drawX,
+            y: o * o * a.drawY + 2 * o * t * this.conn._drawCPY + t * t * b.drawY,
         };
     }
 }
 
 class QualityManager {
     constructor() {
-        this.frameTimes = []; this.quality = 'high'; this.starsVisible = true;
-        this.maxActivePulses = CONFIG.maxPulses; this.dprMultiplier = 1.0; this.checkInterval = 0;
+        this.frameTimes = [];
+        this.checkInterval = 0;
+        Object.assign(this, QUALITY.high);
     }
     recordFrame(dt) {
         this.frameTimes.push(dt);
         if (this.frameTimes.length > CONFIG.fpsWindow) this.frameTimes.shift();
-        this.checkInterval++;
-        if (this.checkInterval >= 30) { this.checkInterval = 0; this._evaluate(); }
+        if (++this.checkInterval >= 20) { this.checkInterval = 0; return this._evaluate(); }
+        return false;
     }
     _evaluate() {
-        if (this.frameTimes.length < 20) return;
+        if (this.frameTimes.length < 12) return false;
         const fps = this.frameTimes.length / this.frameTimes.reduce((a, b) => a + b, 0);
-        if (fps < CONFIG.fpsLowThreshold) this._downgrade();
-        else if (fps > CONFIG.fpsHighThreshold && this.quality !== 'high') this._upgrade();
+        if (fps < CONFIG.fpsLowThreshold) return this._shift(1);
+        if (fps > CONFIG.fpsHighThreshold && this.quality !== 'high') return this._shift(-1);
+        return false;
     }
-    _downgrade() {
-        if (this.quality === 'high') {
-            this.quality = 'medium'; this.starsVisible = true;
-            this.maxActivePulses = 12; this.dprMultiplier = 0.8;
-        } else if (this.quality === 'medium') {
-            this.quality = 'low'; this.starsVisible = false;
-            this.maxActivePulses = 6; this.dprMultiplier = 0.6;
-        }
-    }
-    _upgrade() {
-        if (this.quality === 'low') {
-            this.quality = 'medium'; this.starsVisible = true;
-            this.maxActivePulses = 12; this.dprMultiplier = 0.8;
-        } else if (this.quality === 'medium') {
-            this.quality = 'high'; this.starsVisible = true;
-            this.maxActivePulses = CONFIG.maxPulses; this.dprMultiplier = 1.0;
-        }
+    _shift(dir) {
+        const idx = Q_ORDER.indexOf(this.quality) + dir;
+        if (idx < 0 || idx >= Q_ORDER.length) return false;
+        Object.assign(this, QUALITY[Q_ORDER[idx]]);
+        this.frameTimes = [];
+        return true;
     }
 }
 
-/* ───────── ENGINE ───────── */
 class CloudEngine {
     constructor(canvas) {
         this.canvas = canvas;
@@ -221,15 +228,15 @@ class CloudEngine {
         this._mSX = 0; this._mSY = 0;
         this.isRunning = false; this.frameId = null;
         this.lastTime = 0;
-        this.frameInterval = 1000 / CONFIG.targetFPS;
         this.starCanvas = document.createElement('canvas');
         this.starCtx = this.starCanvas.getContext('2d');
-        this.starFrameCounter = 0;
+        this.starFrameCounter = 999;
         this.pulsePool = [];
         for (let i = 0; i < CONFIG.maxPulses; i++) this.pulsePool.push(new DataPulse());
         this.activePulses = [];
         this.quality = new QualityManager();
         this.lastConnectionRebuild = 0;
+        this._currentDPR = -1;
         this._buildSprites();
     }
 
@@ -237,44 +244,44 @@ class CloudEngine {
         const v = CONFIG.visual;
         this.sprites = {
             small: createSprite(v.small.sprite, [
-                [0.0,'rgba(180,225,255,0.95)'],[0.08,'rgba(140,210,255,0.8)'],
+                [0,'rgba(180,225,255,0.95)'],[0.08,'rgba(140,210,255,0.8)'],
                 [0.25,'rgba(12,192,255,0.25)'],[0.5,'rgba(0,120,200,0.08)'],
-                [1.0,'rgba(0,50,120,0)'],
+                [1,'rgba(0,50,120,0)'],
             ]),
             medium: createSprite(v.medium.sprite, [
-                [0.0,'rgba(210,240,255,1)'],[0.06,'rgba(170,230,255,0.85)'],
+                [0,'rgba(210,240,255,1)'],[0.06,'rgba(170,230,255,0.85)'],
                 [0.2,'rgba(12,192,255,0.3)'],[0.45,'rgba(0,130,210,0.1)'],
-                [1.0,'rgba(0,50,120,0)'],
+                [1,'rgba(0,50,120,0)'],
             ]),
             large: createSprite(v.large.sprite, [
-                [0.0,'rgba(235,248,255,1)'],[0.05,'rgba(200,238,255,0.9)'],
+                [0,'rgba(235,248,255,1)'],[0.05,'rgba(200,238,255,0.9)'],
                 [0.15,'rgba(12,192,255,0.35)'],[0.4,'rgba(0,140,220,0.12)'],
-                [1.0,'rgba(0,50,120,0)'],
+                [1,'rgba(0,50,120,0)'],
             ]),
         };
         this.bloomSprites = {
             small: createSprite(v.small.bloomSprite, [
-                [0.0,'rgba(12,192,255,0.08)'],[0.3,'rgba(0,120,200,0.03)'],
-                [0.7,'rgba(0,60,130,0.01)'],[1.0,'rgba(0,20,60,0)'],
+                [0,'rgba(12,192,255,0.08)'],[0.3,'rgba(0,120,200,0.03)'],
+                [0.7,'rgba(0,60,130,0.01)'],[1,'rgba(0,20,60,0)'],
             ]),
             medium: createSprite(v.medium.bloomSprite, [
-                [0.0,'rgba(12,192,255,0.12)'],[0.25,'rgba(0,130,210,0.05)'],
-                [0.6,'rgba(0,60,130,0.015)'],[1.0,'rgba(0,20,60,0)'],
+                [0,'rgba(12,192,255,0.12)'],[0.25,'rgba(0,130,210,0.05)'],
+                [0.6,'rgba(0,60,130,0.015)'],[1,'rgba(0,20,60,0)'],
             ]),
             large: createSprite(v.large.bloomSprite, [
-                [0.0,'rgba(12,192,255,0.18)'],[0.2,'rgba(0,140,220,0.07)'],
-                [0.5,'rgba(0,70,140,0.02)'],[1.0,'rgba(0,20,60,0)'],
+                [0,'rgba(12,192,255,0.18)'],[0.2,'rgba(0,140,220,0.07)'],
+                [0.5,'rgba(0,70,140,0.02)'],[1,'rgba(0,20,60,0)'],
             ]),
         };
         this.pulseSprite = createSprite(24, [
-            [0.0,'rgba(220,245,255,1)'],[0.15,'rgba(12,192,255,0.6)'],
-            [0.4,'rgba(0,130,210,0.15)'],[1.0,'rgba(0,50,120,0)'],
+            [0,'rgba(220,245,255,1)'],[0.15,'rgba(12,192,255,0.6)'],
+            [0.4,'rgba(0,130,210,0.15)'],[1,'rgba(0,50,120,0)'],
         ]);
-        const auraSize = CONFIG.mouseAuraRadius * 2;
-        this.auraSprite = createSprite(auraSize, [
-            [0.0,'rgba(12,192,255,0.18)'],[0.15,'rgba(12,192,255,0.10)'],
+        const as = CONFIG.mouseAuraRadius * 2;
+        this.auraSprite = createSprite(as, [
+            [0,'rgba(12,192,255,0.18)'],[0.15,'rgba(12,192,255,0.10)'],
             [0.35,'rgba(0,120,200,0.04)'],[0.6,'rgba(0,60,130,0.015)'],
-            [1.0,'rgba(0,20,60,0)'],
+            [1,'rgba(0,20,60,0)'],
         ]);
     }
 
@@ -283,8 +290,8 @@ class CloudEngine {
         ctx.clearRect(0, 0, this.width, this.height);
         ctx.fillStyle = 'rgba(140,200,255,1)';
         for (const s of this.stars) {
-            const p = s.brightness * (0.6 + 0.4 * Math.sin(s.pulsePhase + time * s.pulseSpeed));
-            ctx.globalAlpha = p * 0.4;
+            ctx.globalAlpha = s.brightness
+                * (0.6 + 0.4 * Math.sin(s.pulsePhase + time * s.pulseSpeed)) * 0.4;
             ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, 6.283); ctx.fill();
         }
         ctx.globalAlpha = 1;
@@ -292,11 +299,25 @@ class CloudEngine {
 
     resize(w, h) {
         this.width = w; this.height = h;
-        const dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDPR) * this.quality.dprMultiplier;
-        this.canvas.width = w * dpr; this.canvas.height = h * dpr;
-        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this._currentDPR = -1;
+        this._updateDPR();
         this.starCanvas.width = w; this.starCanvas.height = h;
         this._generate();
+    }
+
+    _updateDPR() {
+        const dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDPR)
+            * this.quality.dprMultiplier;
+        if (Math.abs(dpr - this._currentDPR) < 0.01) return;
+        this._currentDPR = dpr;
+        this.canvas.width = this.width * dpr;
+        this.canvas.height = this.height * dpr;
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    _onQualityChange() {
+        this._updateDPR();
+        this.canvas.parentElement?.setAttribute('data-quality', this.quality.quality);
     }
 
     _generate() {
@@ -308,21 +329,26 @@ class CloudEngine {
         this.stars = [];
         for (let i = 0; i < CONFIG.starCount; i++) this.stars.push(new Star(w, h));
         this.ambientParticles = [];
-        for (let i = 0; i < CONFIG.ambientParticleCount; i++) this.ambientParticles.push(new AmbientParticle(w, h));
-        const spawn = (count, type, layers, scrollThreshold) => {
+        for (let i = 0; i < CONFIG.ambientParticleCount; i++)
+            this.ambientParticles.push(new AmbientParticle(w, h));
+        const spawn = (count, type, layers, thr) => {
             for (let i = 0; i < count; i++) {
                 const li = layers[Math.floor(Math.random() * layers.length)];
-                this.nodes.push(new ComputeNode(m + Math.random() * (w - m * 2), m + Math.random() * (h - m * 2), type, li, scrollThreshold));
+                this.nodes.push(new ComputeNode(
+                    m + Math.random() * (w - m * 2),
+                    m + Math.random() * (h - m * 2), type, li, thr
+                ));
             }
         };
-        spawn(CONFIG.nodes.small, 'small', [0,0,1,1,2,2,3], 0);
-        spawn(CONFIG.nodes.medium, 'medium', [0,1,1,2,2,3], 0);
-        spawn(CONFIG.nodes.large, 'large', [1,2,2,3,3], 0);
+        spawn(CONFIG.nodes.small,  'small',  [0,0,1,1,2,2,3], 0);
+        spawn(CONFIG.nodes.medium, 'medium', [0,1,1,2,2,3],    0);
+        spawn(CONFIG.nodes.large,  'large',  [1,2,2,3,3],      0);
         const sn = CONFIG.scrollNodes;
-        const smW = Math.ceil(sn.small / 5), mdW = Math.ceil(sn.medium / 4), lgW = Math.ceil(sn.large / 3);
-        for (let w2 = 0; w2 < 5; w2++) spawn(smW, 'small', [0,1,1,2,2,3], 0.15 + w2 * 0.17);
-        for (let w2 = 0; w2 < 4; w2++) spawn(mdW, 'medium', [1,1,2,2,3], 0.2 + w2 * 0.2);
-        for (let w2 = 0; w2 < 3; w2++) spawn(lgW, 'large', [2,2,3,3], 0.3 + w2 * 0.25);
+        const smW = Math.ceil(sn.small / 5), mdW = Math.ceil(sn.medium / 4),
+            lgW = Math.ceil(sn.large / 3);
+        for (let i = 0; i < 5; i++) spawn(smW, 'small',  [0,1,1,2,2,3], 0.15 + i * 0.17);
+        for (let i = 0; i < 4; i++) spawn(mdW, 'medium', [1,1,2,2,3],   0.2  + i * 0.2);
+        for (let i = 0; i < 3; i++) spawn(lgW, 'large',  [2,2,3,3],     0.3  + i * 0.25);
         this._rebuildLookups();
     }
 
@@ -348,8 +374,8 @@ class CloudEngine {
                 if (b.connectionCount >= maxC) continue;
                 if (Math.abs(a.layerIndex - b.layerIndex) > 1) continue;
                 const dx = a.baseX - b.baseX, dy = a.baseY - b.baseY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < maxD) cands.push({ node: b, dist });
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < maxD) cands.push({ node: b, dist: d });
             }
             cands.sort((x, y) => x.dist - y.dist);
             const take = Math.min(cands.length, maxC - a.connectionCount);
@@ -357,7 +383,8 @@ class CloudEngine {
                 const b = cands[k].node;
                 const conn = new Connection(a, b);
                 this.connections.push(conn);
-                if (conn.layer >= 0 && conn.layer < 4) this.connectionsByLayer[conn.layer].push(conn);
+                if (conn.layer >= 0 && conn.layer < 4)
+                    this.connectionsByLayer[conn.layer].push(conn);
                 a.connectionCount++; b.connectionCount++;
             }
         }
@@ -380,37 +407,33 @@ class CloudEngine {
         if (this.frameId) { cancelAnimationFrame(this.frameId); this.frameId = null; }
     }
 
-    /* ── GŁÓWNA PĘTLA: update + draw razem @ targetFPS ── */
     _loop() {
         if (!this.isRunning) return;
         this.frameId = requestAnimationFrame(() => this._loop());
-
         const now = performance.now();
+        const interval = 1000 / this.quality.targetFPS;
         const elapsed = now - this.lastTime;
-        if (elapsed < this.frameInterval) return;
-
-        this.lastTime = now - (elapsed % this.frameInterval);
-        const dt = Math.min(elapsed / 1000, 0.05);
+        if (elapsed < interval) return;
+        this.lastTime = now - (elapsed % interval);
+        const dt = Math.min(elapsed / 1000, 0.06);
         const time = now / 1000;
-
-        this.quality.recordFrame(dt);
+        if (this.quality.recordFrame(dt)) this._onQualityChange();
         this._update(time, dt);
         this._draw(time);
     }
 
     _update(time, dt) {
-        /* mouse lerp */
-        const lerp = CONFIG.mouseLerp;
-        this.mouse.sx += (this.mouse.x - this.mouse.sx) * lerp;
-        this.mouse.sy += (this.mouse.y - this.mouse.sy) * lerp;
+        this.mouse.sx += (this.mouse.x - this.mouse.sx) * CONFIG.mouseLerp;
+        this.mouse.sy += (this.mouse.y - this.mouse.sy) * CONFIG.mouseLerp;
 
-        /* nodes */
         for (const n of this.nodes) n.update(time, dt, this.scrollProgress);
 
-        /* autoscale */
-        if (Math.random() < CONFIG.autoscaleChance && this.nodes.length > 20) {
-            const base = this.nodes.filter(n => n.scrollThreshold === 0 && !n.fadingOut && !n.fadingIn && n.type === 'small');
-            if (base.length > 0) base[Math.floor(Math.random() * base.length)].startFadeOut();
+        if (Math.random() < CONFIG.autoscaleChance && this.nodes.length > 15) {
+            const base = this.nodes.filter(
+                n => n.scrollThreshold === 0 && !n.fadingOut && !n.fadingIn && n.type === 'small'
+            );
+            if (base.length > 0)
+                base[Math.floor(Math.random() * base.length)].startFadeOut();
         }
         if (Math.random() < CONFIG.autoscaleChance) {
             const m = 80;
@@ -421,41 +444,34 @@ class CloudEngine {
             );
             n.fadingIn = true; n.opacity = 0; n.fadeTimer = 0;
             this.nodes.push(n);
-            if (n.layerIndex >= 0 && n.layerIndex < 4) this.nodesByLayer[n.layerIndex].push(n);
+            if (n.layerIndex >= 0 && n.layerIndex < 4)
+                this.nodesByLayer[n.layerIndex].push(n);
         }
 
-        /* dead-node removal (in-place) */
-        let writeIdx = 0;
-        for (let i = 0; i < this.nodes.length; i++) {
-            if (this.nodes[i].alive) this.nodes[writeIdx++] = this.nodes[i];
-        }
-        if (writeIdx < this.nodes.length) {
-            this.nodes.length = writeIdx;
+        let w = 0;
+        for (let i = 0; i < this.nodes.length; i++)
+            if (this.nodes[i].alive) this.nodes[w++] = this.nodes[i];
+        if (w < this.nodes.length) {
+            this.nodes.length = w;
             this.nodesByLayer = [[], [], [], []];
-            for (const n of this.nodes) {
-                if (n.layerIndex >= 0 && n.layerIndex < 4) this.nodesByLayer[n.layerIndex].push(n);
-            }
+            for (const n of this.nodes)
+                if (n.layerIndex >= 0 && n.layerIndex < 4)
+                    this.nodesByLayer[n.layerIndex].push(n);
         }
 
-        /* ambient particles */
         for (const p of this.ambientParticles) p.update(dt);
 
-        /* ── mouse proximity + drawX/drawY (przeniesione z _draw) ── */
         if (this.mouseActive) {
             this._mSX = (this.mouse.sx + 1) * 0.5 * this.width;
             this._mSY = (-this.mouse.sy + 1) * 0.5 * this.height;
-            const radius = CONFIG.mouseInteractRadius;
-            const radiusSq = radius * radius;
-            const force = CONFIG.mouseRepelForce;
+            const r = CONFIG.mouseInteractRadius, rSq = r * r, f = CONFIG.mouseRepelForce;
             for (const node of this.nodes) {
                 const dx = node.x - this._mSX, dy = node.y - this._mSY;
-                const distSq = dx * dx + dy * dy;
-                if (distSq < radiusSq && distSq > 1) {
-                    const dist = Math.sqrt(distSq);
-                    const t = 1 - dist / radius;
-                    const tt = t * t;
-                    node.drawX = node.x + (dx / dist) * tt * force;
-                    node.drawY = node.y + (dy / dist) * tt * force;
+                const dSq = dx * dx + dy * dy;
+                if (dSq < rSq && dSq > 1) {
+                    const d = Math.sqrt(dSq), t = 1 - d / r, tt = t * t;
+                    node.drawX = node.x + (dx / d) * tt * f;
+                    node.drawY = node.y + (dy / d) * tt * f;
                     node.mouseProximity = tt;
                 } else {
                     node.drawX = node.x; node.drawY = node.y; node.mouseProximity = 0;
@@ -467,125 +483,145 @@ class CloudEngine {
             }
         }
 
-        /* ── connection control points (przeniesione z _draw) ── */
         for (const c of this.connections) {
             if (!c.nodeA.alive || !c.nodeB.alive) continue;
             c._drawCPX = (c.nodeA.drawX + c.nodeB.drawX) * 0.5 + c.bendX;
             c._drawCPY = (c.nodeA.drawY + c.nodeB.drawY) * 0.5 + c.bendY;
         }
 
-        /* pulses */
-        const rate = CONFIG.flowSpawnChance * (1 + this.scrollProgress * CONFIG.flowSpawnScrollMultiplier);
+        const rate = CONFIG.flowSpawnChance
+            * (1 + this.scrollProgress * CONFIG.flowSpawnScrollMultiplier);
         const maxP = this.quality.maxActivePulses;
-        for (const conn of this.connections) {
-            if (!conn.nodeA.alive || !conn.nodeB.alive) continue;
-            if (conn.nodeA.opacity < 0.1 || conn.nodeB.opacity < 0.1) continue;
-            if (Math.random() < rate && this.activePulses.length < maxP) {
+        if (this.connections.length > 0 && this.activePulses.length < maxP) {
+            const expected = rate * this.connections.length;
+            let spawns = Math.floor(expected);
+            if (Math.random() < (expected - spawns)) spawns++;
+            for (let i = 0; i < spawns && this.activePulses.length < maxP; i++) {
+                const conn = this.connections[
+                    Math.floor(Math.random() * this.connections.length)
+                    ];
+                if (!conn.nodeA.alive || !conn.nodeB.alive) continue;
+                if (conn.nodeA.opacity < 0.1 || conn.nodeB.opacity < 0.1) continue;
                 const p = this._getPulse();
-                if (p) { p.init(conn); if (!this.activePulses.includes(p)) this.activePulses.push(p); }
+                if (p) { p.init(conn); this.activePulses.push(p); }
             }
         }
+
         for (const p of this.activePulses) p.update(dt);
+        w = 0;
+        for (let i = 0; i < this.activePulses.length; i++)
+            if (this.activePulses[i].alive) this.activePulses[w++] = this.activePulses[i];
+        this.activePulses.length = w;
 
-        /* dead-pulse removal (in-place) */
-        writeIdx = 0;
-        for (let i = 0; i < this.activePulses.length; i++) {
-            if (this.activePulses[i].alive) this.activePulses[writeIdx++] = this.activePulses[i];
-        }
-        this.activePulses.length = writeIdx;
-
-        /* connection rebuild */
         this.lastConnectionRebuild += dt;
         if (this.lastConnectionRebuild > CONFIG.connectionRebuildInterval) {
-            this.lastConnectionRebuild = 0; this._rebuildLookups();
+            this.lastConnectionRebuild = 0;
+            this._rebuildLookups();
         }
     }
 
-    /* ── DRAW: tylko renderowanie, bez obliczeń ── */
     _draw(time) {
         const ctx = this.ctx;
+        const q = this.quality;
         ctx.clearRect(0, 0, this.width, this.height);
         const scrollBoost = 1 + this.scrollProgress * CONFIG.scrollBrightness;
 
-        /* stars */
-        if (this.quality.starsVisible) {
-            this.starFrameCounter++;
-            if (this.starFrameCounter >= CONFIG.starRedrawInterval) {
-                this.starFrameCounter = 0; this._renderStarLayer(time);
+        if (q.starsVisible) {
+            if (++this.starFrameCounter >= CONFIG.starRedrawInterval) {
+                this.starFrameCounter = 0;
+                this._renderStarLayer(time);
             }
             ctx.globalAlpha = scrollBoost;
             ctx.drawImage(this.starCanvas, 0, 0);
         }
 
-        /* mouse aura */
         if (this.mouseActive) {
-            const auraSize = CONFIG.mouseAuraRadius * 2;
+            const as = CONFIG.mouseAuraRadius * 2;
             ctx.globalAlpha = CONFIG.mouseAuraOpacity * (1 + this.scrollProgress * 0.5);
-            ctx.drawImage(this.auraSprite, this._mSX - auraSize * 0.5, this._mSY - auraSize * 0.5, auraSize, auraSize);
+            ctx.drawImage(this.auraSprite,
+                (this._mSX - as * 0.5) | 0, (this._mSY - as * 0.5) | 0, as, as);
         }
 
-        /* ambient particles */
-        ctx.fillStyle = 'rgba(12,192,255,1)';
-        for (const p of this.ambientParticles) {
-            ctx.globalAlpha = p.opacity * scrollBoost;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, 6.283); ctx.fill();
+        if (q.ambientVisible) {
+            ctx.fillStyle = 'rgba(12,192,255,1)';
+            for (const p of this.ambientParticles) {
+                ctx.globalAlpha = p.opacity * scrollBoost;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, 6.283); ctx.fill();
+            }
         }
 
-        /* layers */
-        for (let L = 0; L < 4; L++) {
+        for (let L = q.startLayer; L < 4; L++) {
             const br = CONFIG.layers[L].brightness * scrollBoost;
-            const layerConns = this.connectionsByLayer[L];
-            const layerNodes = this.nodesByLayer[L];
+            const conns = this.connectionsByLayer[L];
+            const nodes = this.nodesByLayer[L];
+            if (!conns.length && !nodes.length) continue;
 
-            ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(12,176,240,1)';
-            for (const c of layerConns) {
-                const a = c.nodeA, b = c.nodeB;
-                const nA = Math.min(a.opacity, b.opacity);
-                if (nA < 0.01) continue;
-                const pB = 1 + Math.max(a.mouseProximity, b.mouseProximity) * CONFIG.mouseBrightnessBoost;
-                ctx.globalAlpha = c.opacity * br * 0.7 * nA * pB;
-                ctx.beginPath(); ctx.moveTo(a.drawX, a.drawY);
-                ctx.quadraticCurveTo(c._drawCPX, c._drawCPY, b.drawX, b.drawY);
+            /* ── batched connections: 1 stroke per layer ── */
+            if (conns.length) {
+                ctx.lineWidth = 1.5;
+                ctx.strokeStyle = 'rgba(12,176,240,1)';
+                ctx.globalAlpha = CONFIG.connectionBaseOpacity * br * 0.7;
+                ctx.beginPath();
+                for (const c of conns) {
+                    if (Math.min(c.nodeA.opacity, c.nodeB.opacity) < 0.05) continue;
+                    ctx.moveTo(c.nodeA.drawX, c.nodeA.drawY);
+                    ctx.quadraticCurveTo(c._drawCPX, c._drawCPY,
+                        c.nodeB.drawX, c.nodeB.drawY);
+                }
                 ctx.stroke();
             }
 
             for (const p of this.activePulses) {
                 if (p.conn.layer !== L) continue;
                 const pos = p.getPosition();
-                const fI = Math.min(p.progress * 4, 1), fO = Math.min((1 - p.progress) * 4, 1);
-                ctx.globalAlpha = fI * fO * br;
+                const fade = Math.min(p.progress * 4, 1)
+                    * Math.min((1 - p.progress) * 4, 1);
+                ctx.globalAlpha = fade * br;
                 const s = p.size;
-                ctx.drawImage(this.pulseSprite, pos.x - s * 1.5, pos.y - s * 1.5, s * 3, s * 3);
+                ctx.drawImage(this.pulseSprite,
+                    (pos.x - s * 1.5) | 0, (pos.y - s * 1.5) | 0, s * 3, s * 3);
             }
 
-            for (const node of layerNodes) {
-                if (node.opacity < 0.01) continue;
-                const int = node.pulse(time), vis = CONFIG.visual[node.type];
+            for (const node of nodes) {
+                if (node.opacity < 0.02) continue;
+                const int = node.pulse(time);
+                const vis = CONFIG.visual[node.type];
                 const nA = node.opacity;
                 const pBr = 1 + node.mouseProximity * CONFIG.mouseBrightnessBoost;
                 const pSz = 1 + node.mouseProximity * CONFIG.mouseSizeBoost;
+                const nx = node.drawX, ny = node.drawY;
 
-                const bS = vis.bloom * 2 * (0.85 + 0.15 * int) * pSz;
-                ctx.globalAlpha = br * 0.5 * int * nA * pBr;
-                ctx.drawImage(this.bloomSprites[node.type], node.drawX - bS * 0.5, node.drawY - bS * 0.5, bS, bS);
+                /* bloom – only in high */
+                if (q.drawBloom) {
+                    const bS = vis.bloom * 2 * (0.85 + 0.15 * int) * pSz;
+                    ctx.globalAlpha = br * 0.5 * int * nA * pBr;
+                    ctx.drawImage(this.bloomSprites[node.type],
+                        (nx - bS * 0.5) | 0, (ny - bS * 0.5) | 0, bS | 0, bS | 0);
+                }
 
+                /* glow – always */
                 const gS = vis.glow * 2 * (0.8 + 0.2 * int) * pSz;
                 ctx.globalAlpha = br * (0.65 + 0.35 * int) * nA * pBr;
-                ctx.drawImage(this.sprites[node.type], node.drawX - gS * 0.5, node.drawY - gS * 0.5, gS, gS);
+                ctx.drawImage(this.sprites[node.type],
+                    (nx - gS * 0.5) | 0, (ny - gS * 0.5) | 0, gS | 0, gS | 0);
 
-                if (node.hasRing) {
+                /* rings – only in high */
+                if (q.drawRings && node.hasRing) {
                     ctx.globalAlpha = br * 0.2 * int * nA * pBr;
-                    ctx.strokeStyle = 'rgba(12,192,255,1)'; ctx.lineWidth = 0.6;
-                    ctx.save(); ctx.translate(node.drawX, node.drawY);
+                    ctx.strokeStyle = 'rgba(12,192,255,1)';
+                    ctx.lineWidth = 0.6;
+                    ctx.save(); ctx.translate(nx, ny);
                     ctx.rotate(node.ringAngle); ctx.scale(1, 0.32);
-                    ctx.beginPath(); ctx.arc(0, 0, vis.glow * 0.7 * pSz, 0, 6.283); ctx.stroke();
-                    ctx.restore();
+                    ctx.beginPath();
+                    ctx.arc(0, 0, vis.glow * 0.7 * pSz, 0, 6.283);
+                    ctx.stroke(); ctx.restore();
                     if (node.hasDoubleRing) {
                         ctx.globalAlpha = br * 0.12 * int * nA * pBr;
-                        ctx.save(); ctx.translate(node.drawX, node.drawY);
+                        ctx.save(); ctx.translate(nx, ny);
                         ctx.rotate(-node.ringAngle * 0.6); ctx.scale(1, 0.28);
-                        ctx.beginPath(); ctx.arc(0, 0, vis.glow * 1.05 * pSz, 0, 6.283); ctx.stroke();
-                        ctx.restore();
+                        ctx.beginPath();
+                        ctx.arc(0, 0, vis.glow * 1.05 * pSz, 0, 6.283);
+                        ctx.stroke(); ctx.restore();
                     }
                 }
             }
@@ -598,12 +634,12 @@ class CloudEngine {
     dispose() {
         this.stop();
         this.nodes = []; this.connections = [];
-        this.connectionsByLayer = [[], [], [], []]; this.nodesByLayer = [[], [], [], []];
+        this.connectionsByLayer = [[], [], [], []];
+        this.nodesByLayer = [[], [], [], []];
         this.activePulses = []; this.stars = []; this.ambientParticles = [];
     }
 }
 
-/* ───────── REACT COMPONENT ───────── */
 const CloudBackground = () => {
     const canvasRef = useRef(null);
 
@@ -617,14 +653,14 @@ const CloudBackground = () => {
         let resizeTimer;
         const onResize = () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => engine.resize(window.innerWidth, window.innerHeight), 200);
+            resizeTimer = setTimeout(
+                () => engine.resize(window.innerWidth, window.innerHeight), 200
+            );
         };
         const onScroll = () => {
             const max = document.documentElement.scrollHeight - window.innerHeight;
             engine.setScroll(max > 0 ? window.scrollY / max : 0);
         };
-
-        /* ── mousemove z throttle 32ms ── */
         let lastMouseTime = 0;
         const onMouse = (e) => {
             const now = performance.now();
@@ -635,8 +671,9 @@ const CloudBackground = () => {
                 -(e.clientY / window.innerHeight) * 2 + 1
             );
         };
-
-        const onVisibility = () => { document.hidden ? engine.stop() : engine.start(); };
+        const onVisibility = () => {
+            document.hidden ? engine.stop() : engine.start();
+        };
 
         window.addEventListener('resize', onResize);
         window.addEventListener('scroll', onScroll, { passive: true });
