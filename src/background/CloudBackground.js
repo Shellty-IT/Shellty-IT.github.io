@@ -8,7 +8,7 @@ const CONFIG = {
     maxConnectionDist: 220,
     maxConnectionsPerNode: 4,
     connectionBaseOpacity: 0.045,
-    flowSpawnChance: 0.009,
+    flowSpawnChance: 0.005,
     flowSpawnScrollMultiplier: 4,
     maxPulses: 18,
     pulseSpeedRange: [0.2, 0.5],
@@ -24,7 +24,7 @@ const CONFIG = {
     scrollBrightness: 0.6,
     starCount: 55,
     ambientParticleCount: 10,
-    autoscaleChance: 0.0015,
+    autoscaleChance: 0.0008,
     autoscaleFadeDuration: 3.0,
     maxDPR: 0.75,
     targetFPS: 30,
@@ -105,7 +105,7 @@ class ComputeNode {
             this.targetOpacity = Math.max(1 - this.fadeTimer / CONFIG.autoscaleFadeDuration, 0);
             if (this.targetOpacity <= 0) this.alive = false;
         }
-        this.opacity += (this.targetOpacity - this.opacity) * 0.10;
+        this.opacity += (this.targetOpacity - this.opacity) * 0.05;
     }
     pulse(time) { return 0.5 + 0.5 * Math.sin(this.pulsePhase + time * this.pulseSpeed); }
     startFadeOut() { this.fadingOut = true; this.fadeTimer = 0; }
