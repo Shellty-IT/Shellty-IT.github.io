@@ -290,7 +290,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. Please note that I use free cloud backend servers, which may result in a so-called cold start.",
+    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/><br/>Free-tier cold starts eliminated via Shellty Pulse.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -314,6 +314,18 @@
       }
     },
     "projects": {
+      "shelltyPulse": {
+        "title": "Shellty Pulse — Service Health Monitor & Keep-Alive",
+        "subtitle": "Service Health Monitor & Keep-Alive",
+        "description": "A professional-grade Service Health Monitor designed for real-time tracking of web service availability. It acts as an intelligent \"keep-alive\" mechanism for applications on free-tier platforms (e.g., Render), preventing idle sleep through automated, configurable pings.",
+        "highlightsTitle": "Key Highlights:",
+        "highlights": [
+          "Infrastructure as Code & Containerization: Combining Docker Compose with Ansible for fully automated provisioning and consistent, repeatable server-side deployments.",
+          "End-to-End CI/CD Automation: A robust GitHub Actions pipeline covering image builds, API endpoint testing, and automated deployment to ensure code reliability with every push.",
+          "Dynamic Service Management: A responsive dark-themed Dashboard providing real-time UI for configuring ping intervals and managing the monitored services list on the fly."
+        ],
+        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring"]
+      },
       "postlio": {
         "title": "Smart Social Media Assistant",
         "subtitle": "Create, schedule, and publish posts on FB, IG, and LinkedIn with AI",
@@ -323,26 +335,47 @@
       "smartQuoteAI": {
         "title": "SmartQuote AI – Intelligent Sales Assistant",
         "subtitle": "CRM system with an AI assistant for sales management",
-        "description": "A CRM web application supported by Google Gemini, which automates the creation of offers, contracts, and customer analysis. The system features a PDF generator with VAT calculation, automatic follow-ups, and a statistics dashboard. Currently in the testing and optimization phase.\n\nComing soon to SmartQuote AI:\n• Interactive offers: dynamic web formats instead of static PDFs.\n• Integration with KSeF Master: automatic invoicing after offer acceptance.\n• Expanded AI: even deeper data analysis and negotiation support.\n• Mobile version: PWA application for managing sales from a phone.",
+        "description": "A CRM web application supported by Google Gemini, which automates the creation of offers, contracts, and customer analysis. The system features a PDF generator with VAT calculation, automatic follow-ups, and a statistics dashboard. Currently in the testing and optimization phase.",
+        "highlightsTitle": "Coming soon to SmartQuote AI:",
+        "highlights": [
+          "Integration with KSeF Master: automatic invoicing after offer acceptance."
+        ],
         "tech": ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Google Gemini AI", "Tailwind CSS", "REST API", "RWD"]
       },
       "ksefMaster": {
         "title": "KSeF Master: Intelligent E-invoicing Evolution",
         "subtitle": "Integration with KSeF: downloading and issuing invoices",
-        "description": "KSeF Master is an advanced tool based on a proprietary, stable backend that guarantees reliable communication with the KSeF API. Currently available in the browser, the platform will soon gain a Windows version in offline-first mode, ensuring work continuity even without network access.\n\nWhat sets the system apart:\n• Security first: automatic detection of suspicious invoices through analysis of advanced parameters.\n• Full compliance: quick PDF generation and customer database support according to official standards.\n• Upcoming improvements: introduction of qualified certificate login and a dedicated user authorization module in the web version.",
+        "description": "KSeF Master is an advanced tool based on a proprietary, stable backend that guarantees reliable communication with the KSeF API. Currently available in the browser, the platform will soon gain a Windows version in offline-first mode, ensuring work continuity even without network access.",
+        "highlightsTitle": "What sets the system apart:",
+        "highlights": [
+          "Security first: automatic detection of suspicious invoices through analysis of advanced parameters.",
+          "Full compliance: quick PDF generation and customer database support according to official standards.",
+          "Upcoming improvements: introduction of qualified certificate login and a dedicated user authorization module in the web version."
+        ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
         "subtitle": "Engineering Academy Project • .NET 8",
-        "description": "A project developed as part of Nerds Family Engineering Academy, emphasizing software engineering, design patterns, and Clean Code principles. It is a modern CMS system based on MVC architecture, fully containerized (Docker) and integrated with a cloud PostgreSQL database (Neon).\n\nKey features:\n• Democratic permissions: custom role assignment system through administrator voting.\n• MVC Architecture: clean code structure following best practices.\n• Containerization: full Docker support ensuring easy deployment and scalability.",
+        "description": "A project developed as part of Nerds Family Engineering Academy, emphasizing software engineering, design patterns, and Clean Code principles. It is a modern CMS system based on MVC architecture, fully containerized (Docker) and integrated with a cloud PostgreSQL database (Neon).",
+        "highlightsTitle": "Key features:",
+        "highlights": [
+          "Democratic permissions: custom role assignment system through administrator voting.",
+          "MVC Architecture: clean code structure following best practices.",
+          "Containerization: full Docker support ensuring easy deployment and scalability."
+        ],
         "tech": ["C#", ".NET 8", "PostgreSQL", "Docker", "Identity", "Render"],
         "role": "Developer"
       },
       "mobiSalon": {
         "title": "Grooming Business Card with CMS",
         "subtitle": "Website for a grooming salon",
-        "description": "This is a light and clear one-page website designed with Next.js/React. The project combines an aesthetic presentation of a grooming salon with functionality that facilitates daily communication with customers. The site is fully responsive, which guarantees its impeccable operation and readability on smartphones and tablets.\n\nThe heart of the site management is the News section, over which the owner has full control from the CMS panel (Decap CMS). They can instantly publish there:\n• Current announcements: important information about promotions, changes in the offer, or announcements for customers.\n• Availability calendar: an interactive summary where the administrator marks working days and free slots, informing customers about the salon's current schedule in real time.",
+        "description": "This is a light and clear one-page website designed with Next.js/React. The project combines an aesthetic presentation of a grooming salon with functionality that facilitates daily communication with customers. The site is fully responsive, which guarantees its impeccable operation and readability on smartphones and tablets.",
+        "highlightsTitle": "The heart of the site management is the News section, over which the owner has full control from the CMS panel (Decap CMS). They can instantly publish there:",
+        "highlights": [
+          "Current announcements: important information about promotions, changes in the offer, or announcements for customers.",
+          "Availability calendar: an interactive summary where the administrator marks working days and free slots, informing customers about the salon's current schedule in real time."
+        ],
         "tech": ["Next.js", "React", "Decap CMS", "SCSS", "RWD", "Netlify"]
       },
       "pwaCookbook": {

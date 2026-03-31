@@ -13,6 +13,7 @@ import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.webp';
 import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
 import animalsThumbnail from '../../assets/thumbnails/one_page_animals.webp';
 import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
+import shelltyPulseThumbnail from '../../assets/thumbnails/shellty_pulse.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -239,9 +240,11 @@ const Portfolio = () => {
             title: t('portfolio.projects.postlio.title'),
             subtitle: t('portfolio.projects.postlio.subtitle'),
             description: t('portfolio.projects.postlio.description'),
+            highlightsTitle: t('portfolio.projects.postlio.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.postlio.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.postlio.tech', { returnObjects: true }),
             role: t('portfolio.projects.postlio.role', { defaultValue: 'Developer' }),
-            year: '2026',
+            year: '2025',
             caseStudyLink: t('portfolio.projects.postlio.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [
@@ -258,9 +261,11 @@ const Portfolio = () => {
             title: t('portfolio.projects.smartQuoteAI.title'),
             subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
             description: t('portfolio.projects.smartQuoteAI.description'),
+            highlightsTitle: t('portfolio.projects.smartQuoteAI.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
             role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'WIP' }),
-            year: '2026',
+            year: '2025',
             caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [
@@ -277,9 +282,11 @@ const Portfolio = () => {
             title: t('portfolio.projects.ksefMaster.title'),
             subtitle: t('portfolio.projects.ksefMaster.subtitle'),
             description: t('portfolio.projects.ksefMaster.description'),
+            highlightsTitle: t('portfolio.projects.ksefMaster.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.ksefMaster.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.ksefMaster.tech', { returnObjects: true }),
             role: t('portfolio.projects.ksefMaster.role', { defaultValue: 'WIP' }),
-            year: '2026',
+            year: '2025',
             caseStudyLink: t('portfolio.projects.ksefMaster.case', { defaultValue: '' }) || null,
             testAccount: {
                 noteKey: 'portfolio.testAccount.noteKsef',
@@ -290,6 +297,21 @@ const Portfolio = () => {
             },
         },
         {
+            id: "shelltyPulse",
+            image: shelltyPulseThumbnail,
+            demoLink: 'https://shellty-pulse.azurewebsites.net',
+            githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
+            title: t('portfolio.projects.shelltyPulse.title'),
+            subtitle: t('portfolio.projects.shelltyPulse.subtitle'),
+            description: t('portfolio.projects.shelltyPulse.description'),
+            highlightsTitle: t('portfolio.projects.shelltyPulse.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyPulse.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.shelltyPulse.tech', { returnObjects: true }),
+            role: t('portfolio.projects.shelltyPulse.role', { defaultValue: 'Developer' }),
+            year: '2025',
+            caseStudyLink: t('portfolio.projects.shelltyPulse.case', { defaultValue: '' }) || null,
+        },
+        {
             id: "shelltyBlog",
             image: shelltyBlogThumbnail,
             demoLink: 'https://shellty-blog.onrender.com',
@@ -298,9 +320,11 @@ const Portfolio = () => {
             title: t('portfolio.projects.shelltyBlog.title'),
             subtitle: t('portfolio.projects.shelltyBlog.subtitle'),
             description: t('portfolio.projects.shelltyBlog.description'),
+            highlightsTitle: t('portfolio.projects.shelltyBlog.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyBlog.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.shelltyBlog.tech', { returnObjects: true }),
             role: t('portfolio.projects.shelltyBlog.role', { defaultValue: 'Developer' }),
-            year: '2026',
+            year: '2025',
             caseStudyLink: t('portfolio.projects.shelltyBlog.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [
@@ -317,6 +341,8 @@ const Portfolio = () => {
             title: t('portfolio.projects.mobiSalon.title'),
             subtitle: t('portfolio.projects.mobiSalon.subtitle'),
             description: t('portfolio.projects.mobiSalon.description'),
+            highlightsTitle: t('portfolio.projects.mobiSalon.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.mobiSalon.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.mobiSalon.tech', { returnObjects: true }),
             role: t('portfolio.projects.mobiSalon.role', { defaultValue: 'Developer' }),
             year: '2025',
@@ -479,6 +505,17 @@ const Portfolio = () => {
                                             </React.Fragment>
                                         ))}
                                     </p>
+
+                                    {project.highlights && Array.isArray(project.highlights) && project.highlights.length > 0 && (
+                                        <div className="project-highlights">
+                                            {project.highlightsTitle && <p className="highlights-title">{project.highlightsTitle}</p>}
+                                            <ul className="highlights-list">
+                                                {project.highlights.map((highlight, i) => (
+                                                    <li key={i}>{highlight}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
 
                                     <div className="project-tech-stack" aria-label={t('portfolio.tech.aria', { defaultValue: 'Technologie' })}>
                                         {project.technologies?.map((tech) => (

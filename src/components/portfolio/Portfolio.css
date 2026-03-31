@@ -404,6 +404,40 @@
     line-height: 1.65;
 }
 
+.project-highlights {
+    margin-bottom: 20px;
+}
+
+.highlights-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+}
+
+.highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlights-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.highlights-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #0cc0ff;
+    font-weight: bold;
+}
+
 .project-tech-stack {
     display: flex;
     flex-wrap: wrap;

@@ -187,7 +187,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość dotychczasowych realizacji powstawała na rzecz pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Równolegle tworzę serię autorskich projektów demonstracyjnych - wkrótce pojawią się tutaj nowe pozycje. Proszę wziąć pod uwagę, że korzystam z darmowych serwerów backendowych w chmurze, co może wiązać się z występowaniem zjawiska tzw. cold startu.",
+    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/>Problem cold startu na instancjach free-tier wyeliminowany przez Shellty Pulse.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
@@ -211,47 +211,80 @@
       }
     },
     "projects": {
+      "shelltyPulse": {
+        "title": "Shellty Pulse",
+        "subtitle": "Monitor stanu usługi i funkcja podtrzymywania aktywności",
+        "description": "Narzędzie klasy Service Health Monitor służące do monitorowania dostępności usług webowych w czasie rzeczywistym. Pełni funkcję inteligentnego mechanizmu \"keep-alive\" dla aplikacji na darmowych instancjach (np. Render), zapobiegając ich usypianiu poprzez cykliczne, konfigurowalne zapytania.",
+        "highlightsTitle": "Kluczowe osiągnięcia:",
+        "highlights": [
+          "Infrastruktura jako Kod i Konteneryzacja: Połączenie Docker Compose z Ansible w celu zapewnienia w pełni automatycznego provisioningu oraz powtarzalnych wdrożeń na dowolrem serwerze.",
+          "Pełna Automatyzacja CI/CD: Kompletny pipeline w GitHub Actions obejmujący build obrazów, testy endpointów API oraz automatyczny deployment, gwarantujący stabilność każdej zmiany.",
+          "Dynamiczne Zarządzanie i Dashboard: Responsywny interfejs z ciemnym motywem umożliwiający konfigurację interwałów pingu oraz zarządzanie listą monitorowanych serwisów w locie."
+        ],
+        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring"]
+      },
       "postlio": {
         "title": "Inteligentny Asystent Social Media",
         "subtitle": "Twórz, planuj i publikuj posty na FB, IG i LinkedIn z pomocą AI",
-        "description": "Postlio to nowoczesna aplikacja PWA wspomagająca zarządzanie mediami społecznościowymi. Pozwala na tworzenie i planowanie postów oraz grafik przy wsparciu, w zależności od potrzeb różnego typu Agentów AI. System umożliwia pełną automatyzację publikacji zgodnie z harmonogramem dla kont firmowych (Facebook Pages, Instagram Business oraz LinkedIn). W przypadku profili osobistych, ze względu na regulaminy platform, aplikacja służy do profesjonalnego przygotowania treści do samodzielnego udostępnienia.\n\nProjekt jest obecnie wdrożony w celach testowych. Skupiam się na ulepszaniu UX oraz finalizacji procesu zatwierdzania aplikacji przez Meta. Po uzyskaniu pełnego dostępu do API, użytkownicy będą mogli udostępniać swoje materiały bezpośrednio z poziomu aplikacji.",
+        "description": "Postlio to nowoczesna aplikacja PWA wspomagająca zarządzanie mediami społecznościowymi. Pozwala na tworzenie i planowanie postów oraz grafik przy wsparciu różnego rodzaju Agentów AI. System umożliwia pełną automatyzację publikacji według harmonogramu dla kont firmowych (Facebook Pages, Instagram Business oraz LinkedIn). Dla profili osobistych, ze względu na regulacje platform, aplikacja służy do profesjonalnego przygotowania treści do udostępnienia ręcznego.\n\nProjekt jest obecnie wdrożony w celach testowych. Koncentruję się na dopracowaniu UX oraz finalizacji procesu zatwierdzania aplikacji przez Meta. Po uzyskaniu pełnego dostępu do API, użytkownicy będą mogli udostępniać swoje materiały bezpośrednio z poziomu aplikacji.",
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
         "title": "SmartQuote AI – Inteligentny asystent sprzedaży",
         "subtitle": "System CRM z asystentem AI do zarządzania sprzedażą",
-        "description": "Aplikacja webowa CRM wspierana przez Google Gemini, która automatyzuje tworzenie ofert, umów i analizę klientów. System posiada generator PDF z kalkulacją VAT, automatyczne follow-upy oraz dashboard statystyk. Obecnie w fazie testów i optymalizacji.\n\nWkrótce w SmartQuote AI:\n• Integracja z KSeF Master: automatyczne wystawianie faktur po akceptacji oferty.\n• Wersja mobilna: aplikacja PWA do zarządzania sprzedażą z telefonu.",
+        "description": "Aplikacja webowa klasy CRM wspierana przez Google Gemini, która automatyzuje proces tworzenia ofert, umów oraz analizę potrzeb klienta. System posiada generator PDF z kalkulacją VAT, automatyczny follow-up oraz dashboard ze statystykami. Obecnie w fazie testów i optymalizacji.",
+        "highlightsTitle": "Wkrótce w SmartQuote AI:",
+        "highlights": [
+          "Integracja z KSeF Master: automatyczne wystawianie faktur po akceptacji oferty."
+        ],
         "tech": ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Google Gemini AI", "Tailwind CSS", "REST API", "RWD"]
       },
       "ksefMaster": {
         "title": "KSeF Master: Inteligentna ewolucja e-fakturowania",
         "subtitle": "Integracja z KSeF: pobieranie i wystawianie faktur",
-        "description": "KSeF Master to zaawansowane narzędzie oparte na autorskim, stabilnym backendzie, który gwarantuje niezawodną komunikację z API KSeF. Obecnie dostępna w przeglądarce, platforma wkrótce zyska wersję Windows w trybie offline-first, zapewniając ciągłość pracy nawet bez dostępu do sieci.\n\nCo wyróżnia system:\n• Bezpieczeństwo przede wszystkim: automatyczne wykrywanie podejrzanych faktur dzięki analizie zaawansowanych parametrów.\n• Pełna zgodność: szybkie generowanie PDF-ów oraz obsługa bazy klientów zgodnie z oficjalnymi standardami.\n• Nadchodzące usprawnienia: wprowadzenie logowania certyfikatem kwalifikowanym oraz dedykowanego modułu autoryzacji użytkowników w wersji webowej.",
+        "description": "KSeF Master to zaawansowane narzędzie oparte na autorskim, stabilnym backendzie, który gwarantuje niezawodną komunikację z API KSeF. Obecnie dostępna w przeglądarce, platforma wkrótce zyska wersję Windows w trybie offline-first, zapewniając ciągłość pracy nawet bez dostępu do sieci.",
+        "highlightsTitle": "Co wyróżnia system:",
+        "highlights": [
+          "Bezpieczeństwo przede wszystkim: automatyczne wykrywanie podejrzanych faktur dzięki analizie zaawansowanych parametrów.",
+          "Pełna zgodność: szybkie generowanie PDF-ów oraz obsługa bazy klientów zgodnie z oficjalnymi standardami.",
+          "Nadchodzące usprawnienia: wprowadzenie logowania certyfikatem kwalifikowanym oraz dedykowanego modułu autoryzacji użytkowników w wersji webowej."
+        ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
         "subtitle": "Engineering Academy Project • .NET 8",
-        "description": "Projekt zrealizowany w ramach Nerds Family Engineering Academy, kładący nacisk na inżynierię oprogramowania, wzorce projektowe i zasady Clean Code. Jest to prosty, ale nowoczesny system CMS oparty na architekturze MVC, w pełni skonteneryzowany (Docker) i zintegrowany z chmurową bazą PostgreSQL (Neon).\n\nCo wyróżnia system:\n• Demokratyczne uprawnienia: autorski system nadawania ról poprzez głosowanie administratorów.\n• Architektura MVC: przejrzysta struktura kodu zgodna z najlepszymi praktykami.\n• Konteneryzacja: pełna obsługa Docker zapewniająca łatwe wdrożenie i skalowalność.",
+        "description": "Projekt zrealizowany w ramach Nerds Family Engineering Academy, kładący nacisk na inżynierię oprogramowania, wzorce projektowe i zasady Clean Code. Jest to nowoczesny system CMS oparty o architekturę MVC, w pełni skonteneryzowany (Docker) i zintegrowany z chmurową bazą PostgreSQL (Neon).",
+        "highlightsTitle": "Kluczowe funkcjonalności:",
+        "highlights": [
+          "Demokratyczne uprawnienia: autorski system nadawania ról poprzez głosowanie administratorów.",
+          "Architektura MVC: przejrzysta struktura kodu zgodna z najlepszymi praktykami.",
+          "Konteneryzacja: pełna obsługa Docker zapewniająca łatwe wdrożenie i skalowalność."
+        ],
         "tech": ["C#", ".NET 8", "PostgreSQL", "Docker", "Identity", "Render"],
         "role": "Developer"
       },
       "mobiSalon": {
         "title": "Wizytówka groomerska z CMS",
         "subtitle": "Witryna dla salonu groomerskiego",
-        "description": "To lekka i przejrzysta witryna typu one-page, zaprojektowana w technologii Next.js/React. Projekt łączy estetyczną prezentację salonu groomerskiego z funkcjonalnością ułatwiającą codzienną komunikację z klientami. Strona jest w pełni responsywna, co gwarantuje jej nienaganne działanie i czytelność na smartfonach oraz tabletach.\n\nSercem zarządzania stroną jest sekcja Aktualności, nad którą właściciel ma pełną kontrolę z poziomu panelu CMS (Decap CMS). Może on tam błyskawicznie publikować:\n• Bieżące komunikaty: ważne informacje o promocjach, zmianach w ofercie czy ogłoszenia dla klientów.\n• Kalendarz dostępności: interaktywne zestawienie, w którym administrator zaznacza dni pracy i wolne terminy, informując klientów o aktualnym grafiku salonu w czasie rzeczywistym.",
+        "description": "To lekka i przejrzysta witryna typu one-page zaprojektowana w Next.js/React. Projekt łączy w sobie estetyczną prezentację salonu groomerskiego z funkcjonalnością ułatwiającą codzienną komunikację z klientami. Strona jest w pełni responsywna, co gwarantuje jej nienaganne działanie i czytelność na smartfonach oraz tabletach.",
+        "highlightsTitle": "Sercem zarządzania stroną jest sekcja Aktualności, nad którą właściciel ma pełną kontrolę z poziomu panelu CMS (Decap CMS). Może on tam błyskawicznie publikować:",
+        "highlights": [
+          "Bieżące komunikaty: ważne informacje o promocjach, zmianach w ofercie czy ogłoszenia dla klientów.",
+          "Kalendarz dostępności: interaktywne zestawienie, w którym administrator zaznacza dni pracy i wolne terminy, informując klientów o aktualnym grafiku salonu w czasie rzeczywistym."
+        ],
         "tech": ["Next.js", "React", "Decap CMS", "SCSS", "RWD", "Netlify"]
       },
       "pwaCookbook": {
         "title": "Mobilna Książka Kucharska (PWA)",
         "subtitle": "Progresywna Aplikacja Webowa - projekt dyplomowy",
-        "description": "Opracowałem progresywną aplikację webową (PWA), która pomaga w planowaniu posiłków na podstawie składników dostępnych w kuchni. Integruje bazę przepisów, instrukcje przygotowania i czasy gotowania dodatków, a wbudowany timer z powiadomieniem dźwiękowym ułatwia kontrolę procesu. Aplikacja została zaprojektowana w podejściu mobile‑first i działa również w trybie offline, pozostając dostępna na każdym urządzeniu z przeglądarką. Dzięki temu realnie skraca czas spędzany na gotowaniu i ułatwia podejmowanie decyzji \"co ugotować\". Projekt zrealizowany w oparciu o React z naciskiem na wydajność i wygodę użytkownika. Powstał jako element pracy dyplomowej.",
+        "description": "Opracowałem progresywną aplikację webową (PWA), która pomaga w planowaniu posiłków na podstawie składników dostępnych w kuchni. Integruje bazę przepisów, instrukcje przygotowania i czasy gotowania dodatków, a wbudowany timer z powiadomieniem dźwiękowym ułatwia kontrolę procesu. Aplikacja została zaprojektowana w podejściu mobile-first i działa również w trybie offline, pozostając dostępna na każdym urządzeniu z przeglądarką. Dzięki temu realnie skraca czas spędzany na gotowaniu i ułatwia podejmowanie decyzji \"co ugotować\". Projekt zrealizowany w oparciu o React z naciskiem na wydajność i wygodę użytkownika. Powstał jako element pracy dyplomowej.",
         "tech": ["React", "Firebase", "PWA"]
       },
       "animalsOnePage": {
         "title": "Interesujące Zwierzęta - One Page",
         "subtitle": "Prosta strona typu One Page (projekt studencki)",
-        "description": "Bardzo prosta, statyczna strona one page przygotowana w trakcie studiów jako realizacja jednego z zadań. Prezentuje wybrane, interesujące gatunki zwierząt w krótkich sekcjach z podstawowymi informacjami i ciekawostkami. Traktuję ją jako skromny materiał uzupełniający, pokazujący konsekwencję w dokumentowaniu postępów. Mam świadomość, że nie jest to projekt reprezentatywny dla obecnych umiejętności i wkrótce zastąpię go nowszymi, autorskimi realizacjami.",
+        "description": "Bardzo prosta, statyczna strona one-page przygotowana w trakcie studiów jako realizacja jednego z zadań. Prezentuje wybrane, interesujące gatunki zwierząt w krótkich sekcjach z podstawowymi informacjami i ciekawostkami. Traktuję ją jako skromny materiał uzupełniający, pokazujący konsekwencję w dokumentowaniu postępów. Mam świadomość, że nie jest to projekt reprezentatywny dla obecnych umiejętności i wkrótce zastąpię go nowszymi, autorskimi realizacjami.",
         "tech": ["HTML", "CSS", "JavaScript"]
       }
     }
