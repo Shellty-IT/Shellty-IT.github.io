@@ -187,7 +187,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/>Problem cold startu na instancjach free-tier wyeliminowany przez Shellty Pulse.",
+    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/>Problem cold startu na instancjach free-tier wyeliminowany przez Shellty Pulse.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
@@ -217,9 +217,8 @@
         "description": "Narzędzie klasy Service Health Monitor służące do monitorowania dostępności usług webowych w czasie rzeczywistym. Pełni funkcję inteligentnego mechanizmu \"keep-alive\" dla aplikacji na darmowych instancjach (np. Render), zapobiegając ich usypianiu poprzez cykliczne, konfigurowalne zapytania.",
         "highlightsTitle": "Kluczowe osiągnięcia:",
         "highlights": [
-          "Infrastruktura jako Kod i Konteneryzacja: Połączenie Docker Compose z Ansible w celu zapewnienia w pełni automatycznego provisioningu oraz powtarzalnych wdrożeń na dowolrem serwerze.",
-          "Pełna Automatyzacja CI/CD: Kompletny pipeline w GitHub Actions obejmujący build obrazów, testy endpointów API oraz automatyczny deployment, gwarantujący stabilność każdej zmiany.",
-          "Dynamiczne Zarządzanie i Dashboard: Responsywny interfejs z ciemnym motywem umożliwiający konfigurację interwałów pingu oraz zarządzanie listą monitorowanych serwisów w locie."
+          "Infrastruktura jako kod i konteneryzacja: połączenie Docker Compose z Ansible w celu zapewnienia w pełni automatycznego provisioningu oraz powtarzalnych wdrożeń na dowolnym serwerze.",
+          "Pełna automatyzacja CI/CD: kompletny pipeline w GitHub Actions obejmujący build obrazów, testy endpointów API oraz automatyczny deployment, gwarantujący stabilność każdej zmiany."
         ],
         "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring"]
       },

@@ -244,7 +244,7 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.postlio.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.postlio.tech', { returnObjects: true }),
             role: t('portfolio.projects.postlio.role', { defaultValue: 'Developer' }),
-            year: '2025',
+            year: '2026',
             caseStudyLink: t('portfolio.projects.postlio.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [
@@ -265,7 +265,7 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
             role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'WIP' }),
-            year: '2025',
+            year: '2026',
             caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [
@@ -286,7 +286,7 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.ksefMaster.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.ksefMaster.tech', { returnObjects: true }),
             role: t('portfolio.projects.ksefMaster.role', { defaultValue: 'WIP' }),
-            year: '2025',
+            year: '2026',
             caseStudyLink: t('portfolio.projects.ksefMaster.case', { defaultValue: '' }) || null,
             testAccount: {
                 noteKey: 'portfolio.testAccount.noteKsef',
@@ -308,7 +308,7 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.shelltyPulse.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.shelltyPulse.tech', { returnObjects: true }),
             role: t('portfolio.projects.shelltyPulse.role', { defaultValue: 'Developer' }),
-            year: '2025',
+            year: '2026',
             caseStudyLink: t('portfolio.projects.shelltyPulse.case', { defaultValue: '' }) || null,
         },
         {
@@ -324,7 +324,7 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.shelltyBlog.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.shelltyBlog.tech', { returnObjects: true }),
             role: t('portfolio.projects.shelltyBlog.role', { defaultValue: 'Developer' }),
-            year: '2025',
+            year: '2026',
             caseStudyLink: t('portfolio.projects.shelltyBlog.case', { defaultValue: '' }) || null,
             testAccount: {
                 fields: [

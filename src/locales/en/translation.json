@@ -290,7 +290,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/><br/>Free-tier cold starts eliminated via Shellty Pulse.",
+    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Free-tier cold starts eliminated via Shellty Pulse.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -320,9 +320,8 @@
         "description": "A professional-grade Service Health Monitor designed for real-time tracking of web service availability. It acts as an intelligent \"keep-alive\" mechanism for applications on free-tier platforms (e.g., Render), preventing idle sleep through automated, configurable pings.",
         "highlightsTitle": "Key Highlights:",
         "highlights": [
-          "Infrastructure as Code & Containerization: Combining Docker Compose with Ansible for fully automated provisioning and consistent, repeatable server-side deployments.",
-          "End-to-End CI/CD Automation: A robust GitHub Actions pipeline covering image builds, API endpoint testing, and automated deployment to ensure code reliability with every push.",
-          "Dynamic Service Management: A responsive dark-themed Dashboard providing real-time UI for configuring ping intervals and managing the monitored services list on the fly."
+          "Infrastructure as code & containerization: combining Docker Compose with Ansible for fully automated provisioning and consistent, repeatable server-side deployments.",
+          "End-to-end CI/CD automation: a robust GitHub Actions pipeline covering image builds, API endpoint testing, and automated deployment to ensure code reliability with every push."
         ],
         "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring"]
       },
