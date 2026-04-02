@@ -196,10 +196,10 @@
     "testAccount": {
       "title": "Konto testowe",
       "note": "Zaloguj się, aby zobaczyć aplikację poniższym kontem testowym",
-      "noteKsef": "Użyj poniższych danych, aby przetestować integrację z KSeF",
+      "noteKsef": "Zaloguj się, aby zobaczyć aplikację poniższym kontem testowym",
       "fields": {
-        "login": "Login",
-        "password": "Hasło",
+        "login": "Login:",
+        "password": "Hasło:",
         "nip": "NIP",
         "token": "Token"
       },
@@ -241,12 +241,12 @@
       "ksefMaster": {
         "title": "KSeF Master: Inteligentna ewolucja e-fakturowania",
         "subtitle": "Integracja z KSeF: pobieranie i wystawianie faktur",
-        "description": "KSeF Master to zaawansowane narzędzie oparte na autorskim, stabilnym backendzie, który gwarantuje niezawodną komunikację z API KSeF. Obecnie dostępna w przeglądarce, platforma wkrótce zyska wersję Windows w trybie offline-first, zapewniając ciągłość pracy nawet bez dostępu do sieci.",
-        "highlightsTitle": "Co wyróżnia system:",
+        "description": "KSeF Master to stabilna platforma zapewniająca niezawodną komunikację z API KSeF. Obecnie dostępna w przeglądarce, wkrótce zyska wersję Windows z trybem offline-first.",
+        "highlightsTitle": "Kluczowe zalety:",
         "highlights": [
-          "Bezpieczeństwo przede wszystkim: automatyczne wykrywanie podejrzanych faktur dzięki analizie zaawansowanych parametrów.",
-          "Pełna zgodność: szybkie generowanie PDF-ów oraz obsługa bazy klientów zgodnie z oficjalnymi standardami.",
-          "Nadchodzące usprawnienia: wprowadzenie logowania certyfikatem kwalifikowanym oraz dedykowanego modułu autoryzacji użytkowników w wersji webowej."
+          "Bezpieczeństwo: Automatyczne wykrywanie podejrzanych faktur.",
+          "Zgodność: Szybkie generowanie PDF i obsługa bazy klientów wg standardów.",
+          "W planach: Logowanie certyfikatem kwalifikowanym oraz dedykowana aplikacja desktopowa."
         ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
       },

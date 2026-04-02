@@ -677,25 +677,38 @@
 .credential-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    width: 100%;
+}
+
+.credential-label-container {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 80px;
 }
 
 .credential-label {
     font-size: 0.78rem;
     font-weight: 600;
     color: #64748b;
-    min-width: 50px;
     flex-shrink: 0;
+}
+
+.credential-value-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .credential-value {
     flex: 1;
-    min-width: 0;
+    width: 100%;
     font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
     font-size: 0.82rem;
     color: #e2e8f0;
     background: rgba(255, 255, 255, 0.05);
-    padding: 7px 12px;
+    padding: 7px 44px 7px 12px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     user-select: all;
@@ -705,21 +718,36 @@
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
+@media (max-width: 480px) {
+    .credential-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .credential-label-container {
+        min-width: 0;
+    }
+}
+
 .credential-value:hover {
     background: rgba(255, 255, 255, 0.07);
     border-color: rgba(255, 255, 255, 0.14);
 }
 
 .copy-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
     color: #64748b;
     cursor: pointer;
     flex-shrink: 0;
@@ -735,11 +763,11 @@
     background: rgba(12, 192, 255, 0.12);
     border-color: rgba(12, 192, 255, 0.3);
     color: #0cc0ff;
-    transform: translateY(-1px);
+    transform: translateY(-50%) scale(1.05);
 }
 
 .copy-btn:active {
-    transform: scale(0.95);
+    transform: translateY(-50%) scale(0.95);
 }
 
 .copy-btn.copied {

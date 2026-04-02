@@ -301,8 +301,8 @@
       "note": "Log in to see the application features",
       "noteKsef": "Use the following data to test the integration with KSeF",
       "fields": {
-        "login": "Login",
-        "password": "Password",
+        "login": "Login:",
+        "password": "Password:",
         "nip": "NIP",
         "token": "Token"
       },
@@ -344,12 +344,12 @@
       "ksefMaster": {
         "title": "KSeF Master: Intelligent E-invoicing Evolution",
         "subtitle": "Integration with KSeF: downloading and issuing invoices",
-        "description": "KSeF Master is an advanced tool based on a proprietary, stable backend that guarantees reliable communication with the KSeF API. Currently available in the browser, the platform will soon gain a Windows version in offline-first mode, ensuring work continuity even without network access.",
-        "highlightsTitle": "What sets the system apart:",
+        "description": "KSeF Master is a stable platform providing reliable communication with the KSeF API. Currently browser-based, it will soon feature a Windows version with an offline-first mode.",
+        "highlightsTitle": "Key Advantages:",
         "highlights": [
-          "Security first: automatic detection of suspicious invoices through analysis of advanced parameters.",
-          "Full compliance: quick PDF generation and customer database support according to official standards.",
-          "Upcoming improvements: introduction of qualified certificate login and a dedicated user authorization module in the web version."
+          "Security: Automatic detection of suspicious invoices.",
+          "Compliance: Fast PDF generation and standard-compliant customer database management.",
+          "Planned: Qualified certificate login and a dedicated desktop application."
         ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
       },

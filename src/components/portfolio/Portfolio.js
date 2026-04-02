@@ -79,14 +79,18 @@ const TestAccountBox = ({ account, t }) => {
             <div className="test-account-credentials">
                 {account.fields.map(({ labelKey, value }) => (
                     <div className="credential-row" key={labelKey}>
-                        <span className="credential-label">
-                            {t(`portfolio.testAccount.fields.${labelKey}`)}
-                        </span>
-                        <code className="credential-value">{value}</code>
-                        <CopyButton
-                            text={value}
-                            label={t(`portfolio.testAccount.copy.${labelKey}`)}
-                        />
+                        <div className="credential-label-container">
+                            <span className="credential-label">
+                                {t(`portfolio.testAccount.fields.${labelKey}`)}
+                            </span>
+                        </div>
+                        <div className="credential-value-wrapper">
+                            <code className="credential-value">{value}</code>
+                            <CopyButton
+                                text={value}
+                                label={t(`portfolio.testAccount.copy.${labelKey}`)}
+                            />
+                        </div>
                     </div>
                 ))}
             </div>
@@ -291,8 +295,8 @@ const Portfolio = () => {
             testAccount: {
                 noteKey: 'portfolio.testAccount.noteKsef',
                 fields: [
-                    { labelKey: 'nip', value: '6181020505' },
-                    { labelKey: 'token', value: '20260128-EC-2BE47EC000-2F20D717BD-7C|nip-6181020505|3692b1e486304d4d9c02a486434b8a143f7547aea0d847e7bf00af38dcae3b8b\n' },
+                    { labelKey: 'login', value: 'test@testowe.pl' },
+                    { labelKey: 'password', value: 'Testowe123!' },
                 ],
             },
         },
