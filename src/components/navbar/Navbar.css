@@ -113,7 +113,7 @@
 
 .main-nav {
     position: relative;
-    padding: 4px 14px;
+    padding: 2px 8px;
     border-radius: var(--nav-radius);
     background: var(--nav-bg);
     border: 1px solid var(--nav-border);
@@ -125,7 +125,7 @@
 .main-nav ul {
     display: flex;
     align-items: flex-end;
-    gap: 16px;
+    gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -184,8 +184,37 @@
 }
 
 .main-nav .nav-glow-icon {
-    width: 100px;
-    height: 100px;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translate(0, 4px);
+}
+
+.nav-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 26px;
+    position: relative;
+}
+
+.nav-experience-icon {
+    transform: translate(-50%, -50%) translate(0, 6px) !important;
+}
+
+.nav-contact-icon {
+    transform: translate(-50%, -50%) translate(0, 6px) !important;
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.nav-experience-icon {
+    transform: translate(-50%, -50%) translate(0, 4px) !important;
+    width: 42px !important;
+    height: 42px !important;
 }
 
 .main-nav li:hover .nav-glow-icon .glow-icon-base,
@@ -414,8 +443,28 @@ body {
     }
 
     .main-nav .nav-glow-icon {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translate(0, 4px);
+    }
+
+    .nav-icon-wrapper {
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+
+    .main-nav .nav-experience-icon {
+        transform: translate(-50%, -50%) translate(0, 8px);
+    }
+
+    .main-nav .nav-contact-icon {
+        width: 50px !important;
+        height: 50px !important;
+        transform: translate(-50%, -50%) translate(0, 12px);
     }
 
     .menu-overlay {

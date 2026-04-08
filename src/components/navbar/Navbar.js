@@ -147,13 +147,15 @@ const Navbar = () => {
                                     end={item.to === '/'}
                                     onClick={closeMenu}
                                 >
-                                    <GlowIcon
-                                        src={item.icon}
-                                        srcGlow={item.iconGlow}
-                                        alt=""
-                                        size={30}
-                                        className="nav-glow-icon"
-                                    />
+                                    <div className="nav-icon-wrapper">
+                                        <GlowIcon
+                                            src={item.icon}
+                                            srcGlow={item.iconGlow}
+                                            alt=""
+                                            size={item.to === '/contact' ? 46 : item.to === '/experience' ? 40 : 36}
+                                            className={`nav-glow-icon ${item.to === '/contact' ? 'nav-contact-icon' : item.to === '/experience' ? 'nav-experience-icon' : ''}`}
+                                        />
+                                    </div>
                                     <span>{t(item.labelKey)}</span>
                                 </NavLink>
                             </li>

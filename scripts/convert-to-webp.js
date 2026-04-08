@@ -19,7 +19,7 @@ function walkDir(dir) {
 
         if (!entry.name.endsWith('.png') && !entry.name.endsWith('.jpg')) continue;
 
-        const webpPath = fullPath.replace(/\.(png|jpg)$/, '.webp');
+        const webpPath = fullPath.replace(/\.(apng|jpg)$/, '.webp');
 
         if (fs.existsSync(webpPath)) {
             skipped++;
