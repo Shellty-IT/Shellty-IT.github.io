@@ -187,7 +187,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/>Problem cold startu na instancjach free-tier wyeliminowany przez Shellty Pulse.",
+    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/>Uwaga: Ze względu na wyczerpanie limitów darmowej platformy Render, niektóre usługi backendowe mogą być przejściowo niedostępne.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
@@ -249,6 +249,18 @@
           "W planach: Logowanie certyfikatem kwalifikowanym oraz dedykowana aplikacja desktopowa."
         ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
+      },
+      "shelltyKanban": {
+        "title": "Shellty.Kanban",
+        "subtitle": "Aplikacja do zarządzania projektami",
+        "description": "Kompleksowa aplikacja klasy \"Kanban Board\". Zbudowana od podstaw w architekturze full-stack, umożliwia zarządzanie projektami, zadaniami i zespołami. Backend oparto na wydajnym .NET 10 Minimal API, a dynamiczny frontend na React 18 z Vite. Bezpieczeństwo zapewnia mechanizm JWT z rotacją refresh tokenów.",
+        "highlightsTitle": "Kluczowe osiągnięcia:",
+        "highlights": [
+          "Architektura full-stack: Stworzenie kompletnego, rozłącznego systemu z backendem w .NET i frontendem w React, co pokazuje znajomość obu technologii i ich integracji.",
+          "Automatyzacja CI/CD i chmura: Wdrożenie w pełni zautomatyzowanego pipeline'u w GitHub Actions, który obejmuje wbudowane testy (ponad 60, z pokryciem >95%) i deployment w chmurze Azure.",
+          "Zaawansowane uwierzytelnianie: Implementacja profesjonalnego i bezpiecznego systemu logowania opartego na JSON Web Tokens (JWT) z automatycznym odświeżaniem sesji (refresh token rotation)."
+        ],
+        "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",

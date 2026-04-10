@@ -14,6 +14,8 @@ import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
 import animalsThumbnail from '../../assets/thumbnails/one_page_animals.webp';
 import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
 import shelltyPulseThumbnail from '../../assets/thumbnails/shellty_pulse.webp';
+import kanbanThumbnail from '../../assets/thumbnails/kanban.webp';
+import kanbanThumbnailAng from '../../assets/thumbnails/kanban_ang.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -299,6 +301,21 @@ const Portfolio = () => {
                     { labelKey: 'password', value: 'Testowe123!' },
                 ],
             },
+        },
+        {
+            id: "shelltyKanban",
+            image: currentLanguage === 'en' ? kanbanThumbnailAng : kanbanThumbnail,
+            demoLink: 'https://shellty-kanban.azurewebsites.net',
+            githubLink: 'https://github.com/Shellty-IT/NerdsApp_KanbanApp',
+            title: t('portfolio.projects.shelltyKanban.title'),
+            subtitle: t('portfolio.projects.shelltyKanban.subtitle'),
+            description: t('portfolio.projects.shelltyKanban.description'),
+            highlightsTitle: t('portfolio.projects.shelltyKanban.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyKanban.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.shelltyKanban.tech', { returnObjects: true }),
+            role: t('portfolio.projects.shelltyKanban.role', { defaultValue: 'Developer' }),
+            year: '2026',
+            caseStudyLink: t('portfolio.projects.shelltyKanban.case', { defaultValue: '' }) || null,
         },
         {
             id: "shelltyPulse",

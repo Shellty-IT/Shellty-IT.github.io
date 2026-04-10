@@ -290,7 +290,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Free-tier cold starts eliminated via Shellty Pulse.",
+    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Note: Due to Render's free-tier usage limits, some backend services may be temporarily unavailable.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -352,6 +352,18 @@
           "Planned: Qualified certificate login and a dedicated desktop application."
         ],
         "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
+      },
+      "shelltyKanban": {
+        "title": "Shellty.Kanban",
+        "subtitle": "Project Management Application",
+        "description": "A comprehensive \"Kanban Board\" application. Built from the ground up in a full-stack architecture, it allows for managing projects, tasks, and teams. The backend is powered by a high-performance .NET 10 Minimal API, and the dynamic frontend is built with React 18 and Vite. Security is ensured by a JWT mechanism with refresh token rotation.",
+        "highlightsTitle": "Key achievements:",
+        "highlights": [
+          "Full-stack architecture: Developed a complete, decoupled system with a .NET backend and a React frontend, demonstrating proficiency in both technologies and their integration.",
+          "CI/CD automation & cloud deployment: Implemented a fully automated pipeline using GitHub Actions, covering built-in testing (60+ tests with >95% coverage) and cloud deployment on Azure.",
+          "Advanced authentication: Engineered a professional and secure login system based on JSON Web Tokens (JWT) with an automatic session refresh mechanism (refresh token rotation)."
+        ],
+        "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
