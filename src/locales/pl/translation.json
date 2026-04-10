@@ -253,12 +253,12 @@
       "shelltyKanban": {
         "title": "Shellty.Kanban",
         "subtitle": "Aplikacja do zarządzania projektami",
-        "description": "Kompleksowa aplikacja klasy \"Kanban Board\". Zbudowana od podstaw w architekturze full-stack, umożliwia zarządzanie projektami, zadaniami i zespołami. Backend oparto na wydajnym .NET 10 Minimal API, a dynamiczny frontend na React 18 z Vite. Bezpieczeństwo zapewnia mechanizm JWT z rotacją refresh tokenów.",
+        "description": "Kompleksowa aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej. System zbudowany od podstaw, który pozwala w prosty i czytelny sposób kontrolować przepływ pracy w każdym zespole.",
         "highlightsTitle": "Kluczowe osiągnięcia:",
         "highlights": [
-          "Architektura full-stack: Stworzenie kompletnego, rozłącznego systemu z backendem w .NET i frontendem w React, co pokazuje znajomość obu technologii i ich integracji.",
-          "Automatyzacja CI/CD i chmura: Wdrożenie w pełni zautomatyzowanego pipeline'u w GitHub Actions, który obejmuje wbudowane testy (ponad 60, z pokryciem >95%) i deployment w chmurze Azure.",
-          "Zaawansowane uwierzytelnianie: Implementacja profesjonalnego i bezpiecznego systemu logowania opartego na JSON Web Tokens (JWT) z automatycznym odświeżaniem sesji (refresh token rotation)."
+          "Wydajny system zarządzania: Nowoczesna tablica Kanban zbudowana w .NET 10 i React 18.",
+          "Bezpieczeństwo sesji: Zaawansowane uwierzytelnianie JWT z rotacją tokenów.",
+          "Automatyzacja i jakość: Pełne CI/CD na Azure oraz wysoka stabilność potwierdzona przez 60+ testów z pokryciem kodu powyżej 95%."
         ],
         "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
