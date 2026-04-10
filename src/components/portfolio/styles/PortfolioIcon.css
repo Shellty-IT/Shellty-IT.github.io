@@ -1,0 +1,150 @@
+.pf-icon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -25px;
+    cursor: pointer;
+    will-change: auto;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.pf-icon__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pf-icon__node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.pf-icon__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: opacity;
+}
+
+.pf-icon__img--base {
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 2;
+}
+
+.pf-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: 3;
+}
+
+.pf-icon--hidden .pf-icon__node,
+.pf-icon--hidden .pf-icon__img--base,
+.pf-icon--hidden .pf-icon__img--lit {
+    opacity: 0;
+}
+
+.pf-icon--nodes .pf-icon__node {
+    animation: pfNodeActivate 0.6s ease-out forwards;
+}
+
+.pf-icon--nodes .pf-icon__node:nth-child(1) { animation-delay: 0s; }
+.pf-icon--nodes .pf-icon__node:nth-child(2) { animation-delay: 0.07s; }
+.pf-icon--nodes .pf-icon__node:nth-child(3) { animation-delay: 0.14s; }
+.pf-icon--nodes .pf-icon__node:nth-child(4) { animation-delay: 0.21s; }
+.pf-icon--nodes .pf-icon__node:nth-child(5) { animation-delay: 0.28s; }
+.pf-icon--nodes .pf-icon__node:nth-child(6) { animation-delay: 0.35s; }
+.pf-icon--nodes .pf-icon__node:nth-child(7) { animation-delay: 0.42s; }
+.pf-icon--nodes .pf-icon__node:nth-child(8) { animation-delay: 0.49s; }
+.pf-icon--nodes .pf-icon__node:nth-child(9) { animation-delay: 0.56s; }
+
+.pf-icon--forming .pf-icon__node {
+    animation: pfNodeActivate 0.6s ease-out forwards;
+}
+
+.pf-icon--forming .pf-icon__img--base {
+    opacity: 0.5;
+    transition: opacity 1.2s ease;
+}
+
+.pf-icon--visible .pf-icon__node {
+    animation: pfNodeFade 0.8s ease-out forwards;
+}
+
+.pf-icon--visible .pf-icon__img--base {
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.pf-icon--visible .pf-icon__img--lit {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.pf-icon--pulse .pf-icon__img--lit {
+    animation: pfBreathe 1.6s ease-in-out forwards;
+}
+
+.pf-icon--pulse .pf-icon__img--base {
+    animation: pfBaseDim 1.6s ease-in-out forwards;
+}
+
+.pf-icon--visible:hover .pf-icon__img--lit {
+    opacity: 0.85;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+.pf-icon--visible:hover .pf-icon__img--base {
+    opacity: 0.25;
+    animation: none;
+    transition: opacity 0.5s ease;
+}
+
+@media (max-width: 720px) {
+    .pf-icon {
+        width: 160px;
+        height: 160px;
+        margin-bottom: -10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pf-icon {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-icon {
+        animation: none !important;
+    }
+
+    .pf-icon__node,
+    .pf-icon__img--base,
+    .pf-icon__img--lit {
+        animation: none !important;
+        transition: opacity 0.01s !important;
+    }
+
+    .pf-icon--visible .pf-icon__img--base {
+        opacity: 1;
+    }
+
+    .pf-icon--visible:hover .pf-icon__img--lit {
+        opacity: 0.85;
+    }
+
+    .pf-icon--visible:hover .pf-icon__img--base {
+        opacity: 0.25;
+    }
+}

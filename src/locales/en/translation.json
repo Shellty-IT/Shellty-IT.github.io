@@ -290,7 +290,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Note: Due to Render's free-tier usage limits, some backend services may be temporarily unavailable.",
+    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Note: Due to Render's free-tier usage limits, some backend services have been temporarily moved to Railway.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -323,7 +323,7 @@
           "Infrastructure as code & containerization: combining Docker Compose with Ansible for fully automated provisioning and consistent, repeatable server-side deployments.",
           "End-to-end CI/CD automation: a robust GitHub Actions pipeline covering image builds, API endpoint testing, and automated deployment to ensure code reliability with every push."
         ],
-        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring"]
+        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Azure"]
       },
       "postlio": {
         "title": "Smart Social Media Assistant",

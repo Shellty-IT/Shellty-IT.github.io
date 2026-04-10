@@ -1,5 +1,11 @@
 import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
-import './Portfolio.css';
+import './styles/Portfolio.css';
+import './styles/PortfolioIcon.css';
+import './styles/ProjectCard.css';
+import './styles/ProjectImage.css';
+import './styles/Skeleton.css';
+import './styles/TestAccount.css';
+import './styles/VideoModal.css';
 import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay, FaTimes } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
 
@@ -33,6 +39,39 @@ const ICON_NODES = [
     { id: 7, x: "85%", y: "80%" },
     { id: 8, x: "50%", y: "50%" },
 ];
+
+const ProjectImage = ({ src, alt }) => {
+    const [phase, setPhase] = useState('loading');
+
+    const handleLoad = useCallback(() => {
+        setPhase('decoding');
+
+        setTimeout(() => {
+            setPhase('done');
+        }, 700);
+    }, []);
+
+    return (
+        <div className="project-img-reveal" data-phase={phase}>
+            <div className="project-img-placeholder" aria-hidden="true">
+                <div className="project-img-placeholder__scanline" />
+                <div className="project-img-placeholder__grid" aria-hidden="true" />
+                <span className="project-img-placeholder__label">LOADING...</span>
+            </div>
+
+            <img
+                src={src}
+                alt={alt}
+                className="project-image"
+                loading="lazy"
+                decoding="async"
+                onLoad={handleLoad}
+            />
+
+            <div className="project-img-glitch" aria-hidden="true" />
+        </div>
+    );
+};
 
 const CopyButton = ({ text, label }) => {
     const [copied, setCopied] = useState(false);
@@ -152,18 +191,12 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
 const Portfolio = () => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
-    const [isLoading, setIsLoading] = useState(true);
     const [titleHovered, setTitleHovered] = useState(false);
     const [videoModal, setVideoModal] = useState({ open: false, url: '', title: '' });
 
     const [iconPhase, setIconPhase] = useState("hidden");
     const iconRef = useRef(null);
     const pulseTimer = useRef(null);
-
-    useEffect(() => {
-        const tm = setTimeout(() => setIsLoading(false), 350);
-        return () => clearTimeout(tm);
-    }, []);
 
     useEffect(() => {
         const el = iconRef.current;
@@ -463,126 +496,106 @@ const Portfolio = () => {
                 </header>
 
                 <section className="projects-grid" aria-live="polite">
-                    {isLoading ? (
-                        <>
-                            {[...Array(4)].map((_, i) => (
-                                <div key={i} className="project-card skeleton" aria-hidden="true">
-                                    <div className="project-image-wrapper"><div className="skeleton-box"></div></div>
-                                    <div className="project-content">
-                                        <div className="skeleton-line w-60" />
-                                        <div className="skeleton-line w-40" />
-                                        <div className="skeleton-line w-90" />
-                                        <div className="skeleton-line w-70" />
-                                        <div className="skeleton-badges" />
+                    {projects.map((project, index) => (
+                        <article
+                            key={project.id}
+                            className={`project-card animate-slide-up delay-${index + 1}`}
+                            itemScope
+                            itemType="https://schema.org/CreativeWork"
+                        >
+                            {project.image && (
+                                <div className="project-image-wrapper">
+                                    <ProjectImage
+                                        src={project.image}
+                                        alt={project.title}
+                                    />
+                                    <div className="image-overlay">
+                                        {project.demoLink && (
+                                            <a
+                                                href={project.demoLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="overlay-cta"
+                                                aria-label={`${t('portfolio.actions.demo')} — ${project.title}`}
+                                            >
+                                                <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
-                            ))}
-                        </>
-                    ) : (
-                        projects.map((project, index) => (
-                            <article
-                                key={project.id}
-                                className={`project-card animate-slide-up delay-${index + 1}`}
-                                itemScope
-                                itemType="https://schema.org/CreativeWork"
-                            >
-                                {project.image && (
-                                    <div className="project-image-wrapper">
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="project-image"
-                                            loading="lazy"
-                                            decoding="async"
-                                        />
-                                        <div className="image-overlay">
-                                            {project.demoLink && (
-                                                <a
-                                                    href={project.demoLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="overlay-cta"
-                                                    aria-label={`${t('portfolio.actions.demo')} — ${project.title}`}
-                                                >
-                                                    <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
-                                                </a>
-                                            )}
-                                        </div>
+                            )}
+
+                            <div className="project-content">
+                                <header className="project-header">
+                                    <h3 className="project-heading" itemProp="name">{project.title}</h3>
+                                    <div className="project-meta">
+                                        {project.subtitle && <span className="project-subtitle" itemProp="about">{project.subtitle}</span>}
+                                        {project.year && (
+                                            <span className="project-chipset">
+                                                <span className="chip">{project.year}</span>
+                                            </span>
+                                        )}
+                                    </div>
+                                </header>
+
+                                <p className="project-description" itemProp="description">
+                                    {project.description.split('\n').map((line, i) => (
+                                        <React.Fragment key={i}>
+                                            {line}
+                                            {i < project.description.split('\n').length - 1 && <br />}
+                                        </React.Fragment>
+                                    ))}
+                                </p>
+
+                                {project.highlights && Array.isArray(project.highlights) && project.highlights.length > 0 && (
+                                    <div className="project-highlights">
+                                        {project.highlightsTitle && <p className="highlights-title">{project.highlightsTitle}</p>}
+                                        <ul className="highlights-list">
+                                            {project.highlights.map((highlight, i) => (
+                                                <li key={i}>{highlight}</li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 )}
 
-                                <div className="project-content">
-                                    <header className="project-header">
-                                        <h3 className="project-heading" itemProp="name">{project.title}</h3>
-                                        <div className="project-meta">
-                                            {project.subtitle && <span className="project-subtitle" itemProp="about">{project.subtitle}</span>}
-                                            {project.year && (
-                                                <span className="project-chipset">
-                                                    <span className="chip">{project.year}</span>
-                                                </span>
-                                            )}
-                                        </div>
-                                    </header>
+                                <div className="project-tech-stack" aria-label={t('portfolio.tech.aria', { defaultValue: 'Technologie' })}>
+                                    {project.technologies?.map((tech) => (
+                                        <span key={tech} className="tech-badge">{tech}</span>
+                                    ))}
+                                </div>
 
-                                    <p className="project-description" itemProp="description">
-                                        {project.description.split('\n').map((line, i) => (
-                                            <React.Fragment key={i}>
-                                                {line}
-                                                {i < project.description.split('\n').length - 1 && <br />}
-                                            </React.Fragment>
-                                        ))}
-                                    </p>
-
-                                    {project.highlights && Array.isArray(project.highlights) && project.highlights.length > 0 && (
-                                        <div className="project-highlights">
-                                            {project.highlightsTitle && <p className="highlights-title">{project.highlightsTitle}</p>}
-                                            <ul className="highlights-list">
-                                                {project.highlights.map((highlight, i) => (
-                                                    <li key={i}>{highlight}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-
-                                    <div className="project-tech-stack" aria-label={t('portfolio.tech.aria', { defaultValue: 'Technologie' })}>
-                                        {project.technologies?.map((tech) => (
-                                            <span key={tech} className="tech-badge">{tech}</span>
-                                        ))}
-                                    </div>
-
-                                    <div className="project-bottom">
-                                        <TestAccountBox account={project.testAccount} t={t} />
-                                        <div className="project-links">
-                                            {project.demoLink && (
-                                                <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                                                    <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
-                                                </a>
-                                            )}
-                                            {project.githubLink && (
-                                                <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                                                    <FaGithub /> {t('portfolio.actions.code')}
-                                                </a>
-                                            )}
-                                            {project.videoLink && (
-                                                <button
-                                                    type="button"
-                                                    className="project-link project-link--video"
-                                                    onClick={() => openVideo(project.videoLink, project.title)}
-                                                >
-                                                    <FaPlay /> {t('portfolio.actions.videoPresentation')}
-                                                </button>
-                                            )}
-                                            {project.caseStudyLink && (
-                                                <a href={project.caseStudyLink} target="_blank" rel="noopener noreferrer" className="project-link subtle">
-                                                    {t('portfolio.actions.case', { defaultValue: 'Case study' })}
-                                                </a>
-                                            )}
-                                        </div>
+                                <div className="project-bottom">
+                                    <TestAccountBox account={project.testAccount} t={t} />
+                                    <div className="project-links">
+                                        {project.demoLink && (
+                                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                                                <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                                                <FaGithub /> {t('portfolio.actions.code')}
+                                            </a>
+                                        )}
+                                        {project.videoLink && (
+                                            <button
+                                                type="button"
+                                                className="project-link project-link--video"
+                                                onClick={() => openVideo(project.videoLink, project.title)}
+                                            >
+                                                <FaPlay /> {t('portfolio.actions.videoPresentation')}
+                                            </button>
+                                        )}
+                                        {project.caseStudyLink && (
+                                            <a href={project.caseStudyLink} target="_blank" rel="noopener noreferrer" className="project-link subtle">
+                                                {t('portfolio.actions.case', { defaultValue: 'Case study' })}
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
-                            </article>
-                        ))
-                    )}
+                            </div>
+                        </article>
+                    ))}
                 </section>
             </div>
 

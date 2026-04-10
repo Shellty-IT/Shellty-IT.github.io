@@ -1,0 +1,169 @@
+.project-img-reveal {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.project-img-placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: rgba(10, 18, 28, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+    overflow: hidden;
+}
+
+.project-img-placeholder__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(12, 192, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(12, 192, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.project-img-placeholder__scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(12, 192, 255, 0.6),
+            rgba(12, 192, 255, 1),
+            rgba(12, 192, 255, 0.6),
+            transparent
+    );
+    box-shadow: 0 0 8px rgba(12, 192, 255, 0.8), 0 0 20px rgba(12, 192, 255, 0.4);
+    animation: scanDown 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    top: 0;
+}
+
+.project-img-placeholder__label {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: rgba(12, 192, 255, 0.5);
+    text-transform: uppercase;
+    animation: labelBlink 1.1s step-end infinite;
+}
+
+.project-img-glitch {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(
+            135deg,
+            rgba(12, 192, 255, 0.07),
+            rgba(0, 98, 176, 0.04)
+    );
+    will-change: opacity, clip-path;
+}
+
+.project-img-reveal .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    filter: blur(12px) grayscale(1) brightness(0.6);
+    transform: scale(1.04);
+    will-change: filter, transform, opacity;
+}
+
+[data-phase="loading"] .project-img-placeholder {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+[data-phase="loading"] .project-image {
+    opacity: 0;
+    filter: blur(12px) grayscale(1) brightness(0.6);
+    transform: scale(1.04);
+}
+
+[data-phase="decoding"] .project-img-placeholder {
+    opacity: 0;
+    pointer-events: none;
+}
+
+[data-phase="decoding"] .project-image {
+    opacity: 1;
+    filter: blur(4px) grayscale(0.6) brightness(0.85);
+    transform: scale(1.02);
+    transition:
+            opacity 0.15s ease,
+            filter 0.55s ease,
+            transform 0.55s ease;
+}
+
+[data-phase="decoding"] .project-img-glitch {
+    opacity: 1;
+    animation: glitchReveal 0.65s ease-out forwards;
+}
+
+[data-phase="done"] .project-img-placeholder {
+    opacity: 0;
+    pointer-events: none;
+}
+
+[data-phase="done"] .project-image {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+    transition:
+            filter 0.4s ease,
+            transform 0.4s ease;
+}
+
+[data-phase="done"] .project-img-glitch {
+    opacity: 0;
+}
+
+.project-card:hover .project-img-reveal[data-phase="done"] .project-image {
+    transform: scale(1.03);
+    opacity: 0.92;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-img-placeholder__scanline {
+        animation: none !important;
+    }
+
+    .project-img-placeholder__label {
+        animation: none !important;
+        opacity: 0.4;
+    }
+
+    .project-img-glitch {
+        display: none !important;
+    }
+
+    [data-phase="loading"] .project-image {
+        opacity: 0;
+        filter: none;
+        transform: none;
+    }
+
+    [data-phase="decoding"] .project-image,
+    [data-phase="done"] .project-image {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: opacity 0.2s ease !important;
+    }
+}

@@ -1,0 +1,185 @@
+.test-account {
+    margin: 0 0 18px;
+    padding: 16px;
+    border-radius: 12px;
+    background: linear-gradient(
+            135deg,
+            rgba(12, 192, 255, 0.04),
+            rgba(0, 98, 176, 0.04)
+    );
+    border: 1px solid rgba(12, 192, 255, 0.1);
+    border-left: 3px solid rgba(12, 192, 255, 0.3);
+    transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+}
+
+.test-account:hover {
+    background: linear-gradient(
+            135deg,
+            rgba(12, 192, 255, 0.07),
+            rgba(0, 98, 176, 0.06)
+    );
+    border-color: rgba(12, 192, 255, 0.2);
+    border-left-color: rgba(12, 192, 255, 0.55);
+    box-shadow: 0 4px 20px rgba(12, 192, 255, 0.06);
+}
+
+.test-account-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #0cc0ff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.test-account-icon {
+    font-size: 0.68rem;
+    opacity: 0.85;
+}
+
+.test-account-note {
+    margin: 6px 0 14px;
+    font-size: 0.8rem;
+    color: #64748b;
+    line-height: 1.45;
+}
+
+.test-account-credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.credential-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.credential-label-container {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 74px;
+}
+
+.credential-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.credential-value-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.credential-value {
+    flex: 1;
+    width: 100%;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 7px 44px 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    user-select: all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.credential-value:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.copy-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(12, 192, 255, 0.12);
+    border-color: rgba(12, 192, 255, 0.3);
+    color: #0cc0ff;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.copy-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.copy-btn.copied {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+@media (max-width: 480px) {
+    .credential-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .credential-label-container {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .test-account {
+        padding: 14px 12px;
+    }
+
+    .credential-row {
+        gap: 6px;
+    }
+
+    .credential-label {
+        min-width: 38px;
+        font-size: 0.72rem;
+    }
+
+    .credential-value {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+
+    .copy-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+}
