@@ -374,7 +374,7 @@ const Portfolio = () => {
         {
             id: "shelltyBlog",
             image: shelltyBlogThumbnail,
-            demoLink: 'https://shellty-blog.onrender.com',
+            demoLink: 'shellty-blog.up.railway.app',
             githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
             videoLink: 'https://vimeo.com/1175749805',
             title: t('portfolio.projects.shelltyBlog.title'),
