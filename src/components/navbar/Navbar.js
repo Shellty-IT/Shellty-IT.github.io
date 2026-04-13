@@ -11,8 +11,8 @@ import homeGlow from '../../assets/icons/home/home_glow.webp';
 import aboutIcon from '../../assets/icons/about/about.webp';
 import aboutGlow from '../../assets/icons/about/about_glow.webp';
 
-import experienceIcon from '../../assets/icons/experience/experience.webp';
-import experienceGlow from '../../assets/icons/experience/experience_glow.webp';
+import experienceIcon from '../../assets/icons/experience/test.png';
+import experienceGlow from '../../assets/icons/experience/test_glow.png';
 
 import skillsIcon from '../../assets/icons/skills/skills.webp';
 import skillsGlow from '../../assets/icons/skills/skills_glow.webp';
