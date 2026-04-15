@@ -189,7 +189,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(0, 4px);
+    transform: translate(-50%, -50%) translate(0, 6px);
 }
 
 .nav-icon-wrapper {
@@ -205,20 +205,16 @@
     transform: translate(-50%, -50%) translate(0, 7px) !important;
 }
 
-.nav-experience-icon {
-    transform: translate(-50%, -50%) translate(0, 6px) !important;
-}
-
-.nav-contact-icon {
-    transform: translate(-50%, -50%) translate(0, 6px) !important;
-    width: 48px !important;
-    height: 48px !important;
-}
-
-.nav-experience-icon {
-    transform: translate(-50%, -50%) translate(0, 6px) !important;
+.nav-about-icon {
     width: 42px !important;
     height: 42px !important;
+    transform: translate(-50%, -50%) translate(0, 4px) !important;
+}
+
+.nav-experience-icon {
+    transform: translate(-50%, -50%) translate(0, 7px) !important;
+    width: 36px !important;
+    height: 36px !important;
 }
 
 .main-nav li:hover .nav-glow-icon .glow-icon-base,

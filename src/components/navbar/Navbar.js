@@ -152,8 +152,8 @@ const Navbar = () => {
                                             src={item.icon}
                                             srcGlow={item.iconGlow}
                                             alt=""
-                                            size={item.to === '/contact' ? 46 : item.to === '/experience' ? 40 : 36}
-                                            className={`nav-glow-icon ${item.to === '/contact' ? 'nav-contact-icon' : item.to === '/experience' ? 'nav-experience-icon' : item.to === '/skills' ? 'nav-skills-icon' : ''}`}
+                                            size={item.to === '/contact' ? 46 : item.to === '/experience' ? 36 : item.to === '/about' ? 42 : 36}
+                                            className={`nav-glow-icon ${item.to === '/contact' ? 'nav-contact-icon' : item.to === '/experience' ? 'nav-experience-icon' : item.to === '/skills' ? 'nav-skills-icon' : item.to === '/about' ? 'nav-about-icon' : ''}`}
                                         />
                                     </div>
                                     <span>{t(item.labelKey)}</span>
