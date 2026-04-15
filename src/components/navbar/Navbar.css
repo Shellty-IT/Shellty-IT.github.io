@@ -201,6 +201,10 @@
     position: relative;
 }
 
+.nav-skills-icon {
+    transform: translate(-50%, -50%) translate(0, 7px) !important;
+}
+
 .nav-experience-icon {
     transform: translate(-50%, -50%) translate(0, 6px) !important;
 }
@@ -212,7 +216,7 @@
 }
 
 .nav-experience-icon {
-    transform: translate(-50%, -50%) translate(0, 4px) !important;
+    transform: translate(-50%, -50%) translate(0, 6px) !important;
     width: 42px !important;
     height: 42px !important;
 }

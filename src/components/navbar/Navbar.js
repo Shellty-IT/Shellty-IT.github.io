@@ -11,8 +11,8 @@ import homeGlow from '../../assets/icons/home/home_glow.webp';
 import aboutIcon from '../../assets/icons/about/about.webp';
 import aboutGlow from '../../assets/icons/about/about_glow.webp';
 
-import experienceIcon from '../../assets/icons/experience/test.webp';
-import experienceGlow from '../../assets/icons/experience/test_glow.webp';
+import experienceIcon from '../../assets/icons/experience/experience.webp';
+import experienceGlow from '../../assets/icons/experience/experience_glow.webp';
 
 import skillsIcon from '../../assets/icons/skills/skills.webp';
 import skillsGlow from '../../assets/icons/skills/skills_glow.webp';
@@ -153,7 +153,7 @@ const Navbar = () => {
                                             srcGlow={item.iconGlow}
                                             alt=""
                                             size={item.to === '/contact' ? 46 : item.to === '/experience' ? 40 : 36}
-                                            className={`nav-glow-icon ${item.to === '/contact' ? 'nav-contact-icon' : item.to === '/experience' ? 'nav-experience-icon' : ''}`}
+                                            className={`nav-glow-icon ${item.to === '/contact' ? 'nav-contact-icon' : item.to === '/experience' ? 'nav-experience-icon' : item.to === '/skills' ? 'nav-skills-icon' : ''}`}
                                         />
                                     </div>
                                     <span>{t(item.labelKey)}</span>
