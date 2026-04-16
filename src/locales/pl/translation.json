@@ -229,14 +229,26 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI – Inteligentny asystent sprzedaży",
-        "subtitle": "System CRM z asystentem AI do zarządzania sprzedażą",
-        "description": "Aplikacja webowa klasy CRM wspierana przez Google Gemini, która automatyzuje proces tworzenia ofert, umów oraz analizę potrzeb klienta. System posiada generator PDF z kalkulacją VAT, automatyczny follow-up oraz dashboard ze statystykami. Obecnie w fazie testów i optymalizacji.",
-        "highlightsTitle": "Wkrótce w SmartQuote AI:",
+        "title": "SmartQuote AI – Inteligentna Platforma Sprzedażowa",
+        "subtitle": "CRM z automatyzacją end-to-end: od analizy potrzeb AI po integrację z KSeF.",
+        "description": "SmartQuote AI wykorzystuje model Google Gemini 2.5 Flash do optymalizacji procesów handlowych, eliminując manualną pracę przy tworzeniu dokumentacji i komunikacji z klientem.",
+        "highlightsTitle": "Kluczowe funkcjonalności:",
         "highlights": [
-          "Integracja z KSeF Master: automatyczne wystawianie faktur po akceptacji oferty."
+          "AI-Driven Sales: Asystent Gemini analizujący potrzeby klienta, generujący wnioski (Feedback Loop) oraz wspierający wariantowanie ofert.",
+          "Dynamiczne Ofertowanie: System szablonów pozycji (Offer Templates) umożliwiający błyskawiczne tworzenie interaktywnych ofert i umów online.",
+          "Cyfrowe Kontrakty: Bezpośrednia obsługa podpisu z automatycznym generatorem PDF (pełny branding, polskie znaki).",
+          "Ekosystem Finansowy: Integracja z KSeF Master (fakturowanie), wbudowany Email Composer oraz inteligentny system follow-upów."
         ],
-        "tech": ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Google Gemini AI", "Tailwind CSS", "REST API", "RWD"]
+        "tech": [
+          "Next.js 15",
+          "Node.js",
+          "TypeScript",
+          "Prisma ORM",
+          "PostgreSQL",
+          "GitHub Actions",
+          "Playwright E2E"
+        ],
+        "role": "Developer"
       },
       "ksefMaster": {
         "title": "KSeF Master: Inteligentna ewolucja e-fakturowania",

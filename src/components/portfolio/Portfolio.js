@@ -303,7 +303,7 @@ const Portfolio = () => {
             highlightsTitle: t('portfolio.projects.smartQuoteAI.highlightsTitle', { defaultValue: '' }),
             highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
-            role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'WIP' }),
+            role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'Developer' }),
             year: '2026',
             caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
             testAccount: {

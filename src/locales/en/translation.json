@@ -332,14 +332,26 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI – Intelligent Sales Assistant",
-        "subtitle": "CRM system with an AI assistant for sales management",
-        "description": "A CRM web application supported by Google Gemini, which automates the creation of offers, contracts, and customer analysis. The system features a PDF generator with VAT calculation, automatic follow-ups, and a statistics dashboard. Currently in the testing and optimization phase.",
-        "highlightsTitle": "Coming soon to SmartQuote AI:",
+        "title": "SmartQuote AI – Intelligent Sales Platform",
+        "subtitle": "CRM with end-to-end automation: from AI needs analysis to KSeF integration.",
+        "description": "SmartQuote AI uses the Google Gemini 2.5 Flash model to optimize sales processes, eliminating manual work in creating documentation and communicating with customers.",
+        "highlightsTitle": "Key functionalities:",
         "highlights": [
-          "Integration with KSeF Master: automatic invoicing after offer acceptance."
+          "AI-Driven Sales: Gemini assistant analyzing customer needs, generating conclusions (Feedback Loop), and supporting offer varianting.",
+          "Dynamic Quoting: Offer Templates system enabling lightning-fast creation of interactive online offers and contracts.",
+          "Digital Contracts: Direct support for signature with an automatic PDF generator (full branding, Polish characters).",
+          "Financial Ecosystem: Integration with KSeF Master (invoicing), built-in Email Composer, and an intelligent follow-up system."
         ],
-        "tech": ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Google Gemini AI", "Tailwind CSS", "REST API", "RWD"]
+        "tech": [
+          "Next.js 15",
+          "Node.js",
+          "TypeScript",
+          "Prisma ORM",
+          "PostgreSQL",
+          "GitHub Actions",
+          "Playwright E2E"
+        ],
+        "role": "Developer"
       },
       "ksefMaster": {
         "title": "KSeF Master: Intelligent E-invoicing Evolution",
