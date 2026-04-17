@@ -27,28 +27,28 @@ html.has-custom-cursor * {
     background: #00E5FF;
     opacity: 0;
     box-shadow:
-            0 0 8px 3px rgba(0, 229, 255, 0.45),
-            0 0 22px 6px rgba(0, 229, 255, 0.18);
+            0 0 6px 2px rgba(0, 229, 255, 0.4),
+            0 0 18px 4px rgba(0, 229, 255, 0.15);
     will-change: transform;
     transition:
-            opacity 0.3s ease,
-            width 0.3s ease,
-            height 0.3s ease,
-            margin 0.3s ease,
-            background 0.3s ease,
-            box-shadow 0.3s ease;
+            opacity 0.25s ease,
+            width 0.25s ease,
+            height 0.25s ease,
+            margin 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
     contain: layout style;
 }
 
 .cursor-dot.hovering {
-    width: 14px;
-    height: 14px;
-    margin-left: -7px;
-    margin-top: -7px;
+    width: 13px;
+    height: 13px;
+    margin-left: -6.5px;
+    margin-top: -6.5px;
     background: #ffffff;
     box-shadow:
-            0 0 10px 4px rgba(0, 229, 255, 0.55),
-            0 0 30px 8px rgba(0, 229, 255, 0.25);
+            0 0 8px 3px rgba(0, 229, 255, 0.5),
+            0 0 24px 6px rgba(0, 229, 255, 0.2);
 }
 
 /* ── RING ── */
@@ -56,31 +56,27 @@ html.has-custom-cursor * {
     position: absolute;
     top: 0;
     left: 0;
-    width: 32px;
-    height: 32px;
-    margin-left: -16px;
-    margin-top: -16px;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
     border-radius: 50%;
-    border: 1.5px solid rgba(0, 229, 255, 0.55);
+    border: 1.5px solid rgba(0, 229, 255, 0.5);
     opacity: 0;
-    box-shadow:
-            0 0 6px rgba(0, 229, 255, 0.2),
-            inset 0 0 6px rgba(0, 229, 255, 0.04);
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.15);
     will-change: transform;
     transition:
-            opacity 0.3s ease,
-            border-color 0.3s ease,
-            box-shadow 0.3s ease;
+            opacity 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
     contain: layout style;
 }
 
 .cursor-ring.hovering {
-    border-width: 2.5px;
-    border-color: rgba(0, 229, 255, 0.95);
-    box-shadow:
-            0 0 12px rgba(0, 229, 255, 0.5),
-            inset 0 0 10px rgba(0, 229, 255, 0.08);
-    animation: ring-pulse 2s ease-in-out infinite;
+    border-width: 2px;
+    border-color: rgba(0, 229, 255, 0.9);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+    animation: ring-pulse 2.2s ease-in-out infinite;
 }
 
 /* ── TRAIL ── */
@@ -96,20 +92,20 @@ html.has-custom-cursor * {
 
 @keyframes ring-pulse {
     0%, 100% {
-        border-color: rgba(0, 229, 255, 0.8);
-        box-shadow:
-                0 0 10px rgba(0, 229, 255, 0.4),
-                inset 0 0 8px rgba(0, 229, 255, 0.06);
+        border-color: rgba(0, 229, 255, 0.75);
+        box-shadow: 0 0 8px rgba(0, 229, 255, 0.35);
     }
     50% {
-        border-color: rgba(0, 229, 255, 1);
-        box-shadow:
-                0 0 16px rgba(0, 229, 255, 0.6),
-                inset 0 0 14px rgba(0, 229, 255, 0.1);
+        border-color: rgba(0, 229, 255, 0.95);
+        box-shadow: 0 0 14px rgba(0, 229, 255, 0.5);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cursor-trail-dot { display: none; }
-    .cursor-ring { animation: none !important; }
+    .cursor-trail-dot {
+        display: none;
+    }
+    .cursor-ring {
+        animation: none !important;
+    }
 }

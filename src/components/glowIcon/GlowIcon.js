@@ -31,9 +31,22 @@ const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = 
             className={`glow-icon${floating ? ' glow-icon-float' : ''}${className ? ` ${className}` : ''}`}
             style={style}
         >
-            <img src={src} alt={alt} className="glow-icon-base" draggable="false" loading="lazy" decoding="async" />
+            <img
+                src={src}
+                alt={alt}
+                className="glow-icon-base"
+                draggable="false"
+                loading="lazy"
+                decoding="async"
+            />
             {glowReady && (
-                <img src={srcGlow} alt="" className="glow-icon-lit" draggable="false" aria-hidden="true" />
+                <img
+                    src={srcGlow}
+                    alt=""
+                    className="glow-icon-lit"
+                    draggable="false"
+                    aria-hidden="true"
+                />
             )}
         </div>
     );

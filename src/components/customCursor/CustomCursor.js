@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import './CustomCursor.css';
 
-const TRAIL_COUNT = 8;
+const TRAIL_COUNT = 5;
 const INTERACTIVE = 'a, button, input, textarea, select, [role="button"], label, [data-cursor]';
 const POINTER_QUERY = '(hover: hover) and (pointer: fine)';
 
 const getTrailStyle = (i) => {
     const progress = i / (TRAIL_COUNT - 1);
-    const size = 7.5 - progress * 5.5;
-    const alpha = 0.55 - progress * 0.5;
+    const size = 7 - progress * 5;
+    const alpha = 0.5 - progress * 0.45;
 
     const style = {
         width: size,
@@ -18,12 +18,9 @@ const getTrailStyle = (i) => {
         background: `rgba(0, 229, 255, ${alpha})`,
     };
 
-    /* glow tylko na pierwszych 3 – reszta czyste kółka */
-    if (i < 3) {
-        const glowAlpha = alpha * 0.4;
-        const glowSize = 5 - i * 1.5;
-        style.boxShadow =
-            `0 0 ${glowSize}px ${Math.max(1, glowSize * 0.5)}px rgba(0,229,255,${glowAlpha})`;
+    // Tylko pierwszy trail ma glow
+    if (i === 0) {
+        style.boxShadow = `0 0 4px 2px rgba(0,229,255,${alpha * 0.35})`;
     }
 
     return style;
@@ -79,21 +76,21 @@ const CustomCursor = () => {
     const tick = useCallback(() => {
         const mx = mouse.current.x, my = mouse.current.y;
 
-        dotPos.current.x += (mx - dotPos.current.x) * 0.75;
-        dotPos.current.y += (my - dotPos.current.y) * 0.75;
+        dotPos.current.x += (mx - dotPos.current.x) * 0.7;
+        dotPos.current.y += (my - dotPos.current.y) * 0.7;
         if (dotRef.current)
             dotRef.current.style.transform = `translate3d(${dotPos.current.x}px,${dotPos.current.y}px,0)`;
 
-        ringPos.current.x += (mx - ringPos.current.x) * 0.18;
-        ringPos.current.y += (my - ringPos.current.y) * 0.18;
-        ringScale.current.current += (ringScale.current.target - ringScale.current.current) * 0.12;
+        ringPos.current.x += (mx - ringPos.current.x) * 0.16;
+        ringPos.current.y += (my - ringPos.current.y) * 0.16;
+        ringScale.current.current += (ringScale.current.target - ringScale.current.current) * 0.1;
         if (ringRef.current)
             ringRef.current.style.transform = `translate3d(${ringPos.current.x}px,${ringPos.current.y}px,0) scale(${ringScale.current.current})`;
 
         for (let i = 0; i < TRAIL_COUNT; i++) {
             const prev = i === 0 ? ringPos.current : trails.current[i - 1];
             const trail = trails.current[i];
-            const speed = 0.42 - (i / (TRAIL_COUNT - 1)) * 0.32;
+            const speed = 0.4 - (i / (TRAIL_COUNT - 1)) * 0.28;
             trail.x += (prev.x - trail.x) * speed;
             trail.y += (prev.y - trail.y) * speed;
             if (trailRefs.current[i])
@@ -102,7 +99,7 @@ const CustomCursor = () => {
 
         if (!isMoving.current) {
             const last = trails.current[TRAIL_COUNT - 1];
-            if (Math.abs(last.x - mx) < 0.5 && Math.abs(last.y - my) < 0.5) {
+            if (Math.abs(last.x - mx) < 0.8 && Math.abs(last.y - my) < 0.8) {
                 animating.current = false;
                 return;
             }
@@ -146,7 +143,7 @@ const CustomCursor = () => {
             const hovering = !!safeClosest(e.target, INTERACTIVE);
             if (hovering !== isHovering.current) {
                 isHovering.current = hovering;
-                ringScale.current.target = hovering ? 1.15 : 1;
+                ringScale.current.target = hovering ? 1.12 : 1;
                 const method = hovering ? 'add' : 'remove';
                 ringRef.current?.classList[method]('hovering');
                 dotRef.current?.classList[method]('hovering');
@@ -154,7 +151,7 @@ const CustomCursor = () => {
 
             isMoving.current = true;
             clearTimeout(moveTimer.current);
-            moveTimer.current = setTimeout(() => { isMoving.current = false; }, 150);
+            moveTimer.current = setTimeout(() => { isMoving.current = false; }, 200);
             startLoop();
         };
 
