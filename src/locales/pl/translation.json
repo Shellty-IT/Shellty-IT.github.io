@@ -256,7 +256,7 @@
         "description": "KSeF Master to profesjonalna platforma oparta na architekturze .NET 8 i PostgreSQL, zapewniająca dwuwarstwową autoryzację oraz pełną komunikację z systemem rządowym. System oferuje płynne przełączanie między środowiskiem testowym a produkcyjnym oraz zaawansowaną obsługę certyfikatów.",
         "highlightsTitle": "Kluczowe zalety:",
         "highlights": [
-          "Bezpieczeństwo: Hybrydowe logowanie (Token/Certyfikat), podpisy XAdES-BES oraz szyfrowanie danych AES-256.",
+          "Bezpieczeństwo: Hybrydowe logowanie (token/certyfikat), podpisy XAdES-BES oraz szyfrowanie danych AES-256.",
           "Zgodność: Generowanie PDF z kodami QR, walidacja schematów XML oraz obsługa sesji online/offline.",
           "Automatyzacja: Inteligentna poczekalnia SmartQuote, wykrywanie fraudów oraz moduł statystyk finansowych."
         ],
