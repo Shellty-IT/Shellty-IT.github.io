@@ -251,16 +251,16 @@
         "role": "Developer"
       },
       "ksefMaster": {
-        "title": "KSeF Master: Inteligentna ewolucja e-fakturowania",
-        "subtitle": "Integracja z KSeF: pobieranie i wystawianie faktur",
-        "description": "KSeF Master to stabilna platforma zapewniająca niezawodną komunikację z API KSeF. Obecnie dostępna w przeglądarce, wkrótce zyska wersję Windows z trybem offline-first.",
+        "title": "KSeF Master: Zaawansowany ekosystem e-fakturowania",
+        "subtitle": "Integracja z API KSeF v2: pełna obsługa dokumentów skarbowych",
+        "description": "KSeF Master to profesjonalna platforma oparta na architekturze .NET 8 i PostgreSQL, zapewniająca dwuwarstwową autoryzację oraz pełną komunikację z systemem rządowym. System oferuje płynne przełączanie między środowiskiem testowym a produkcyjnym oraz zaawansowaną obsługę certyfikatów.",
         "highlightsTitle": "Kluczowe zalety:",
         "highlights": [
-          "Bezpieczeństwo: Automatyczne wykrywanie podejrzanych faktur.",
-          "Zgodność: Szybkie generowanie PDF i obsługa bazy klientów wg standardów.",
-          "W planach: Logowanie certyfikatem kwalifikowanym oraz dedykowana aplikacja desktopowa."
+          "Bezpieczeństwo: Hybrydowe logowanie (Token/Certyfikat), podpisy XAdES-BES oraz szyfrowanie danych AES-256.",
+          "Zgodność: Generowanie PDF z kodami QR, walidacja schematów XML oraz obsługa sesji online/offline.",
+          "Automatyzacja: Inteligentna poczekalnia SmartQuote, wykrywanie fraudów oraz moduł statystyk finansowych."
         ],
-        "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
+        "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban",

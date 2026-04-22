@@ -354,16 +354,16 @@
         "role": "Developer"
       },
       "ksefMaster": {
-        "title": "KSeF Master: Intelligent E-invoicing Evolution",
-        "subtitle": "Integration with KSeF: downloading and issuing invoices",
-        "description": "KSeF Master is a stable platform providing reliable communication with the KSeF API. Currently browser-based, it will soon feature a Windows version with an offline-first mode.",
+        "title": "KSeF Master: Advanced E-invoicing Ecosystem",
+        "subtitle": "KSeF API v2 Integration: Full support for tax documents",
+        "description": "KSeF Master is a professional platform based on .NET 8 architecture and PostgreSQL, providing two-layer authorization and full communication with the government system. The system offers seamless switching between test and production environments and advanced certificate handling.",
         "highlightsTitle": "Key Advantages:",
         "highlights": [
-          "Security: Automatic detection of suspicious invoices.",
-          "Compliance: Fast PDF generation and standard-compliant customer database management.",
-          "Planned: Qualified certificate login and a dedicated desktop application."
+          "Security: Hybrid login (Token/Certificate), XAdES-BES signatures, and AES-256 data encryption.",
+          "Compliance: PDF generation with QR codes, XML schema validation, and online/offline session support.",
+          "Automation: SmartQuote intelligent waiting room, fraud detection, and financial statistics module."
         ],
-        "tech": ["React", "JavaScript", "REST API", "KSeF", "Netlify", "C# .NET", "Render", "Vite"]
+        "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban",
