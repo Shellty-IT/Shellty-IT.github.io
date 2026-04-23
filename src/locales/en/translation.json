@@ -315,7 +315,7 @@
     },
     "projects": {
       "shelltyPulse": {
-        "title": "Shellty Pulse — Service Health Monitor & Keep-Alive",
+        "title": "Shellty Pulse - Service Health Monitor & Keep-Alive",
         "subtitle": "Service Health Monitor & Keep-Alive",
         "description": "A professional-grade Service Health Monitor designed for real-time tracking of web service availability. It acts as an intelligent \"keep-alive\" mechanism for applications on free-tier platforms (e.g., Render), preventing idle sleep through automated, configurable pings.",
         "highlightsTitle": "Key Highlights:",
@@ -326,13 +326,13 @@
         "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Azure"]
       },
       "postlio": {
-        "title": "Smart Social Media Assistant",
+        "title": "Postlio - Smart Social Media Assistant",
         "subtitle": "Create, schedule, and publish posts on FB, IG, and LinkedIn with AI",
         "description": "Postlio is a modern PWA application supporting social media management. It allows for creating and scheduling posts and graphics with the support of various types of AI Agents. The system enables full automation of publication according to a schedule for business accounts (Facebook Pages, Instagram Business, and LinkedIn). For personal profiles, due to platform regulations, the application is used for professional content preparation for manual sharing.\n\nThe project is currently deployed for testing purposes. I am focused on improving UX and finalizing the application approval process by Meta. After obtaining full API access, users will be able to share their materials directly from the application.",
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI – Intelligent Sales Platform",
+        "title": "SmartQuote AI - Intelligent Sales Platform",
         "subtitle": "CRM with end-to-end automation: from AI needs analysis to KSeF integration.",
         "description": "SmartQuote AI uses the Google Gemini 2.5 Flash model to optimize sales processes, eliminating manual work in creating documentation and communicating with customers.",
         "highlightsTitle": "Key functionalities:",
@@ -366,7 +366,7 @@
         "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
       },
       "shelltyKanban": {
-        "title": "Shellty.Kanban",
+        "title": "Shellty.Kanban - Project Manager",
         "subtitle": "Project Management Application",
         "description": "A comprehensive Kanban application for task management and team collaboration. A system built from the ground up that allows for simple and clear workflow control in any team.",
         "highlightsTitle": "Key achievements:",
@@ -378,8 +378,8 @@
         "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
-        "title": "Shellty Blog",
-        "subtitle": "Engineering Academy Project • .NET 8",
+        "title": "Shellty Blog - System CMS ",
+        "subtitle": "A lightweight, scalable blog system designed with clean engineering principles",
         "description": "A project developed as part of Nerds Family Engineering Academy, emphasizing software engineering, design patterns, and Clean Code principles. It is a modern CMS system based on MVC architecture, fully containerized (Docker) and integrated with a cloud PostgreSQL database (Neon).",
         "highlightsTitle": "Key features:",
         "highlights": [

@@ -212,7 +212,7 @@
     },
     "projects": {
       "shelltyPulse": {
-        "title": "Shellty Pulse",
+        "title": "Shellty Pulse - Monitor Usługi",
         "subtitle": "Monitor stanu usługi i funkcja podtrzymywania aktywności",
         "description": "Narzędzie klasy Service Health Monitor służące do monitorowania dostępności usług webowych w czasie rzeczywistym. Pełni funkcję inteligentnego mechanizmu \"keep-alive\" dla aplikacji na darmowych instancjach (np. Render), zapobiegając ich usypianiu poprzez cykliczne, konfigurowalne zapytania.",
         "highlightsTitle": "Kluczowe osiągnięcia:",
@@ -223,13 +223,13 @@
         "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Azure"]
       },
       "postlio": {
-        "title": "Inteligentny Asystent Social Media",
+        "title": "Postlio - Inteligentny Asystent Social Media",
         "subtitle": "Twórz, planuj i publikuj posty na FB, IG i LinkedIn z pomocą AI",
         "description": "Postlio to nowoczesna aplikacja PWA wspomagająca zarządzanie mediami społecznościowymi. Pozwala na tworzenie i planowanie postów oraz grafik przy wsparciu różnego rodzaju Agentów AI. System umożliwia pełną automatyzację publikacji według harmonogramu dla kont firmowych (Facebook Pages, Instagram Business oraz LinkedIn). Dla profili osobistych, ze względu na regulacje platform, aplikacja służy do profesjonalnego przygotowania treści do udostępnienia ręcznego.\n\nProjekt jest obecnie wdrożony w celach testowych. Koncentruję się na dopracowaniu UX oraz finalizacji procesu zatwierdzania aplikacji przez Meta. Po uzyskaniu pełnego dostępu do API, użytkownicy będą mogli udostępniać swoje materiały bezpośrednio z poziomu aplikacji.",
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI – Inteligentna Platforma Sprzedażowa",
+        "title": "SmartQuote AI - Inteligentna Platforma Sprzedażowa",
         "subtitle": "CRM z automatyzacją end-to-end: od analizy potrzeb AI po integrację z KSeF.",
         "description": "SmartQuote AI wykorzystuje model Google Gemini 2.5 Flash do optymalizacji procesów handlowych, eliminując manualną pracę przy tworzeniu dokumentacji i komunikacji z klientem.",
         "highlightsTitle": "Kluczowe funkcjonalności:",
@@ -251,7 +251,7 @@
         "role": "Developer"
       },
       "ksefMaster": {
-        "title": "KSeF Master: Zaawansowany ekosystem e-fakturowania",
+        "title": "KSeF Master: Ekosystem e-fakturowania",
         "subtitle": "Integracja z API KSeF v2: pełna obsługa dokumentów skarbowych",
         "description": "KSeF Master to profesjonalna platforma oparta na architekturze .NET 8 i PostgreSQL, zapewniająca dwuwarstwową autoryzację oraz pełną komunikację z systemem rządowym. System oferuje płynne przełączanie między środowiskiem testowym a produkcyjnym oraz zaawansowaną obsługę certyfikatów.",
         "highlightsTitle": "Kluczowe zalety:",
@@ -263,7 +263,7 @@
         "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
       },
       "shelltyKanban": {
-        "title": "Shellty.Kanban",
+        "title": "Shellty.Kanban - Menadżer Projektów",
         "subtitle": "Aplikacja do zarządzania projektami",
         "description": "Kompleksowa aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej. System zbudowany od podstaw, który pozwala w prosty i czytelny sposób kontrolować przepływ pracy w każdym zespole.",
         "highlightsTitle": "Kluczowe osiągnięcia:",
@@ -275,8 +275,8 @@
         "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
-        "title": "Shellty Blog",
-        "subtitle": "Engineering Academy Project • .NET 8",
+        "title": "Shellty Blog - System CMS",
+        "subtitle": "Lekki i skalowalny CMS blogowy zbudowany w oparciu o MVC",
         "description": "Projekt zrealizowany w ramach Nerds Family Engineering Academy, kładący nacisk na inżynierię oprogramowania, wzorce projektowe i zasady Clean Code. Jest to nowoczesny system CMS oparty o architekturę MVC, w pełni skonteneryzowany (Docker) i zintegrowany z chmurową bazą PostgreSQL (Neon).",
         "highlightsTitle": "Kluczowe funkcjonalności:",
         "highlights": [
