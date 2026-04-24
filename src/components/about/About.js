@@ -397,6 +397,7 @@ const About = () => {
                                     <li><a href={t("about.facts.cert4Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert4Name")}</a></li>
                                     <li><a href={t("about.facts.cert5Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert5Name")}</a></li>
                                     <li><a href={t("about.facts.cert6Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert6Name")}</a></li>
+                                    <li><a href={t("about.facts.cert7Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert7Name")}</a></li>
                                 </ul>
                             </div>
 

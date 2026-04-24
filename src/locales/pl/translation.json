@@ -85,7 +85,9 @@
       "cert5Name": "Python - Programming (Navoica, 2026)",
       "cert5Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert7.pdf",
       "cert6Name": "Nauka konfiguracji sprzętu i zarządzania sieciami komputerowymi (Navoica, 2026)",
-      "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert9.pdf"
+      "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert9.pdf",
+      "cert7Name": "DWthon | Software 3.0 (RAG) - (Data Workshop, 2026)",
+      "cert7Url": ""
     },
     "softSkillsTitle": "Cechy",
     "traits": {
