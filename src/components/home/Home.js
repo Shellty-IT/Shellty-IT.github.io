@@ -15,6 +15,10 @@ const ROLES_PL = [
     "Specjalista IT",
     "SysAdmin",
     "Software Developer",
+    "Software Engineer",
+    "DevOps Engineer",
+    "Freelancer",
+    "Programista",
     "Administrator Baz Danych",
 ];
 
@@ -22,6 +26,10 @@ const ROLES_EN = [
     "IT Specialist",
     "SysAdmin",
     "Software Developer",
+    "Software Engineer",
+    "DevOps Engineer",
+    "Freelancer",
+    "Programmer",
     "Database Administrator",
 ];
 

@@ -87,7 +87,7 @@
       "cert6Name": "Nauka konfiguracji sprzętu i zarządzania sieciami komputerowymi (Navoica, 2026)",
       "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert9.pdf",
       "cert7Name": "DWthon | Software 3.0 (RAG) - (Data Workshop, 2026)",
-      "cert7Url": ""
+      "cert7Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert11.pdf"
     },
     "softSkillsTitle": "Cechy",
     "traits": {
@@ -231,24 +231,22 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI - Inteligentna Platforma Sprzedażowa",
-        "subtitle": "CRM z automatyzacją end-to-end: od analizy potrzeb AI po integrację z KSeF.",
-        "description": "SmartQuote AI wykorzystuje model Google Gemini 2.5 Flash do optymalizacji procesów handlowych, eliminując manualną pracę przy tworzeniu dokumentacji i komunikacji z klientem.",
-        "highlightsTitle": "Kluczowe funkcjonalności:",
+        "title": "SmartQuote AI – System CRM i Automatyzacji Sprzedaży",
+        "subtitle": "Narzędzie CRM automatyzujące proces od przygotowania oferty z AI i negocjacji online, po e-podpisanie umowy i generowanie szkiców faktur.",
+        "description": "",
+        "highlightsTitle": "Kluczowe rozwiązania:",
         "highlights": [
-          "AI-Driven Sales: Asystent Gemini analizujący potrzeby klienta, generujący wnioski (Feedback Loop) oraz wspierający wariantowanie ofert.",
-          "Dynamiczne Ofertowanie: System szablonów pozycji (Offer Templates) umożliwiający błyskawiczne tworzenie interaktywnych ofert i umów online.",
-          "Cyfrowe Kontrakty: Bezpośrednia obsługa podpisu z automatycznym generatorem PDF (pełny branding, polskie znaki).",
-          "Ekosystem Finansowy: Integracja z KSeF Master (fakturowanie), wbudowany Email Composer oraz inteligentny system follow-upów."
+          "Asystent AI i Analiza: Wykorzystanie modelu Gemini do automatycznej oceny rentowności ofert oraz wyciągania wniosków z zakończonych procesów sprzedaży w celu optymalizacji przyszłych działań.",
+          "Interaktywne Oferty i E-podpis: System ofert webowych z wyborem wariantów oraz autorski moduł podpisu umów w przeglądarce, generujący bezpieczne pliki PDF z cyfrowym śladem rewizyjnym.",
+          "Architektura i Integracje: System oparty na Czystej Architekturze z integracją KSeF (wersja testowa). Optymalizacja bazy danych (80% mniej zapytań) oraz pełna kontrola jakości dzięki 22 testom automatycznym Playwright."
         ],
         "tech": [
           "Next.js 15",
           "Node.js",
           "TypeScript",
-          "Prisma ORM",
           "PostgreSQL",
-          "GitHub Actions",
-          "Playwright E2E"
+          "Google Gemini AI",
+          "Playwright"
         ],
         "role": "Developer"
       },
@@ -293,7 +291,7 @@
         "title": "Wizytówka groomerska z CMS",
         "subtitle": "Witryna dla salonu groomerskiego",
         "description": "To lekka i przejrzysta witryna typu one-page zaprojektowana w Next.js/React. Projekt łączy w sobie estetyczną prezentację salonu groomerskiego z funkcjonalnością ułatwiającą codzienną komunikację z klientami. Strona jest w pełni responsywna, co gwarantuje jej nienaganne działanie i czytelność na smartfonach oraz tabletach.",
-        "highlightsTitle": "Sercem zarządzania stroną jest sekcja Aktualności, nad którą właściciel ma pełną kontrolę z poziomu panelu CMS (Decap CMS). Może on tam błyskawicznie publikować:",
+        "highlightsTitle": "Sercem zarządzania stroną jest sekcja Aktualności, nad którą właściciel ma pełną kontrolę z poziomu panelu CMS (Decap CMS). Może tam błyskawicznie publikować:",
         "highlights": [
           "Bieżące komunikaty: ważne informacje o promocjach, zmianach w ofercie czy ogłoszenia dla klientów.",
           "Kalendarz dostępności: interaktywne zestawienie, w którym administrator zaznacza dni pracy i wolne terminy, informując klientów o aktualnym grafiku salonu w czasie rzeczywistym."

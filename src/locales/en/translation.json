@@ -87,7 +87,7 @@
       "cert6Name": "Hardware Configuration and Computer Network Administration (Navoica, 2026)",
       "cert6Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert10.pdf",
       "cert7Name": "DWthon | Software 3.0 (RAG) - (Data Workshop, 2026)",
-      "cert7Url": ""
+      "cert7Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert11.pdf"
     },
     "softSkillsTitle": "Traits",
     "traits": {
@@ -335,24 +335,22 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI - Intelligent Sales Platform",
-        "subtitle": "CRM with end-to-end automation: from AI needs analysis to KSeF integration.",
-        "description": "SmartQuote AI uses the Google Gemini 2.5 Flash model to optimize sales processes, eliminating manual work in creating documentation and communicating with customers.",
-        "highlightsTitle": "Key functionalities:",
+        "title": "SmartQuote AI – CRM & Sales Automation",
+        "subtitle": "CRM tool automating the process from AI-driven quoting and online negotiations to e-signing contracts and generating invoice drafts.",
+        "description": "",
+        "highlightsTitle": "Key solutions:",
         "highlights": [
-          "AI-Driven Sales: Gemini assistant analyzing customer needs, generating conclusions (Feedback Loop), and supporting offer varianting.",
-          "Dynamic Quoting: Offer Templates system enabling lightning-fast creation of interactive online offers and contracts.",
-          "Digital Contracts: Direct support for signature with an automatic PDF generator (full branding, Polish characters).",
-          "Financial Ecosystem: Integration with KSeF Master (invoicing), built-in Email Composer, and an intelligent follow-up system."
+          "AI Assistant & Analytics: Leveraging the Gemini model for automated quote profitability assessment and post-sales insights to optimize future performance.",
+          "Interactive Web Quotes & E-signatures: Web-based offer system with variant selection and a custom in-browser signing module, generating secure PDFs with digital audit trails.",
+          "Architecture & Integrations: System based on Clean Architecture with KSeF integration (beta). Database optimization (80% fewer queries) and 22 automated Playwright tests for full quality control."
         ],
         "tech": [
           "Next.js 15",
           "Node.js",
           "TypeScript",
-          "Prisma ORM",
           "PostgreSQL",
-          "GitHub Actions",
-          "Playwright E2E"
+          "Google Gemini AI",
+          "Playwright"
         ],
         "role": "Developer"
       },
