@@ -349,8 +349,11 @@
           "Node.js",
           "TypeScript",
           "PostgreSQL",
+          "Prisma",
+          "Tailwind CSS",
           "Google Gemini AI",
-          "Playwright"
+          "Playwright",
+          "GitHub Actions"
         ],
         "role": "Developer"
       },
