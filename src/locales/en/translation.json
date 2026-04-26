@@ -335,7 +335,7 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "SmartQuote AI – CRM & Sales Automation",
+        "title": "SmartQuote AI - CRM & Sales Automation",
         "subtitle": "CRM tool automating the process from AI-driven quoting and online negotiations to e-signing contracts and generating invoice drafts.",
         "description": "",
         "highlightsTitle": "Key solutions:",
