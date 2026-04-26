@@ -238,7 +238,7 @@
         "highlights": [
           "Asystent AI i Analiza: Wykorzystanie modelu Gemini do automatycznej oceny rentowności ofert oraz wyciągania wniosków z zakończonych procesów sprzedaży w celu optymalizacji przyszłych działań.",
           "Interaktywne Oferty i E-podpis: System ofert webowych z wyborem wariantów oraz autorski moduł podpisu umów w przeglądarce, generujący bezpieczne pliki PDF z cyfrowym śladem rewizyjnym.",
-          "Architektura i Integracje: System oparty na Czystej Architekturze z integracją KSeF (wersja testowa). Optymalizacja bazy danych (80% mniej zapytań) oraz pełna kontrola jakości dzięki 22 testom automatycznym Playwright."
+          "Architektura i Integracje: System oparty na czystej architekturze z integracją KSeF (wersja testowa). Optymalizacja bazy danych (80% mniej zapytań) oraz pełna kontrola jakości dzięki 22 testom automatycznym Playwright."
         ],
         "tech": [
           "Next.js 15",
