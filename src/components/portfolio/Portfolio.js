@@ -296,7 +296,7 @@ const Portfolio = () => {
             id: "smartQuoteAI",
             image: currentLanguage === 'en' ? smartquoteThumbnailAng : smartquoteThumbnail,
             demoLink: 'https://smartquote-ai.netlify.app',
-            githubLink: null,
+            githubLink: 'https://github.com/Shellty-IT/SmartQuote_backend',
             title: t('portfolio.projects.smartQuoteAI.title'),
             subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
             description: t('portfolio.projects.smartQuoteAI.description'),
