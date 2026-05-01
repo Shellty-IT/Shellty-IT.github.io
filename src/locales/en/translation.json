@@ -377,9 +377,9 @@
         "highlights": [
           "Efficient Management System: A modern Kanban board built with .NET 10 and React 18.",
           "Session Security: Advanced JWT authentication with token rotation.",
-          "Automation and Quality: Full CI/CD on Azure and high stability confirmed by 60+ tests with over 95% code coverage."
+          "Automation and Quality: Full CI/CD and high stability confirmed by 60+ tests with over 95% code coverage."
         ],
-        "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
+        "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog - System CMS ",

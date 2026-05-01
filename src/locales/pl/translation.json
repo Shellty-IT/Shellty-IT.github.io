@@ -273,9 +273,9 @@
         "highlights": [
           "Wydajny system zarządzania: Nowoczesna tablica Kanban zbudowana w .NET 10 i React 18.",
           "Bezpieczeństwo sesji: Zaawansowane uwierzytelnianie JWT z rotacją tokenów.",
-          "Automatyzacja i jakość: Pełne CI/CD na Azure oraz wysoka stabilność potwierdzona przez 60+ testów z pokryciem kodu powyżej 95%."
+          "Automatyzacja i jakość: Pełne CI/CD oraz wysoka stabilność potwierdzona przez 60+ testów z pokryciem kodu powyżej 95%."
         ],
-        "tech": [".NET Core", "React", "Azure", "Azure SQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
+        "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog - System CMS",

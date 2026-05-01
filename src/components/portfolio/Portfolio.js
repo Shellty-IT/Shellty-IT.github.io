@@ -338,7 +338,7 @@ const Portfolio = () => {
         {
             id: "shelltyKanban",
             image: currentLanguage === 'en' ? kanbanThumbnailAng : kanbanThumbnail,
-            demoLink: 'https://shellty-kanban.azurewebsites.net',
+            demoLink: 'https://shellty-kanban.netlify.app/',
             githubLink: 'https://github.com/Shellty-IT/NerdsApp_KanbanApp',
             title: t('portfolio.projects.shelltyKanban.title'),
             subtitle: t('portfolio.projects.shelltyKanban.subtitle'),
