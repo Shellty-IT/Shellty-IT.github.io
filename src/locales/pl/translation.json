@@ -189,7 +189,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/>Uwaga: Ze względu na wyczerpanie limitów darmowej platformy Render, niektóre usługi backendowe zostały tymczasowo przeniesione do Railway.",
+    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> Korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą Shellty Pulse. Wkrótce Shellty Pulse zamierzam przenieść do AWS, co wyeliminuje efekt „zimnego startu” tej aplikacji i znacząco przyspieszy aktywację pozostałych usług.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
@@ -222,7 +222,7 @@
           "Infrastruktura jako kod i konteneryzacja: połączenie Docker Compose z Ansible w celu zapewnienia w pełni automatycznego provisioningu oraz powtarzalnych wdrożeń na dowolnym serwerze.",
           "Pełna automatyzacja CI/CD: kompletny pipeline w GitHub Actions obejmujący build obrazów, testy endpointów API oraz automatyczny deployment, gwarantujący stabilność każdej zmiany."
         ],
-        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Azure"]
+        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Render"]
       },
       "postlio": {
         "title": "Postlio - Inteligentny Asystent Social Media",

@@ -359,7 +359,7 @@ const Portfolio = () => {
         {
             id: "shelltyPulse",
             image: shelltyPulseThumbnail,
-            demoLink: 'https://shellty-pulse.azurewebsites.net',
+            demoLink: 'https://shellty-pulse.onrender.com',
             githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
             title: t('portfolio.projects.shelltyPulse.title'),
             subtitle: t('portfolio.projects.shelltyPulse.subtitle'),
@@ -374,7 +374,7 @@ const Portfolio = () => {
         {
             id: "shelltyBlog",
             image: shelltyBlogThumbnail,
-            demoLink: 'https://shellty-blog.up.railway.app',
+            demoLink: 'https://shellty-blog.onrender.com',
             githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
             videoLink: 'https://vimeo.com/1175749805',
             title: t('portfolio.projects.shelltyBlog.title'),
@@ -489,7 +489,8 @@ const Portfolio = () => {
                         <Trans
                             i18nKey="portfolio.subtitleHtml"
                             components={{
-                                link: <a href="https://github.com/shellty-it" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />
+                                link: <a href="https://github.com/shellty-it" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />,
+                                warning: <span className="warning-glow" />
                             }}
                         />
                     </p>

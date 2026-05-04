@@ -61,6 +61,26 @@
     font-size: 1.05rem;
 }
 
+.warning-glow {
+    color: #0cc0ff;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(12, 192, 255, 0.4);
+    animation: warning-pulse 2s infinite ease-in-out;
+    display: inline-block;
+    margin-top: 12px;
+}
+
+@keyframes warning-pulse {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(12, 192, 255, 0.3);
+        opacity: 0.9;
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(12, 192, 255, 0.7);
+        opacity: 1;
+    }
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -293,7 +293,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/>Note: Due to Render's free-tier usage limits, some backend services have been temporarily moved to Railway.",
+    "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/><br/><warning>Note:</warning> I use free‑tier backend services on Render. It is recommended to wake up the services using Shellty Pulse before using the application. I plan to migrate Shellty Pulse to AWS soon, which will eliminate the cold‑start effect of this application and significantly speed up the activation of the remaining services.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -326,7 +326,7 @@
           "Infrastructure as code & containerization: combining Docker Compose with Ansible for fully automated provisioning and consistent, repeatable server-side deployments.",
           "End-to-end CI/CD automation: a robust GitHub Actions pipeline covering image builds, API endpoint testing, and automated deployment to ensure code reliability with every push."
         ],
-        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Azure"]
+        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Render"]
       },
       "postlio": {
         "title": "Postlio - Smart Social Media Assistant",
