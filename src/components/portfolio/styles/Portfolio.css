@@ -68,6 +68,7 @@
     animation: warning-pulse 2s infinite ease-in-out;
     display: inline-block;
     margin-top: 12px;
+    text-decoration: none;
 }
 
 @keyframes warning-pulse {
