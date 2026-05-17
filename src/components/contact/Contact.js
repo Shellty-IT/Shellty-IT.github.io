@@ -111,6 +111,8 @@ export default function Contact() {
                         aria-hidden="true"
                         className="ct-icon__img ct-icon__img--base"
                         draggable="false"
+                        width="280"
+                        height="280"
                     />
                     <img
                         src={contactGlow}
@@ -118,6 +120,8 @@ export default function Contact() {
                         aria-hidden="true"
                         className="ct-icon__img ct-icon__img--lit"
                         draggable="false"
+                        width="280"
+                        height="280"
                     />
                 </div>
 

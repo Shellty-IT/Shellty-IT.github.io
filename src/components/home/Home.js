@@ -156,8 +156,8 @@ export default function Home() {
                             to="/portfolio#portfolio"
                         >
                         <span className="btn-icon-wrap">
-                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" />
-                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" />
+                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
+                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
                             </span>
                             <span>{t("home.ctaPortfolio")}</span>
                         </HashLink>
@@ -171,8 +171,8 @@ export default function Home() {
                             rel="noopener noreferrer"
                         >
                             <span className="btn-icon-wrap">
-                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" />
-                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" />
+                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
+                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
                             </span>
                             <span>{t("home.ctaCv")}</span>
                         </a>
@@ -184,8 +184,8 @@ export default function Home() {
                             to="/contact#contact"
                         >
                             <span className="btn-icon-wrap btn-icon-wrap--contact">
-                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" />
-                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" />
+                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
+                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
                             </span>
                             <span>{t("home.ctaContact")}</span>
                         </HashLink>

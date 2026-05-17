@@ -1,5 +1,5 @@
 // src/components/skills/Skills.js
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, memo } from "react";
 import "./Skills.css";
 import {
     FaWindows,
@@ -58,7 +58,7 @@ const ICON_NODES = [
     { id: 8, x: "50%", y: "55%" },
 ];
 
-const SkillItem = ({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) => {
+const SkillItem = memo(function SkillItem({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) {
     const value = LEVELS[level] || 50;
     return (
         <div className="sk-item glass">
@@ -86,7 +86,7 @@ const SkillItem = ({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) =
             </div>
         </div>
     );
-};
+});
 
 const Skills = () => {
     const { t, i18n } = useTranslation();
@@ -220,6 +220,8 @@ const Skills = () => {
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--base"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                         <img
                             src={skillsGlow}
@@ -227,6 +229,8 @@ const Skills = () => {
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--lit"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                     </div>
 

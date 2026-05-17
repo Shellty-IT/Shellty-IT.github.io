@@ -86,7 +86,6 @@ html.has-custom-cursor * {
     left: 0;
     border-radius: 50%;
     opacity: 0;
-    will-change: transform;
     contain: layout style;
 }
 

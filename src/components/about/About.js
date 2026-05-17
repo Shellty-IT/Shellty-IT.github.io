@@ -84,6 +84,8 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
                 alt=""
                 aria-hidden="true"
                 className="trait-item__icon"
+                width="84"
+                height="84"
             />
             <span className="trait-item__label">
                 {t(`about.traits.${traitKey}.name`)}
@@ -127,7 +129,7 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                     aria-label={t("about.traits.closeAria")}
                 />
                 <div className="trait-sheet__header">
-                    <img src={iconGlow} alt="" aria-hidden="true" className="trait-sheet__icon" />
+                    <img src={iconGlow} alt="" aria-hidden="true" className="trait-sheet__icon" width="32" height="32" />
                     <span className="trait-sheet__name">{t(`about.traits.${traitKey}.name`)}</span>
                 </div>
                 <p className="trait-sheet__desc">{t(`about.traits.${traitKey}.desc`)}</p>
@@ -160,6 +162,8 @@ const VideoCard = ({ vimeoId, t }) => {
                                 alt=""
                                 className="about__video-thumb"
                                 loading="lazy"
+                                width="1280"
+                                height="720"
                                 onError={() => setThumbError(true)}
                             />
                         )}
@@ -234,6 +238,8 @@ const About = () => {
                             aria-hidden="true"
                             className="dna__img dna__img--base"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                         <img
                             src={aboutGlow}
@@ -241,6 +247,8 @@ const About = () => {
                             aria-hidden="true"
                             className="dna__img dna__img--lit"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                     </div>
 
