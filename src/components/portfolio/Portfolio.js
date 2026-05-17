@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, memo } from 'react';
+import React, { useMemo, useState, useEffect, useCallback, memo } from 'react';
 import './styles/Portfolio.css';
 import './styles/PortfolioIcon.css';
 import './styles/ProjectCard.css';
