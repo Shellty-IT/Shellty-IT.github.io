@@ -80,6 +80,8 @@ const Experience = () => {
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--base"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                         <img
                             src={experienceGlow}
@@ -87,6 +89,8 @@ const Experience = () => {
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--lit"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                     </div>
 

@@ -69,6 +69,8 @@ const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = 
                 draggable="false"
                 loading="lazy"
                 decoding="async"
+                width={size}
+                height={size}
             />
             {glowReady && (
                 <img
@@ -77,6 +79,8 @@ const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = 
                     className="glow-icon-lit"
                     draggable="false"
                     aria-hidden="true"
+                    width={size}
+                    height={size}
                 />
             )}
         </div>

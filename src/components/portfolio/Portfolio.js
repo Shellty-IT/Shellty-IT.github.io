@@ -66,6 +66,8 @@ const ProjectImage = memo(({ src, alt }) => {
                 className="project-image"
                 loading="lazy"
                 decoding="async"
+                width="1280"
+                height="720"
                 onLoad={handleLoad}
             />
 
@@ -422,6 +424,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--base"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                         <img
                             src={portfolioGlow}
@@ -429,6 +433,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--lit"
                             draggable="false"
+                            width="200"
+                            height="200"
                         />
                     </div>
 

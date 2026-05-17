@@ -7,11 +7,11 @@ import CloudBackground from "./background/CloudBackground";
 
 import './App.css';
 
-const About = lazy(() => import("./components/about/About"));
-const Experience = lazy(() => import("./components/experience/Experience"));
-const Skills = lazy(() => import("./components/skills/Skills"));
-const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
-const Contact = lazy(() => import("./components/contact/Contact"));
+const About      = lazy(() => import(/* webpackPrefetch: true */ "./components/about/About"));
+const Experience  = lazy(() => import(/* webpackPrefetch: true */ "./components/experience/Experience"));
+const Skills      = lazy(() => import(/* webpackPrefetch: true */ "./components/skills/Skills"));
+const Portfolio   = lazy(() => import(/* webpackPrefetch: true */ "./components/portfolio/Portfolio"));
+const Contact     = lazy(() => import(/* webpackPrefetch: true */ "./components/contact/Contact"));
 const CustomCursor = lazy(() => import("./components/customCursor"));
 
 function App() {
