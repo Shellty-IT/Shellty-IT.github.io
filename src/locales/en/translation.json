@@ -319,9 +319,23 @@
       }
     },
     "projects": {
+      "shelltyCMS": {
+        "title": "Shellty CMS – Universal CMS for Corporate Websites",
+        "subtitle": "Shellty CMS is a proprietary, scalable content management system designed as a modern alternative to WordPress for B2B projects.",
+        "description": "It was created for rapid deployment of professional corporate websites while maintaining full control over architecture, security, and performance.\n\nThe system allows cloning a ready-made, tested architecture for subsequent clients, reducing project delivery time from several weeks to a few days.",
+        "highlightsTitle": "What makes this project stand out?",
+        "highlights": [
+          "Lightweight architecture based on Next.js and Payload CMS.",
+          "Intuitive admin panel with role-based access control (admin / editor).",
+          "Automatic Cloudinary integration (upload and auto-delete via hooks).",
+          "Secure environment configuration and data separation for clients.",
+          "Ready for scaling and further expansion (block-based page system, multi-language support)."
+        ],
+        "tech": ["Next.js 16", "Payload CMS 3", "TypeScript", "MongoDB Atlas", "Cloudinary", "Tailwind CSS", "Vercel"]
+      },
       "shelltyPulse": {
         "title": "Shellty Pulse - Service Health Monitor & Keep-Alive",
-        "subtitle": "Service Health Monitor & Keep-Alive",
+        "subtitle": "Service Health Monitor & Keep-Alive.",
         "description": "A professional-grade Service Health Monitor designed for real-time tracking of web service availability. It acts as an intelligent \"keep-alive\" mechanism for applications on free-tier platforms (e.g., Render), preventing idle sleep through automated, configurable pings.",
         "highlightsTitle": "Key Highlights:",
         "highlights": [
@@ -332,7 +346,7 @@
       },
       "postlio": {
         "title": "Postlio - Smart Social Media Assistant",
-        "subtitle": "Create, schedule, and publish posts on FB, IG, and LinkedIn with AI",
+        "subtitle": "Create, schedule, and publish posts on FB, IG, and LinkedIn with AI.",
         "description": "Postlio is a modern PWA application supporting social media management. It allows for creating and scheduling posts and graphics with the support of various types of AI Agents. The system enables full automation of publication according to a schedule for business accounts (Facebook Pages, Instagram Business, and LinkedIn). For personal profiles, due to platform regulations, the application is used for professional content preparation for manual sharing.\n\nThe project is currently deployed for testing purposes. I am focused on improving UX and finalizing the application approval process by Meta. After obtaining full API access, users will be able to share their materials directly from the application.",
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
@@ -361,7 +375,7 @@
       },
       "ksefMaster": {
         "title": "KSeF Master: Advanced E-invoicing Ecosystem",
-        "subtitle": "KSeF API v2 Integration: Full support for tax documents",
+        "subtitle": "KSeF API v2 Integration: Full support for tax documents.",
         "description": "KSeF Master is a professional platform based on .NET 8 architecture and PostgreSQL, providing two-layer authorization and full communication with the government system. The system offers seamless switching between test and production environments and advanced certificate handling.",
         "highlightsTitle": "Key Advantages:",
         "highlights": [
@@ -373,19 +387,19 @@
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban - Project Manager",
-        "subtitle": "Project Management Application",
+        "subtitle": "Project Management Application.",
         "description": "A comprehensive Kanban application for task management and team collaboration. A system built from the ground up that allows for simple and clear workflow control in any team.",
         "highlightsTitle": "Key achievements:",
         "highlights": [
           "Efficient Management System: A modern Kanban board built with .NET 10 and React 18.",
           "Session Security: Advanced JWT authentication with token rotation.",
-          "Automation and Quality: Full CI/CD and high stability confirmed by 60+ tests with over 95% code coverage."
+          "Automation and Quality: Full CI/CD and high stability confirmed by 60+ test with over 95% code coverage."
         ],
         "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
-        "title": "Shellty Blog - System CMS ",
-        "subtitle": "A lightweight, scalable blog system designed with clean engineering principles",
+        "title": "Shellty Blog - System CMS",
+        "subtitle": "A lightweight, scalable blog system designed with clean engineering principles.",
         "description": "A project developed as part of Nerds Family Engineering Academy, emphasizing software engineering, design patterns, and Clean Code principles. It is a modern CMS system based on MVC architecture, fully containerized (Docker) and integrated with a cloud PostgreSQL database (Neon).",
         "highlightsTitle": "Key features:",
         "highlights": [
@@ -398,7 +412,7 @@
       },
       "mobiSalon": {
         "title": "Grooming Business Card with CMS",
-        "subtitle": "Website for a grooming salon",
+        "subtitle": "Website for a grooming salon.",
         "description": "This is a light and clear one-page website designed with Next.js/React. The project combines an aesthetic presentation of a grooming salon with functionality that facilitates daily communication with customers. The site is fully responsive, which guarantees its impeccable operation and readability on smartphones and tablets.",
         "highlightsTitle": "The heart of the site management is the News section, over which the owner has full control from the CMS panel (Decap CMS). They can instantly publish there:",
         "highlights": [
@@ -409,13 +423,13 @@
       },
       "pwaCookbook": {
         "title": "Mobile Cookbook (PWA)",
-        "subtitle": "Progressive Web Application - diploma project",
+        "subtitle": "Progressive Web Application - diploma project.",
         "description": "I developed a progressive web application (PWA) that helps in planning meals based on ingredients available in the kitchen. It integrates a recipe database, preparation instructions, and side dish cooking times, and a built-in timer with sound notification facilitates process control. The application was designed with a mobile-first approach and also works offline, remaining available on any device with a browser. As a result, it realy shortens the time spent on cooking and facilitates decision-making \"what to cook\". Project implemented based on React with an emphasis on performance and user convenience. It was created as part of a diploma thesis.",
         "tech": ["React", "Firebase", "PWA"]
       },
       "animalsOnePage": {
         "title": "Interesting Animals - One Page",
-        "subtitle": "Simple One Page website (student project)",
+        "subtitle": "Simple One Page website (student project).",
         "description": "A very simple, static one-page website prepared during studies as part of one of the tasks. It presents selected, interesting animal species in short sections with basic information and trivia. I treat it as a modest supplementary material showing consistency in documenting progress. I am aware that this is not a project representative of my current skills and I will soon replace it with newer, original projects.",
         "tech": ["HTML", "CSS", "JavaScript"]
       }

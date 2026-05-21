@@ -22,6 +22,8 @@ import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
 import shelltyPulseThumbnail from '../../assets/thumbnails/shellty_pulse.webp';
 import kanbanThumbnail from '../../assets/thumbnails/kanban.webp';
 import kanbanThumbnailAng from '../../assets/thumbnails/kanban_ang.webp';
+import shelltyCmsThumbnail from '../../assets/thumbnails/shellty_cms.webp';
+import shelltyCmsThumbnailAng from '../../assets/thumbnails/shellty_cms_en.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -229,6 +231,20 @@ const Portfolio = () => {
     }, []);
 
     const projects = useMemo(() => ([
+        {
+            id: "shelltyCMS",
+            image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
+            demoLink: 'https://shellty-cms.vercel.app/',
+            githubLink: null,
+            title: t('portfolio.projects.shelltyCMS.title'),
+            subtitle: t('portfolio.projects.shelltyCMS.subtitle'),
+            description: t('portfolio.projects.shelltyCMS.description'),
+            highlightsTitle: t('portfolio.projects.shelltyCMS.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyCMS.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.shelltyCMS.tech', { returnObjects: true }),
+            role: t('portfolio.projects.shelltyCMS.role', { defaultValue: 'Developer' }),
+            year: '2026',
+        },
         {
             id: "postlio",
             image: currentLanguage === 'en' ? postlioThumbnailAng : postlioThumbnail,
