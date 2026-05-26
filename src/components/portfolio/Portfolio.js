@@ -333,7 +333,7 @@ const Portfolio = () => {
         {
             id: "shelltyPulse",
             image: shelltyPulseThumbnail,
-            demoLink: 'https://shellty-pulse.onrender.com',
+            demoLink: 'https://shellty-pulse.duckdns.org',
             githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
             title: t('portfolio.projects.shelltyPulse.title'),
             subtitle: t('portfolio.projects.shelltyPulse.subtitle'),
@@ -468,7 +468,7 @@ const Portfolio = () => {
                             i18nKey="portfolio.subtitleHtml"
                             components={{
                                 link: <a href="https://github.com/shellty-it" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />,
-                                pulseLink: <a href="https://shellty-pulse.onrender.com" target="_blank" rel="noopener noreferrer" className="warning-glow" />,
+                                pulseLink: <a href="https://shellty-pulse.duckdns.org" target="_blank" rel="noopener noreferrer" className="warning-glow" />,
                                 warning: <span className="warning-glow" />
                             }}
                         />
