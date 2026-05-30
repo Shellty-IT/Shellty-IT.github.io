@@ -262,6 +262,8 @@
     font-size: 0.9rem;
     font-weight: 500;
     color: #f1f5f9;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-form input,
@@ -275,9 +277,14 @@
     color: #f1f5f9;
     outline: none;
     font-size: 0.95rem;
-    resize: vertical;
+    resize: none;
     box-sizing: border-box;
     transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .contact-form input::placeholder,
@@ -311,7 +318,7 @@
     font-weight: 500;
 }
 
-.contact-form button {
+.contact-form button[type="submit"] {
     margin-top: 16px;
     padding: 12px 28px;
     border-radius: 12px;
@@ -327,7 +334,7 @@
     transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.contact-form button:hover:not(:disabled) {
+.contact-form button[type="submit"]:hover:not(:disabled) {
     background-color: rgba(12, 192, 255, 0.08);
     border-color: #0cc0ff;
     transform: translateY(-2px);
@@ -335,11 +342,11 @@
     color: #fff;
 }
 
-.contact-form button:active {
+.contact-form button[type="submit"]:active {
     transform: translateY(0);
 }
 
-.contact-form button:disabled {
+.contact-form button[type="submit"]:disabled {
     background-color: rgba(255, 255, 255, 0.1);
     cursor: not-allowed;
     transform: none;
@@ -366,6 +373,37 @@
     color: #fca5a5;
     background-color: rgba(252, 165, 165, 0.08);
     border-color: rgba(252, 165, 165, 0.25);
+}
+
+/* ── Privacy note under form ── */
+.privacy-note {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #64748b;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.privacy-note__link {
+    display: inline;
+    vertical-align: baseline;
+    color: #0cc0ff;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgba(12, 192, 255, 0.35);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.privacy-note__link:hover {
+    color: #6dd5ff;
+    text-decoration-color: rgba(109, 213, 255, 0.6);
 }
 
 .or-divider {
@@ -421,6 +459,12 @@
         white-space: normal;
         max-width: 90%;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 540px) {
+    .privacy-note {
+        white-space: normal;
     }
 }
 

@@ -476,6 +476,59 @@
       "sendError": "Błąd wysyłki.",
       "network": "Błąd sieci - spróbuj ponownie."
     },
-    "or": "Lub napisz bezpośrednio na:"
+    "or": "Lub napisz bezpośrednio na:",
+    "privacyNote": {
+      "text": "Wysyłając wiadomość, akceptujesz przetwarzanie podanych danych zgodnie z",
+      "link": "Polityką Prywatności"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Polityka Prywatności",
+    "updated": "Data ostatniej aktualizacji: 31 maja 2026",
+    "closeAria": "Zamknij politykę prywatności",
+    "closeBtn": "Zamknij",
+    "s1": {
+      "title": "1. Administrator danych osobowych",
+      "p1": "Administratorem Twoich danych osobowych jest Tomasz Skorupski (dalej: Administrator), właściciel niniejszej strony internetowej.",
+      "contactLabel": "Kontakt:"
+    },
+    "s2": {
+      "title": "2. Jakie dane zbieram i w jakim celu?",
+      "intro": "Za pośrednictwem formularza kontaktowego dostępnego na stronie zbieram wyłącznie:",
+      "items": ["imię", "adres e-mail"],
+      "purpose": "Dane te są zbierane wyłącznie w celu nawiązania kontaktu i udzielenia odpowiedzi na wiadomość przesłaną przez formularz."
+    },
+    "s3": {
+      "title": "3. Podstawa prawna przetwarzania",
+      "p": "Twoje dane przetwarzam na podstawie art. 6 ust. 1 lit. f) RODO, czyli prawnie uzasadnionego interesu Administratora, którym jest odpowiedź na skierowane do mnie zapytanie kontaktowe."
+    },
+    "s4": {
+      "title": "4. Jak długo przechowuję Twoje dane?",
+      "p": "Twoje dane przechowuję przez czas niezbędny do obsługi Twojego zapytania. Po zakończeniu korespondencji dane nie są dalej przetwarzane w żadnym innym celu."
+    },
+    "s5": {
+      "title": "5. Odbiorcy danych – Formspree",
+      "p1": "Do obsługi formularza kontaktowego korzystam z usługi Formspree (Formspree, Inc.), która pełni rolę podmiotu przetwarzającego dane w moim imieniu. Oznacza to, że wiadomości przesłane przez formularz są przekazywane za pośrednictwem serwerów Formspree.",
+      "p2": "Formspree jest firmą z siedzibą w Stanach Zjednoczonych, co oznacza, że Twoje dane mogą być przekazywane poza Europejski Obszar Gospodarczy (EOG). Formspree zapewnia odpowiedni poziom ochrony danych zgodnie z obowiązującymi przepisami.",
+      "linkLabel": "Więcej informacji znajdziesz w polityce prywatności Formspree:",
+      "p3": "Poza tym Twoje dane nie są przekazywane żadnym innym podmiotom trzecim."
+    },
+    "s6": {
+      "title": "6. Pliki cookies i narzędzia analityczne",
+      "ga": "Strona korzysta z usługi Google Analytics (Google LLC), która wykorzystuje pliki cookies do analizy ruchu na stronie. Dane zbierane przez Google Analytics są anonimowe i nie pozwalają na bezpośrednią identyfikację użytkownika. Google LLC ma siedzibę w USA – więcej informacji:"
+    },
+    "s7": {
+      "title": "7. Twoje prawa",
+      "intro": "W związku z przetwarzaniem Twoich danych osobowych przysługują Ci następujące prawa:",
+      "rights": [
+        "Prawo dostępu – możesz zapytać, jakie dane na Twój temat posiadam.",
+        "Prawo do sprostowania – możesz poprosić o poprawienie nieprawidłowych danych.",
+        "Prawo do usunięcia – możesz poprosić o usunięcie swoich danych (prawo do bycia zapomnianym).",
+        "Prawo do ograniczenia przetwarzania – możesz poprosić o wstrzymanie przetwarzania Twoich danych.",
+        "Prawo do sprzeciwu – możesz wnieść sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu.",
+        "Prawo do skargi – jeśli uważasz, że przetwarzam Twoje dane niezgodnie z prawem, możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl."
+      ],
+      "contact": "Aby skorzystać z powyższych praw, skontaktuj się ze mną pod adresem:"
+    }
   }
 }

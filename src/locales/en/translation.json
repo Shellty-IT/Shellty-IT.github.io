@@ -476,6 +476,59 @@
       "sendError": "Sending error.",
       "network": "Network error - please try again."
     },
-    "or": "Or write directly to:"
+    "or": "Or write directly to:",
+    "privacyNote": {
+      "text": "By sending a message, you agree to the processing of your data in accordance with the",
+      "link": "Privacy Policy"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: May 31, 2026",
+    "closeAria": "Close privacy policy",
+    "closeBtn": "Close",
+    "s1": {
+      "title": "1. Data Controller",
+      "p1": "The controller of your personal data is Tomasz Skorupski (hereinafter: the Controller), owner of this website.",
+      "contactLabel": "Contact:"
+    },
+    "s2": {
+      "title": "2. What data do I collect and for what purpose?",
+      "intro": "Through the contact form available on this website, I collect exclusively:",
+      "items": ["first name", "email address"],
+      "purpose": "This data is collected solely for the purpose of establishing contact and responding to the message submitted via the form."
+    },
+    "s3": {
+      "title": "3. Legal basis for processing",
+      "p": "Your data is processed on the basis of Article 6(1)(f) of the GDPR, i.e. the legitimate interest of the Controller, which is responding to your contact inquiry."
+    },
+    "s4": {
+      "title": "4. How long do I store your data?",
+      "p": "Your data is stored for the time necessary to handle your inquiry. After the correspondence is concluded, the data is not processed for any other purpose."
+    },
+    "s5": {
+      "title": "5. Data recipients – Formspree",
+      "p1": "To handle the contact form, I use the Formspree service (Formspree, Inc.), which acts as a data processor on my behalf. This means that messages submitted through the form are transmitted via Formspree servers.",
+      "p2": "Formspree is a company based in the United States, which means your data may be transferred outside the European Economic Area (EEA). Formspree ensures an adequate level of data protection in accordance with applicable regulations.",
+      "linkLabel": "More information can be found in Formspree's privacy policy:",
+      "p3": "Apart from that, your data is not shared with any other third parties."
+    },
+    "s6": {
+      "title": "6. Cookies and analytics tools",
+      "ga": "This website uses Google Analytics (Google LLC), which uses cookies to analyze website traffic. Data collected by Google Analytics is anonymous and does not allow direct identification of the user. Google LLC is based in the USA – more information:"
+    },
+    "s7": {
+      "title": "7. Your rights",
+      "intro": "In connection with the processing of your personal data, you have the following rights:",
+      "rights": [
+        "Right of access – you may ask what data I hold about you.",
+        "Right to rectification – you may request correction of inaccurate data.",
+        "Right to erasure – you may request deletion of your data (right to be forgotten).",
+        "Right to restriction of processing – you may request that processing of your data be suspended.",
+        "Right to object – you may object to processing based on legitimate interest.",
+        "Right to lodge a complaint – if you believe I am processing your data unlawfully, you may lodge a complaint with the relevant supervisory authority in your country."
+      ],
+      "contact": "To exercise the above rights, please contact me at:"
+    }
   }
 }

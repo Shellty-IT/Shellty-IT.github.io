@@ -1,5 +1,6 @@
 // src/components/contact/Contact.js
 import React, { useState, useRef } from "react";
+import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
@@ -25,6 +26,7 @@ export default function Contact() {
     const [touched, setTouched] = useState({ name: false, email: false, message: false });
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
     const [titleHovered, setTitleHovered] = useState(false);
+    const [showPrivacy, setShowPrivacy] = useState(false);
     const { iconRef, iconPhase } = useIconPhase('ct-icon--pulse');
 
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
@@ -90,6 +92,7 @@ export default function Contact() {
         touched[key] && errors[key] ? "field has-error" : "field";
 
     return (
+        <>
         <section className="contact-section" id="contact">
             <header className="contact-header">
                 <div
@@ -198,6 +201,18 @@ export default function Contact() {
                     <button type="submit" disabled={status.loading}>
                         {status.loading ? t("contact.buttons.sending") : t("contact.buttons.send")}
                     </button>
+
+                    <p className="privacy-note">
+                        {t("contact.privacyNote.text")}{" "}
+                        <button
+                            type="button"
+                            className="privacy-note__link"
+                            onClick={() => setShowPrivacy(true)}
+                        >
+                            {t("contact.privacyNote.link")}
+                        </button>
+                        .
+                    </p>
                 </form>
 
                 {status.text && (
@@ -218,5 +233,10 @@ export default function Contact() {
                 </div>
             </div>
         </section>
+
+        {showPrivacy && (
+            <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />
+        )}
+        </>
     );
 }

@@ -1,0 +1,262 @@
+/* src/components/contact/PrivacyPolicyModal.css */
+
+/* ── Overlay ── */
+.pp-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: ppFadeIn 0.22s ease;
+}
+
+@keyframes ppFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ── Modal container ── */
+.pp-modal {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, rgba(10, 20, 35, 0.98) 0%, rgba(6, 14, 26, 0.99) 100%);
+    border: 1px solid rgba(12, 192, 255, 0.18);
+    border-radius: 20px;
+    box-shadow:
+        0 0 0 1px rgba(12, 192, 255, 0.06),
+        0 24px 64px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(12, 192, 255, 0.06);
+    outline: none;
+    animation: ppSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+}
+
+@keyframes ppSlideUp {
+    from { opacity: 0; transform: translateY(28px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── Header ── */
+.pp-modal__header {
+    position: relative;
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+.pp-modal__header::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 32px;
+    right: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(12, 192, 255, 0.3), transparent);
+}
+
+.pp-modal__title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #0cc0ff, #0062b0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 40px 6px 0;
+    line-height: 1.3;
+}
+
+.pp-modal__updated {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.pp-modal__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    line-height: 1;
+}
+
+.pp-modal__close:hover {
+    background: rgba(12, 192, 255, 0.1);
+    border-color: rgba(12, 192, 255, 0.4);
+    color: #0cc0ff;
+}
+
+/* ── Scrollable body ── */
+.pp-modal__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(12, 192, 255, 0.25) transparent;
+}
+
+.pp-modal__body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.pp-modal__body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pp-modal__body::-webkit-scrollbar-thumb {
+    background: rgba(12, 192, 255, 0.25);
+    border-radius: 4px;
+}
+
+.pp-modal__body::-webkit-scrollbar-thumb:hover {
+    background: rgba(12, 192, 255, 0.45);
+}
+
+/* ── Sections ── */
+.pp-section {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pp-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.pp-section__title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0cc0ff;
+    margin: 0 0 12px;
+    opacity: 0.85;
+}
+
+.pp-section p {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.75;
+    margin: 0 0 10px;
+}
+
+.pp-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* ── List ── */
+.pp-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 10px;
+}
+
+.pp-list li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.75;
+    margin-bottom: 6px;
+}
+
+.pp-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    opacity: 0.7;
+}
+
+/* ── Links ── */
+.pp-link {
+    color: #0cc0ff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(12, 192, 255, 0.3);
+    transition: color 0.2s ease, border-color 0.2s ease;
+    word-break: break-all;
+}
+
+.pp-link:hover {
+    color: #6dd5ff;
+    border-bottom-color: rgba(109, 213, 255, 0.5);
+}
+
+/* ── Footer ── */
+.pp-modal__footer {
+    padding: 16px 32px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.pp-modal__close-btn {
+    padding: 10px 28px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f1f5f9;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pp-modal__close-btn:hover {
+    background: rgba(12, 192, 255, 0.08);
+    border-color: #0cc0ff;
+    box-shadow: 0 0 14px rgba(12, 192, 255, 0.3);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+    .pp-modal__header {
+        padding: 22px 20px 16px;
+    }
+
+    .pp-modal__body {
+        padding: 20px;
+    }
+
+    .pp-modal__footer {
+        padding: 14px 20px 20px;
+    }
+
+    .pp-modal__close-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
