@@ -13,7 +13,6 @@ import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
 import ksefThumbnail from '../../assets/thumbnails/ksef-master.webp';
 import ksefThumbnailAng from '../../assets/thumbnails/ksef_master_ang.webp';
 import smartquoteThumbnail from '../../assets/thumbnails/smartquote.webp';
-import smartquoteThumbnailAng from '../../assets/thumbnails/smart_quoute_ang.webp';
 import postlioThumbnail from '../../assets/thumbnails/postlio.webp';
 import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.webp';
 import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
@@ -233,6 +232,27 @@ const Portfolio = () => {
 
     const projects = useMemo(() => ([
         {
+            id: "smartQuoteAI",
+            image: smartquoteThumbnail,
+            demoLink: 'https://smartquote-ai.netlify.app',
+            githubLink: 'https://github.com/Shellty-IT/SmartQuote',
+            title: t('portfolio.projects.smartQuoteAI.title'),
+            subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
+            description: t('portfolio.projects.smartQuoteAI.description'),
+            highlightsTitle: t('portfolio.projects.smartQuoteAI.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
+            role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'Developer' }),
+            year: '2026',
+            caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
+            testAccount: {
+                fields: [
+                    { labelKey: 'login', value: 'testowy@test.pl' },
+                    { labelKey: 'password', value: 'Testowe123!' },
+                ],
+            },
+        },
+        {
             id: "shelltyCMS",
             image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
             demoLink: 'https://shellty-cms.vercel.app/',
@@ -277,27 +297,6 @@ const Portfolio = () => {
             testAccount: {
                 fields: [
                     { labelKey: 'login', value: 'test@test.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "smartQuoteAI",
-            image: currentLanguage === 'en' ? smartquoteThumbnailAng : smartquoteThumbnail,
-            demoLink: 'https://smartquote-ai.netlify.app',
-            githubLink: 'https://github.com/Shellty-IT/SmartQuote',
-            title: t('portfolio.projects.smartQuoteAI.title'),
-            subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
-            description: t('portfolio.projects.smartQuoteAI.description'),
-            highlightsTitle: t('portfolio.projects.smartQuoteAI.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
-            role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'testowy@test.pl' },
                     { labelKey: 'password', value: 'Testowe123!' },
                 ],
             },
