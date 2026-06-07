@@ -122,27 +122,10 @@
   },
   "skills": {
     "title": "Umiejętności",
-    "legend": {
-      "adv": "Zaawansowany",
-      "mid": "Średniozaawansowany",
-      "basic": "Podstawy",
-      "advPct": "~20%",
-      "midPct": "~56%",
-      "basicPct": "~24%",
-      "aria": "Legenda poziomów umiejętności"
-    },
-    "tabs": {
-      "all": "Wszystko"
-    },
     "groups": {
-      "systems": "Systemy i administracja",
-      "network": "Sieci",
-      "db": "Bazy danych",
-      "devops": "DevOps i automatyzacja",
-      "frontend": "Technologie i frameworki webowe",
-      "languages": "Języki programowania",
-      "tools": "Narzędzia i praktyki",
-      "soft": "Umiejętności miękkie"
+      "core": "Kluczowe kompetencje",
+      "solid": "Solidna znajomość",
+      "growing": "Aktywnie rozwijam"
     },
     "items": {
       "win": { "name": "Windows Server (AD, GPO)", "level": "Zaawansowany", "notes": "Administracja domeną, polityki GPO" },

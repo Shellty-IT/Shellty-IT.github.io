@@ -1,17 +1,12 @@
 // src/components/skills/Skills.js
-import React, { useMemo, useState, memo } from "react";
+import React, { useState, memo } from "react";
 import "./Skills.css";
 import {
     FaWindows,
     FaLinux,
     FaNetworkWired,
     FaDatabase,
-    FaTerminal,
     FaCloud,
-    FaTools,
-    FaComments,
-    FaLightbulb,
-    FaUsers,
     FaHtml5,
     FaCss3,
     FaAmazon
@@ -23,7 +18,6 @@ import {
     SiMysql,
     SiPostgresql,
     SiGit,
-    SiGitlab,
     SiGithubactions,
     SiJira,
     SiFirebase,
@@ -32,14 +26,15 @@ import {
     SiNextdotjs,
     SiAngular,
     SiTailwindcss,
-    SiBootstrap,
     SiNodedotjs,
     SiTypescript,
     SiPython,
-    SiDotnet
+    SiDotnet,
+    SiAnsible
 } from "react-icons/si";
 import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { FaMobileAlt } from "react-icons/fa";
+import { MdSecurity } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
 
@@ -58,8 +53,47 @@ const ICON_NODES = [
     { id: 8, x: "50%", y: "55%" },
 ];
 
-const SkillItem = memo(function SkillItem({ name, level, Icon, twinIcon: Twin, suffixIcons, LEVELS }) {
-    const value = LEVELS[level] || 50;
+// ─── Konfiguracja umiejętności ────────────────────────────────────────────────
+// Edytuj tę tablicę, aby dodać/usunąć/zmienić technologie.
+// portfolioLink – opcjonalny link do projektu w portfolio (href do sekcji lub URL)
+const SKILLS_CONFIG = {
+    core: [
+        { name: "Administracja systemami i sieciami", Icon: FaNetworkWired },
+        { name: "Windows Server (AD, GPO)", Icon: FaWindows },
+        { name: "React", Icon: SiReact },
+        { name: "JavaScript", Icon: SiJavascript },
+        { name: "REST API", Icon: TbApi },
+        { name: "SQL", Icon: FaDatabase },
+        { name: "HTML5 / CSS3", Icon: FaHtml5, twinIcon: FaCss3 },
+        { name: "Git / GitHub", Icon: SiGit },
+        { name: "Jira", Icon: SiJira },
+    ],
+    solid: [
+        { name: "C# / .NET", Icon: SiDotnet },
+        { name: "TypeScript", Icon: SiTypescript },
+        { name: "Docker", Icon: SiDocker },
+        { name: "CI/CD (GitHub Actions)", Icon: SiGithubactions },
+        { name: "PostgreSQL", Icon: SiPostgresql },
+        { name: "MySQL", Icon: SiMysql },
+        { name: "Linux / Bash", Icon: FaLinux },
+        { name: "PWA", Icon: FaMobileAlt },
+        { name: "Bezpieczeństwo aplikacji", Icon: MdSecurity },
+        { name: "Node.js", Icon: SiNodedotjs },
+        { name: "Next.js", Icon: SiNextdotjs },
+        { name: "Python", Icon: SiPython },
+        { name: "PHP", Icon: SiPhp },
+    ],
+    growing: [
+        { name: "Ansible (IaC)", Icon: SiAnsible },
+        { name: "Chmura (AWS/Azure/GCP/Oracle)", Icon: FaCloud, suffixIcons: [FaAmazon, TbBrandAzure, SiGooglecloud] },
+        { name: "Firebase", Icon: SiFirebase },
+        { name: "Angular", Icon: SiAngular },
+        { name: "Tailwind CSS", Icon: SiTailwindcss },
+    ],
+};
+
+// ─── Komponent karty umiejętności (poziomy core i solid) ─────────────────────
+const SkillCard = memo(function SkillCard({ name, Icon, twinIcon: Twin, suffixIcons }) {
     return (
         <div className="sk-item glass">
             <div className="sk-head">
@@ -68,134 +102,28 @@ const SkillItem = memo(function SkillItem({ name, level, Icon, twinIcon: Twin, s
                     {Twin && <Twin className="sk-icon sk-icon--twin" />}
                     {suffixIcons && suffixIcons.map((S, i) => <S key={i} className="sk-icon sk-icon--mini" />)}
                 </div>
-                <div className="sk-title">
-                    {Array.isArray(name) ? (
-                        <div className="sk-names sk-names--column">
-                            {name.map((n, i) => (
-                                <span key={i} className="sk-name-text">{n}</span>
-                            ))}
-                        </div>
-                    ) : (
-                        name
-                    )}
-                </div>
-                <div className={`sk-level sk-level--${level}`}>{level}</div>
-            </div>
-            <div className="sk-bar">
-                <div className="sk-bar__fill" style={{ width: `${value}%` }} />
+                <div className="sk-title">{name}</div>
             </div>
         </div>
     );
 });
 
+// ─── Komponent tagu (poziom "Aktywnie rozwijam") ──────────────────────────────
+const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons }) {
+    return (
+        <span className="sk-tag">
+            <Icon className="sk-tag__icon" />
+            {suffixIcons && suffixIcons.map((S, i) => <S key={i} className="sk-tag__icon sk-tag__icon--mini" />)}
+            <span className="sk-tag__name">{name}</span>
+        </span>
+    );
+});
+
+// ─── Główny komponent ─────────────────────────────────────────────────────────
 const Skills = () => {
-    const { t, i18n } = useTranslation();
-    const isEN = i18n.language?.startsWith("en");
+    const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
     const { iconRef, iconPhase } = useIconPhase('sk-icon-wrap--pulse');
-
-    const LEVELS = useMemo(() => (
-        isEN
-            ? { Advanced: 80, Intermediate: 65, Basics: 45 }
-            : { Zaawansowany: 80, "Średniozaawansowany": 65, Podstawy: 45 }
-    ), [isEN]);
-
-    const GROUPS = useMemo(() => [
-        {
-            key: "systems",
-            label: t("skills.groups.systems"),
-            items: [
-                { name: t("skills.items.win.name"), level: t("skills.items.win.level"), Icon: FaWindows, notes: t("skills.items.win.notes") },
-                { name: t("skills.items.linux.name"), level: t("skills.items.linux.level"), Icon: FaLinux, notes: t("skills.items.linux.notes") },
-                { name: t("skills.items.scripts.name"), level: t("skills.items.scripts.level"), Icon: FaTerminal },
-                { id: "hardening", name: t("skills.items.hardening.name"), level: t("skills.items.hardening.level"), Icon: FaTools }
-            ]
-        },
-        {
-            key: "network",
-            label: t("skills.groups.network"),
-            items: [
-                { name: t("skills.items.netProtocols.name"), level: t("skills.items.netProtocols.level"), Icon: FaNetworkWired },
-                { id: "netDevices", name: t("skills.items.netDevices.name", { returnObjects: true }), level: t("skills.items.netDevices.level"), Icon: FaNetworkWired }
-            ]
-        },
-        {
-            key: "db",
-            label: t("skills.groups.db"),
-            items: [
-                { name: t("skills.items.mysql.name"), level: t("skills.items.mysql.level"), Icon: SiMysql, notes: t("skills.items.mysql.notes") },
-                { name: t("skills.items.postgres.name"), level: t("skills.items.postgres.level"), Icon: SiPostgresql },
-                { name: t("skills.items.sql.name"), level: t("skills.items.sql.level"), Icon: FaDatabase }
-            ]
-        },
-        {
-            key: "devops",
-            label: t("skills.groups.devops"),
-            items: [
-                { name: t("skills.items.cicd.name"), level: t("skills.items.cicd.level"), Icon: SiGithubactions },
-                { name: t("skills.items.docker.name"), level: t("skills.items.docker.level"), Icon: SiDocker },
-                {
-                    name: t("skills.items.cloud.name"),
-                    level: t("skills.items.cloud.level"),
-                    Icon: FaCloud,
-                    suffixIcons: [FaAmazon, TbBrandAzure, SiGooglecloud]
-                }
-            ]
-        },
-        {
-            key: "frontend",
-            label: t("skills.groups.frontend"),
-            items: [
-                { name: t("skills.items.react.name"), level: t("skills.items.react.level"), Icon: SiReact },
-                { name: t("skills.items.nextjs.name"), level: t("skills.items.nextjs.level"), Icon: SiNextdotjs },
-                { name: t("skills.items.angular.name"), level: t("skills.items.angular.level"), Icon: SiAngular },
-                { name: t("skills.items.htmlcss.name"), level: t("skills.items.htmlcss.level"), Icon: FaHtml5, twinIcon: FaCss3 },
-                { name: t("skills.items.tailwind.name"), level: t("skills.items.tailwind.level"), Icon: SiTailwindcss },
-                { name: t("skills.items.bootstrap.name"), level: t("skills.items.bootstrap.level"), Icon: SiBootstrap },
-                { name: t("skills.items.pwa.name"), level: t("skills.items.pwa.level"), Icon: FaMobileAlt },
-                { name: t("skills.items.firebase.name"), level: t("skills.items.firebase.level"), Icon: SiFirebase },
-                { name: t("skills.items.nodejs.name"), level: t("skills.items.nodejs.level"), Icon: SiNodedotjs },
-                { name: t("skills.items.restapi.name"), level: t("skills.items.restapi.level"), Icon: TbApi },
-                { name: t("skills.items.dotnet.name"), level: t("skills.items.dotnet.level"), Icon: SiDotnet }
-            ]
-        },
-        {
-            key: "languages",
-            label: t("skills.groups.languages"),
-            items: [
-                { name: t("skills.items.js.name"), level: t("skills.items.js.level"), Icon: SiJavascript },
-                { name: t("skills.items.ts.name"), level: t("skills.items.ts.level"), Icon: SiTypescript },
-                { name: t("skills.items.python.name"), level: t("skills.items.python.level"), Icon: SiPython },
-                { name: t("skills.items.csharp.name"), level: t("skills.items.csharp.level"), Icon: SiDotnet },
-                { name: t("skills.items.php.name"), level: t("skills.items.php.level"), Icon: SiPhp }
-            ]
-        },
-        {
-            key: "tools",
-            label: t("skills.groups.tools"),
-            items: [
-                { name: t("skills.items.jira.name"), level: t("skills.items.jira.level"), Icon: SiJira },
-                { name: t("skills.items.gitlab.name"), level: t("skills.items.gitlab.level"), Icon: SiGitlab },
-                { name: t("skills.items.github.name"), level: t("skills.items.github.level"), Icon: SiGit },
-                { name: t("skills.items.security.name"), level: t("skills.items.security.level"), Icon: FaTools }
-            ]
-        },
-        {
-            key: "soft",
-            label: t("skills.groups.soft"),
-            items: [
-                { name: t("skills.items.problemSolving.name"), level: t("skills.items.problemSolving.level"), Icon: FaLightbulb },
-                { name: t("skills.items.communication.name"), level: t("skills.items.communication.level"), Icon: FaComments },
-                { id: "teamwork", name: t("skills.items.teamwork.name"), level: t("skills.items.teamwork.level"), Icon: FaUsers }
-            ]
-        }
-    ], [t]);
-
-    const [active, setActive] = useState("all");
-    const items = useMemo(() => {
-        if (active === "all") return GROUPS;
-        return GROUPS.filter((g) => g.key === active);
-    }, [active, GROUPS]);
 
     return (
         <section id="skills" className="skills">
@@ -243,55 +171,37 @@ const Skills = () => {
                             {t("skills.title")}
                         </h2>
                     </div>
-
-                    <dl className="skills__legend" aria-label={t("skills.legend.aria", { defaultValue: "Legenda poziomów umiejętności" })}>
-                        <div className="legend-item">
-                            <dt><b>{t("skills.legend.adv")}</b></dt>
-                            <dd>~{LEVELS[isEN ? "Advanced" : "Zaawansowany"]}%</dd>
-                        </div>
-                        <div className="legend-item">
-                            <dt><b>{t("skills.legend.mid")}</b></dt>
-                            <dd>~{LEVELS[isEN ? "Intermediate" : "Średniozaawansowany"]}%</dd>
-                        </div>
-                        <div className="legend-item">
-                            <dt><b>{t("skills.legend.basic")}</b></dt>
-                            <dd>~{LEVELS[isEN ? "Basics" : "Podstawy"]}%</dd>
-                        </div>
-                    </dl>
-
-                    <div className="skills__tabs">
-                        <button
-                            className={`tab ${active === "all" ? "is-active" : ""}`}
-                            onClick={() => setActive("all")}
-                        >
-                            {t("skills.tabs.all")}
-                        </button>
-                        {GROUPS.map((g) => (
-                            <button
-                                key={g.key}
-                                className={`tab ${active === g.key ? "is-active" : ""}`}
-                                onClick={() => setActive(g.key)}
-                            >
-                                {g.label}
-                            </button>
-                        ))}
-                    </div>
                 </header>
 
-                {items.map((group) => (
-                    <section key={group.key} className="sk-group">
-                        <h3 className="sk-group__title">{group.label}</h3>
-                        <div className="sk-grid">
-                            {group.items.map((s) => (
-                                <SkillItem
-                                    key={`${group.key}:${s.id ?? (Array.isArray(s.name) ? s.name.join('-') : s.name) ?? (s.Icon?.name || 'item')}`}
-                                    {...s}
-                                    LEVELS={LEVELS}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                ))}
+                {/* Poziom 1: Kluczowe kompetencje */}
+                <section className="sk-group">
+                    <h3 className="sk-group__title">{t("skills.groups.core")}</h3>
+                    <div className="sk-grid">
+                        {SKILLS_CONFIG.core.map((s) => (
+                            <SkillCard key={s.name} {...s} />
+                        ))}
+                    </div>
+                </section>
+
+                {/* Poziom 2: Solidna znajomość */}
+                <section className="sk-group">
+                    <h3 className="sk-group__title">{t("skills.groups.solid")}</h3>
+                    <div className="sk-grid">
+                        {SKILLS_CONFIG.solid.map((s) => (
+                            <SkillCard key={s.name} {...s} />
+                        ))}
+                    </div>
+                </section>
+
+                {/* Poziom 3: Aktywnie rozwijam – chmura tagów */}
+                <section className="sk-group">
+                    <h3 className="sk-group__title">{t("skills.groups.growing")}</h3>
+                    <div className="sk-tag-cloud">
+                        {SKILLS_CONFIG.growing.map((s) => (
+                            <GrowingTag key={s.name} {...s} />
+                        ))}
+                    </div>
+                </section>
             </div>
         </section>
     );

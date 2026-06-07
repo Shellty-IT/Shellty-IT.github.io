@@ -50,11 +50,7 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
 }
 
-.skills__kicker {
-    color: #94a3b8;
-    margin-top: 8px;
-    font-size: 1.05rem;
-}
+/* ── Ikona sekcji ─────────────────────────────────────────────────────────── */
 
 .sk-icon-wrap {
     position: relative;
@@ -221,79 +217,27 @@
     }
 }
 
-.skills__legend {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    color: #f1f5f9;
-    opacity: 0.85;
-    margin-top: 14px;
-    font-size: 0.9rem;
-}
-
-.skills__legend .legend-item {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-}
-
-.skills__legend dt,
-.skills__legend dd {
-    margin: 0;
-}
-
-.skills__legend dd {
-    color: #94a3b8;
-}
-
-.skills__tabs {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.tab {
-    padding: 10px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #f1f5f9;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: transform 0.15s ease, background-color 0.25s ease, border-color 0.25s ease;
-    backdrop-filter: blur(8px);
-}
-
-.tab:hover {
-    transform: translateY(-2px);
-    border-color: rgba(12, 192, 255, 0.25);
-}
-
-.tab.is-active {
-    background-color: rgba(12, 192, 255, 0.12);
-    border-color: rgba(12, 192, 255, 0.35);
-}
+/* ── Grupy i siatka ───────────────────────────────────────────────────────── */
 
 .sk-group {
-    margin-top: 24px;
+    margin-top: 32px;
 }
 
 .sk-group__title {
-    font-size: 1rem;
-    color: #f1f5f9;
-    letter-spacing: 0.3px;
-    margin: 8px 0 14px;
-    opacity: 0.85;
-    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0cc0ff;
+    margin: 0 0 16px;
+    font-weight: 700;
+    opacity: 0.9;
 }
 
 .sk-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 14px;
+    align-items: stretch;
 }
 
 @media (max-width: 920px) {
@@ -322,12 +266,6 @@
     .sk-grid {
         grid-template-columns: 1fr;
     }
-
-    .skills__legend {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -337,15 +275,19 @@
     }
 }
 
+/* ── Karta umiejętności ───────────────────────────────────────────────────── */
+
 .sk-item {
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
-    padding: 16px;
+    padding: 14px 16px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .sk-item:hover {
@@ -388,83 +330,63 @@
     flex: 1;
 }
 
-.sk-names {
+/* ── Chmura tagów (poziom "Aktywnie rozwijam") ────────────────────────────── */
+
+.sk-tag-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
+    gap: 10px;
 }
 
-.sk-names--column {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-}
-
-.sk-name-chip {
+.sk-tag {
     display: inline-flex;
-    padding: 3px 10px;
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    font-size: 0.82rem;
-    color: #cbd5e1;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.sk-name-text {
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    line-height: 1.3;
-}
-
-.sk-item:hover .sk-name-chip {
-    border-color: rgba(12, 192, 255, 0.25);
-    background-color: rgba(12, 192, 255, 0.03);
-    color: #f1f5f9;
-    box-shadow: 0 0 10px rgba(12, 192, 255, 0.15);
-}
-
-.sk-item:hover .sk-name-text {
-    color: #f1f5f9;
-}
-
-.sk-level {
-    padding: 4px 10px;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
     border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #f1f5f9;
-    border: 1px solid rgba(12, 192, 255, 0.25);
-    background-color: rgba(12, 192, 255, 0.1);
-}
-
-.sk-bar {
-    margin-top: 12px;
-    height: 6px;
-    border-radius: 999px;
-    background-color: rgba(255, 255, 255, 0.08);
-    position: relative;
-    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #94a3b8;
+    font-size: 0.88rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
 }
 
-.sk-bar__fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0%;
-    border-radius: 999px;
-    background-color: #0cc0ff;
-    box-shadow: 0 0 14px rgba(12, 192, 255, 0.4);
-    transition: width 0.8s cubic-bezier(0.2, 0.65, 0.2, 1);
+.sk-tag:hover {
+    border-color: rgba(12, 192, 255, 0.25);
+    color: #cbd5e1;
+    background-color: rgba(12, 192, 255, 0.05);
 }
+
+.sk-tag__icon {
+    font-size: 15px;
+    color: #64748b;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.sk-tag:hover .sk-tag__icon {
+    color: #0cc0ff;
+}
+
+.sk-tag__icon--mini {
+    font-size: 12px;
+}
+
+.sk-tag__name {
+    line-height: 1;
+}
+
+/* ── Scroll margin ────────────────────────────────────────────────────────── */
 
 #skills {
     scroll-margin-top: 80px;
 }
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
     .sk-icon-wrap {

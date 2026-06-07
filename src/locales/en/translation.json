@@ -225,28 +225,10 @@
   },
   "skills": {
     "title": "Skills",
-    "kicker": "Systems • Networks • Databases • DevOps • React",
-    "legend": {
-      "adv": "Advanced",
-      "mid": "Intermediate",
-      "basic": "Basics",
-      "advPct": "~24%",
-      "midPct": "~56%",
-      "basicPct": "~20%",
-      "aria": "Skill levels legend"
-    },
-    "tabs": {
-      "all": "All"
-    },
     "groups": {
-      "systems": "Systems & administration",
-      "network": "Networks",
-      "db": "Databases",
-      "devops": "DevOps & automation",
-      "frontend": "Web technologies & frameworks",
-      "languages": "Programming languages",
-      "tools": "Tools & practices",
-      "soft": "Soft skills"
+      "core": "Core competencies",
+      "solid": "Solid knowledge",
+      "growing": "Actively developing"
     },
     "items": {
       "win": { "name": "Windows Server (AD, GPO)", "level": "Advanced", "notes": "Domain admin, GPO policies" },
