@@ -570,19 +570,6 @@
     display: none;
 }
 
-.about__video-label {
-    position: absolute;
-    left: 14px;
-    bottom: 14px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    letter-spacing: .2em;
-    color: #94a3b8;
-    text-transform: uppercase;
-    pointer-events: none;
-    z-index: 2;
-}
-
 /* ─── Karta faktów ─── */
 .about__card {
     padding: 20px;

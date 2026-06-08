@@ -160,7 +160,6 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
     );
 };
 
-/* ─── VideoCard ─── */
 const VideoCard = ({ vimeoId, t }) => {
     const [playing, setPlaying]       = useState(false);
     const [thumbError, setThumbError] = useState(false);
@@ -190,7 +189,6 @@ const VideoCard = ({ vimeoId, t }) => {
                                 onError={() => setThumbError(true)}
                             />
                         )}
-                        {/* Play icon — pulsujący przycisk jak w redesignie */}
                         <span
                             className="about__video-play-icon"
                             aria-hidden="true"
@@ -204,11 +202,7 @@ const VideoCard = ({ vimeoId, t }) => {
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </span>
-
-                        {/* Label w stylu redesignu */}
-                        <span className="about__video-label">
-                            ▶ {t("about.video.iframeTitle")}
-                        </span>
+                        {/* USUNIĘTO: about__video-label */}
                     </button>
                 ) : (
                     <iframe
