@@ -493,10 +493,13 @@ const Portfolio = () => {
                     {projects.map((project, index) => (
                         <article
                             key={project.id}
-                            className={`project-card animate-slide-up delay-${index + 1}`}
+                            className={`project-card animate-slide-up delay-${(index % 4) + 1}`}
                             itemScope
                             itemType="https://schema.org/CreativeWork"
                         >
+                            <span className="corner tl" />
+                            <span className="corner br" />
+
                             {project.image && (
                                 <div className="project-image-wrapper">
                                     <ProjectImage
@@ -555,7 +558,7 @@ const Portfolio = () => {
                                     <TestAccountBox account={project.testAccount} t={t} />
                                     <div className="project-links">
                                         {project.demoLink && (
-                                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link project-link--primary">
                                                 <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
                                             </a>
                                         )}

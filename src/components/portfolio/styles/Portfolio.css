@@ -3,8 +3,7 @@
 
 .portfolio-container {
     position: relative;
-    padding: clamp(32px, 5vw, 56px) 0;
-    padding-top: 120px;
+    padding: clamp(64px, 9vh, 110px) 0;
     background-color: transparent;
     overflow: hidden;
 }
@@ -38,16 +37,17 @@
 }
 
 .portfolio-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(20px, 3.5vw, 36px);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(22px, 2.9vw, 34px);
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: .06em;
     background: linear-gradient(135deg, #0cc0ff, #0062b0);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin: 0;
+    margin: 8px 0 0;
     transition: filter 0.35s ease;
 }
 
@@ -56,9 +56,12 @@
 }
 
 .portfolio-subtitle {
+    max-width: 780px;
+    margin: 8px auto 0;
+    text-align: center;
+    font-size: 14px;
     color: #94a3b8;
-    margin-top: 4px;
-    font-size: 1.05rem;
+    line-height: 1.7;
 }
 
 .warning-glow {
@@ -66,8 +69,7 @@
     font-weight: 700;
     text-shadow: 0 0 8px rgba(12, 192, 255, 0.4);
     animation: warning-pulse 2s infinite ease-in-out;
-    display: inline-block;
-    margin-top: 12px;
+    display: inline;
     text-decoration: none;
 }
 
@@ -85,7 +87,7 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    gap: 18px;
     margin-top: 28px;
 }
 
