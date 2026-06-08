@@ -1,3 +1,4 @@
+// src/components/home/Home.js
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { HashLink } from 'react-router-hash-link';
@@ -38,12 +39,11 @@ export default function Home() {
     const isEN = i18n.language?.startsWith("en");
     const ROLES = isEN ? ROLES_EN : ROLES_PL;
 
-    const [subIndex, setSubIndex] = useState(0);
+    const [subIndex, setSubIndex]   = useState(0);
     const [roleIndex, setRoleIndex] = useState(0);
-    const [reverse, setReverse] = useState(false);
-    const [blink, setBlink] = useState(true);
-    const [logoGlow, setLogoGlow] = useState(false);
-
+    const [reverse, setReverse]     = useState(false);
+    const [blink, setBlink]         = useState(true);
+    const [logoGlow, setLogoGlow]   = useState(false);
 
     useEffect(() => {
         setSubIndex(0);
@@ -82,15 +82,6 @@ export default function Home() {
         }, 7000);
         return () => clearInterval(interval);
     }, []);
-
-    const handleMagnet = (e) => {
-        const btn = e.currentTarget;
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        btn.style.setProperty("--x", `${x}px`);
-        btn.style.setProperty("--y", `${y}px`);
-    };
 
     const CV_FILE_PL = 'CV_PL_public.pdf';
     const CV_FILE_EN = 'CV_ANG_public.pdf';
@@ -132,7 +123,9 @@ export default function Home() {
             <div className="stars" aria-hidden="true" />
 
             <div className="home__inner">
-                <div className="hero glass">
+
+                {/* LEWA: hero */}
+                <div className="hero">
 
                     <h1 className="hero__title">
                         {t("home.greeting")}<br />
@@ -148,49 +141,48 @@ export default function Home() {
                         {t("home.lead")}
                     </p>
 
+                    {/* CTA */}
                     <div className="hero__cta">
                         <HashLink
-                            className="btn-glass"
-                            onMouseMove={handleMagnet}
+                            className="btn-glass btn-glass--primary"
                             smooth
                             to="/portfolio#portfolio"
                         >
-                        <span className="btn-icon-wrap">
-                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
-                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
+                            <span className="btn-icon-wrap">
+                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaPortfolio")}</span>
                         </HashLink>
 
                         <a
                             className="btn-glass"
-                            onMouseMove={handleMagnet}
                             href={GITHUB_CV_RAW}
                             onClick={downloadCV}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <span className="btn-icon-wrap">
-                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
-                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
+                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaCv")}</span>
                         </a>
 
                         <HashLink
                             className="btn-glass"
-                            onMouseMove={handleMagnet}
                             smooth
                             to="/contact#contact"
                         >
                             <span className="btn-icon-wrap btn-icon-wrap--contact">
-                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="40" height="40" />
-                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="40" height="40" />
+                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaContact")}</span>
                         </HashLink>
                     </div>
 
+                    {/* Meta stats */}
                     <div className="hero__meta">
                         <div className="stat">
                             <div className="stat__num">{t("home.stats.years.num")}</div>
@@ -206,13 +198,14 @@ export default function Home() {
                         </div>
                     </div>
 
+                    {/* Quick contact */}
                     <div className="quick-contact">
                         <a
                             className="chip"
                             href="mailto:shellty@zohomail.eu"
                             aria-label={t("home.contact.emailAria")}
                         >
-                            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" className="chip-icon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" className="chip-icon">
                                 <path
                                     fill="currentColor"
                                     d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.236-6.928 4.334a2 2 0 0 1-2.144 0L4 8.236V6l8 5 8-5v2.236Z"
@@ -228,7 +221,7 @@ export default function Home() {
                             rel="noreferrer"
                             aria-label={t("home.contact.githubAria")}
                         >
-                            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" className="chip-icon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" className="chip-icon">
                                 <path
                                     fill="currentColor"
                                     d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.46-1.17-1.12-1.48-1.12-1.48-.92-.62.07-.6.07-.6 1.02.07 1.56 1.05 1.56 1.05 .91 1.56 2.39 1.11 2.97.85.09-.66.36-1.11.65-1.37-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 6.84c.85 0 1.7.11 2.5.32 1.9-1.29 2.74-1.02 2.74-1.02 .55 1.38.2 2.4.1 2.65.64.7 1.02 1.59 1.02 2.68 0 3.85-2.34 4.7-4.57 4.95.37.32.69.94.69 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.57.69.47A10 10 0 0 0 12 2Z"
@@ -237,18 +230,25 @@ export default function Home() {
                             <span>GitHub</span>
                         </a>
                     </div>
+
                 </div>
 
+                {/* PRAWA: visual */}
                 <div className="hero-visual">
                     <div className="visual-orb" aria-hidden="true" />
-                    <div className="visual-card glass">
+
+                    <div className="visual-card">
                         <div className={`logo-auto-glow${logoGlow ? ' is-glowing' : ''}`}>
-                            <LogoSVG />
+                            <div className="logo-container">
+                                <LogoSVG />
+                            </div>
                         </div>
+
                         <div className="visual-logo-text">
                             <span className="visual-logo-shell">Shell</span>
                             <span className="visual-logo-ty">ty</span>
                         </div>
+
                         <div className="visual-caption">
                             {t("home.caption")}
                         </div>

@@ -1,3 +1,4 @@
+// src/components/about/About.js
 import React, { useState, useEffect, useCallback } from "react";
 import { HashLink } from "react-router-hash-link";
 import "./About.css";
@@ -54,6 +55,7 @@ const DNA_STARS = [
     { id: 7, x: "88%", y: "38%" },
 ];
 
+/* ─── TraitItem ─── */
 const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
     const [hovered, setHovered] = useState(false);
     const [focused, setFocused] = useState(false);
@@ -94,7 +96,9 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
                 <span
                     role="tooltip"
                     id={tooltipId}
-                    className={`trait-item__tooltip${showTooltip ? " trait-item__tooltip--visible" : ""}`}
+                    className={`trait-item__tooltip${
+                        showTooltip ? " trait-item__tooltip--visible" : ""
+                    }`}
                 >
                     {t(`about.traits.${traitKey}.desc`)}
                 </span>
@@ -103,6 +107,7 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
     );
 };
 
+/* ─── TraitBottomSheet ─── */
 const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
     useEffect(() => {
         const onKey = (e) => { if (e.key === "Escape") onClose(); };
@@ -115,7 +120,11 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
     }, [onClose]);
 
     return (
-        <div className="trait-sheet-overlay" onClick={onClose} role="presentation">
+        <div
+            className="trait-sheet-overlay"
+            onClick={onClose}
+            role="presentation"
+        >
             <div
                 className="trait-sheet"
                 onClick={(e) => e.stopPropagation()}
@@ -127,19 +136,33 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                     className="trait-sheet__close"
                     onClick={onClose}
                     aria-label={t("about.traits.closeAria")}
-                />
+                >
+                    ×
+                </button>
                 <div className="trait-sheet__header">
-                    <img src={iconGlow} alt="" aria-hidden="true" className="trait-sheet__icon" width="32" height="32" />
-                    <span className="trait-sheet__name">{t(`about.traits.${traitKey}.name`)}</span>
+                    <img
+                        src={iconGlow}
+                        alt=""
+                        aria-hidden="true"
+                        className="trait-sheet__icon"
+                        width="32"
+                        height="32"
+                    />
+                    <span className="trait-sheet__name">
+                        {t(`about.traits.${traitKey}.name`)}
+                    </span>
                 </div>
-                <p className="trait-sheet__desc">{t(`about.traits.${traitKey}.desc`)}</p>
+                <p className="trait-sheet__desc">
+                    {t(`about.traits.${traitKey}.desc`)}
+                </p>
             </div>
         </div>
     );
 };
 
+/* ─── VideoCard ─── */
 const VideoCard = ({ vimeoId, t }) => {
-    const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying]       = useState(false);
     const [thumbError, setThumbError] = useState(false);
 
     useEffect(() => {
@@ -148,7 +171,7 @@ const VideoCard = ({ vimeoId, t }) => {
     }, [vimeoId]);
 
     return (
-        <div className="about__video-card animate-fade-in">
+        <div className="about__video-card">
             <div className="about__video-wrapper">
                 {!playing ? (
                     <button
@@ -167,11 +190,24 @@ const VideoCard = ({ vimeoId, t }) => {
                                 onError={() => setThumbError(true)}
                             />
                         )}
-                        <span className="about__video-play-icon" aria-hidden="true">
-                            <svg viewBox="0 0 68 48" width="68" height="48" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="rgba(12,192,255,.85)" />
-                                <path d="M45 24L27 14v20" fill="#fff" />
+                        {/* Play icon — pulsujący przycisk jak w redesignie */}
+                        <span
+                            className="about__video-play-icon"
+                            aria-hidden="true"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                width="24"
+                                height="24"
+                            >
+                                <path d="M8 5v14l11-7z" />
                             </svg>
+                        </span>
+
+                        {/* Label w stylu redesignu */}
+                        <span className="about__video-label">
+                            ▶ {t("about.video.iframeTitle")}
                         </span>
                     </button>
                 ) : (
@@ -188,11 +224,12 @@ const VideoCard = ({ vimeoId, t }) => {
     );
 };
 
+/* ─── About (główny komponent) ─── */
 const About = () => {
     const { t } = useTranslation();
     const vimeoId = t("about.video.vimeoId");
 
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile]           = useState(false);
     const [mobileSheetKey, setMobileSheetKey] = useState(null);
 
     useEffect(() => {
@@ -210,18 +247,21 @@ const About = () => {
         : null;
 
     const [titleHovered, setTitleHovered] = useState(false);
-    const { iconRef, iconPhase } = useIconPhase('dna--pulse');
+    const { iconRef, iconPhase } = useIconPhase("dna--pulse");
 
     return (
         <section id="about" className="about">
-            <span className="about__blob about__blob--a" />
-            <span className="about__blob about__blob--b" />
 
             <div className="about__container">
-                <header className="about__header animate-fade-in">
+
+                {/* ── Header sekcji ── */}
+                <header className="about__header">
+
+                    {/* Ikona sekcji — floating DNA (bez zmian) */}
                     <div
                         ref={iconRef}
                         className={`dna dna--${iconPhase}`}
+                        aria-hidden="true"
                     >
                         <div className="dna__stars" aria-hidden="true">
                             {DNA_STARS.map((s) => (
@@ -252,100 +292,231 @@ const About = () => {
                         />
                     </div>
 
+                    {/* Tytuł sekcji */}
                     <div
                         className="about__header-hover-area"
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h2 className={`about__title ${titleHovered ? "hovered" : ""}`}>
+                        <h2 className={`about__title${titleHovered ? " hovered" : ""}`}>
                             {t("about.title")}
                         </h2>
+                        <p className="about__kicker">
+                            {t("about.kicker", "O mnie")}
+                        </p>
                     </div>
+
                 </header>
 
+                {/* ── Grid ── */}
                 <div className="about__grid">
-                    <div className="about__text animate-slide-up">
-                        <p><Trans i18nKey="about.p1" components={{ strong: <strong /> }} /></p>
+
+                    {/* LEWA: tekst */}
+                    <div className="about__text">
+
+                        <p>
+                            <Trans
+                                i18nKey="about.p1"
+                                components={{ strong: <strong /> }}
+                            />
+                        </p>
 
                         <p className="about__video-invite">
                             🎬&ensp;{t("about.videoInvite")}
-                            <span className="about__video-dir--desktop">{t("about.videoInviteDirDesktop")}</span>
-                            <span className="about__video-dir--mobile">{t("about.videoInviteDirMobile")}</span>
+                            <span className="about__video-dir--desktop">
+                                {t("about.videoInviteDirDesktop")}
+                            </span>
+                            <span className="about__video-dir--mobile">
+                                {t("about.videoInviteDirMobile")}
+                            </span>
                         </p>
 
-                        <p className="about__subhead"><strong>{t("about.approachTitle")}</strong></p>
-                        <p><Trans i18nKey="about.approachIntro" /></p>
+                        <h3 className="about__subhead">
+                            <strong>{t("about.approachTitle")}</strong>
+                        </h3>
+                        <p>
+                            <Trans i18nKey="about.approachIntro" />
+                        </p>
 
                         <ul className="about__bullets">
-                            <li><Trans i18nKey="about.points.design" components={{ strong: <strong /> }} /></li>
-                            <li><Trans i18nKey="about.points.deploy" components={{ strong: <strong /> }} /></li>
-                            <li><Trans i18nKey="about.points.support" components={{ strong: <strong /> }} /></li>
+                            <li>
+                                <Trans
+                                    i18nKey="about.points.design"
+                                    components={{ strong: <strong /> }}
+                                />
+                            </li>
+                            <li>
+                                <Trans
+                                    i18nKey="about.points.deploy"
+                                    components={{ strong: <strong /> }}
+                                />
+                            </li>
+                            <li>
+                                <Trans
+                                    i18nKey="about.points.support"
+                                    components={{ strong: <strong /> }}
+                                />
+                            </li>
                         </ul>
 
-                        <p className="about__subhead"><strong>{t("about.growthTitle")}</strong></p>
-                        <p><Trans i18nKey="about.growth" /></p>
+                        <h3 className="about__subhead">
+                            <strong>{t("about.growthTitle")}</strong>
+                        </h3>
+                        <p>
+                            <Trans i18nKey="about.growth" />
+                        </p>
 
-                        <p className="about__subhead"><strong>{t("about.goalTitle")}</strong></p>
-                        <p><Trans i18nKey="about.goal" /></p>
+                        <h3 className="about__subhead">
+                            <strong>{t("about.goalTitle")}</strong>
+                        </h3>
+                        <p>
+                            <Trans i18nKey="about.goal" />
+                        </p>
 
+                        {/* Przyciski */}
                         <div className="about__actions">
-                            <HashLink smooth to="/portfolio#portfolio" className="btn btn--outline">
-                                <GlowIcon src={portfolioIcon} srcGlow={portfolioGlow} alt="" size={42} className="btn-glow-icon" />
+                            <HashLink
+                                smooth
+                                to="/portfolio#portfolio"
+                                className="btn btn--primary"
+                            >
+                                <GlowIcon
+                                    src={portfolioIcon}
+                                    srcGlow={portfolioGlow}
+                                    alt=""
+                                    size={42}
+                                    className="btn-glow-icon"
+                                />
                                 {t("nav.portfolio")}
                             </HashLink>
-                            <HashLink smooth to="/contact#contact" className="btn btn--outline btn--contact">
-                                <GlowIcon src={contactIcon} srcGlow={contactGlow} alt="" size={42} className="btn-glow-icon btn-glow-icon--contact" />
+
+                            <HashLink
+                                smooth
+                                to="/contact#contact"
+                                className="btn btn--outline btn--contact"
+                            >
+                                <GlowIcon
+                                    src={contactIcon}
+                                    srcGlow={contactGlow}
+                                    alt=""
+                                    size={42}
+                                    className="btn-glow-icon btn-glow-icon--contact"
+                                />
                                 {t("about.ctaContact")}
                             </HashLink>
                         </div>
 
-                        <div className="about__social">
-                            <a href="mailto:crispy.it.office@gmail.com" aria-label={t("about.social.emailAria")} target="_blank" rel="noopener noreferrer"><FaEnvelope /></a>
-                            <a href="https://github.com/shellty-IT" aria-label={t("about.social.githubAria")} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-                            <a href="https://www.linkedin.com/in/tomasz-skorupski-a078ba389" aria-label={t("about.social.linkedinAria")} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+                        {/* Social */}
+                        <div className="about__social" aria-label="Social">
+                            <a
+                                href="mailto:crispy.it.office@gmail.com"
+                                aria-label={t("about.social.emailAria")}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaEnvelope />
+                            </a>
+                            <a
+                                href="https://github.com/shellty-IT"
+                                aria-label={t("about.social.githubAria")}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaGithub />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/tomasz-skorupski-a078ba389"
+                                aria-label={t("about.social.linkedinAria")}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaLinkedin />
+                            </a>
                         </div>
+
                     </div>
 
-                    <div className="about__sidebar">
+                    {/* PRAWA: sidebar */}
+                    <aside className="about__sidebar">
+
+                        {/* Wideo */}
                         <VideoCard vimeoId={vimeoId} t={t} />
 
-                        <aside className="about__card animate-fade-in delay-1s">
+                        {/* Karta faktów */}
+                        <div className="about__card">
+
+                            {/* Fakty */}
                             <div className="about__fact">
-                                <FaMapMarkerAlt />
-                                <div><h4>{t("about.facts.locationTitle")}</h4><p>{t("about.facts.locationValue")}</p></div>
-                            </div>
-                            <div className="about__fact">
-                                <FaBriefcase />
-                                <div><h4>{t("about.facts.statusTitle")}</h4><p>{t("about.facts.statusValue")}</p></div>
-                            </div>
-                            <div className="about__fact">
-                                <FaLanguage />
-                                <div><h4>{t("about.facts.languagesTitle")}</h4><p>{t("about.facts.languagesValue")}</p></div>
-                            </div>
-                            <div className="about__fact">
-                                <FaGraduationCap />
+                                <span className="ic">
+                                    <FaMapMarkerAlt />
+                                </span>
                                 <div>
-                                    <h4>{t("about.facts.educationTitle")}</h4>
-                                    <p><a href={t("about.facts.educationUrl")} target="_blank" rel="noopener noreferrer">{t("about.facts.educationValue")}</a></p>
+                                    <h4>{t("about.facts.locationTitle")}</h4>
+                                    <p>{t("about.facts.locationValue")}</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="about__fact">
+                                <span className="ic">
+                                    <FaBriefcase />
+                                </span>
+                                <div>
+                                    <h4>{t("about.facts.statusTitle")}</h4>
+                                    <p>{t("about.facts.statusValue")}</p>
+                                </div>
+                            </div>
+
+                            <div className="about__fact">
+                                <span className="ic">
+                                    <FaLanguage />
+                                </span>
+                                <div>
+                                    <h4>{t("about.facts.languagesTitle")}</h4>
+                                    <p>{t("about.facts.languagesValue")}</p>
+                                </div>
+                            </div>
+
+                            <div className="about__fact">
+                                <span className="ic">
+                                    <FaGraduationCap />
+                                </span>
+                                <div>
+                                    <h4>{t("about.facts.educationTitle")}</h4>
+                                    <p>
+                                        <a
+                                            href={t("about.facts.educationUrl")}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {t("about.facts.educationValue")}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Certyfikaty */}
+                            <div className="about__certs-block">
                                 <h4>{t("about.facts.certsTitle")}</h4>
                                 <ul className="certs-list">
-                                    <li><a href={t("about.facts.cert1Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert1Name")}</a></li>
-                                    <li><a href={t("about.facts.cert2Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert2Name")}</a></li>
-                                    <li><a href={t("about.facts.cert3Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert3Name")}</a></li>
-                                    <li><a href={t("about.facts.cert4Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert4Name")}</a></li>
-                                    <li><a href={t("about.facts.cert5Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert5Name")}</a></li>
-                                    <li><a href={t("about.facts.cert6Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert6Name")}</a></li>
-                                    <li><a href={t("about.facts.cert7Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert7Name")}</a></li>
-                                    <li><a href={t("about.facts.cert8Url")} target="_blank" rel="noopener noreferrer">{t("about.facts.cert8Name")}</a></li>
+                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                                        <li key={n}>
+                                            <a
+                                                href={t(`about.facts.cert${n}Url`)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                {t(`about.facts.cert${n}Name`)}
+                                            </a>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
 
+                            {/* Cechy */}
                             <div className="about__traits-block">
-                                <h4 className="about__traits-title">{t("about.softSkillsTitle")}</h4>
+                                <h4 className="about__traits-title">
+                                    {t("about.softSkillsTitle")}
+                                </h4>
                                 <div className="traits-grid">
                                     {TRAITS_DATA.map((trait) => (
                                         <TraitItem
@@ -360,11 +531,19 @@ const About = () => {
                                     ))}
                                 </div>
                             </div>
-                        </aside>
-                    </div>
-                </div>
-            </div>
 
+                        </div>
+                        {/* /about__card */}
+
+                    </aside>
+
+                </div>
+                {/* /about__grid */}
+
+            </div>
+            {/* /about__container */}
+
+            {/* Mobile bottom sheet */}
             {isMobile && activeSheetTrait && (
                 <TraitBottomSheet
                     traitKey={activeSheetTrait.key}
@@ -373,6 +552,7 @@ const About = () => {
                     t={t}
                 />
             )}
+
         </section>
     );
 };

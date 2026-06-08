@@ -57,7 +57,6 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setTouched({ name: true, email: true, message: true });
 
         if (Object.keys(errors).length) {
@@ -93,150 +92,218 @@ export default function Contact() {
 
     return (
         <>
-        <section className="contact-section" id="contact">
-            <header className="contact-header">
-                <div
-                    ref={iconRef}
-                    className={`ct-icon ct-icon--${iconPhase}`}
-                >
-                    <div className="ct-icon__nodes" aria-hidden="true">
-                        {ICON_NODES.map((n) => (
-                            <span
-                                key={n.id}
-                                className="ct-icon__node"
-                                style={{ left: n.x, top: n.y }}
-                            />
-                        ))}
-                    </div>
-                    <img
-                        src={contactIcon}
-                        alt=""
-                        aria-hidden="true"
-                        className="ct-icon__img ct-icon__img--base"
-                        draggable="false"
-                        width="280"
-                        height="280"
-                    />
-                    <img
-                        src={contactGlow}
-                        alt=""
-                        aria-hidden="true"
-                        className="ct-icon__img ct-icon__img--lit"
-                        draggable="false"
-                        width="280"
-                        height="280"
-                    />
-                </div>
+            <section className="contact-section" id="contact">
 
-                <div
-                    className="contact-header-hover-area"
-                    onMouseEnter={() => setTitleHovered(true)}
-                    onMouseLeave={() => setTitleHovered(false)}
-                >
-                    <h2 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
-                        {t("contact.title")}
-                    </h2>
-                </div>
-                <p className="contact-subtitle">{t("contact.subtitle")}</p>
-            </header>
-
-            <div className="contact-card">
-                <form ref={formRef} className="contact-form" onSubmit={handleSubmit} noValidate>
-                    <label className={fieldClass("name")}>
-                        {t("contact.fields.name")}
-                        <input
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            placeholder={t("contact.fields.phName")}
-                            aria-invalid={touched.name && !!errors.name}
-                            aria-describedby="err-name"
-                        />
-                        {touched.name && errors.name && (
-                            <span id="err-name" className="error-text" role="alert">
-                                {errors.name}
-                            </span>
-                        )}
-                    </label>
-
-                    <label className={fieldClass("email")}>
-                        {t("contact.fields.email")}
-                        <input
-                            name="email"
-                            type="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            placeholder={t("contact.fields.phEmail")}
-                            aria-invalid={touched.email && !!errors.email}
-                            aria-describedby="err-email"
-                        />
-                        {touched.email && errors.email && (
-                            <span id="err-email" className="error-text" role="alert">
-                                {errors.email}
-                            </span>
-                        )}
-                    </label>
-
-                    <label className={fieldClass("message")}>
-                        {t("contact.fields.message")}
-                        <textarea
-                            name="message"
-                            rows="6"
-                            value={form.message}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            placeholder={t("contact.fields.phMessage")}
-                            aria-invalid={touched.message && !!errors.message}
-                            aria-describedby="err-message"
-                        />
-                        {touched.message && errors.message && (
-                            <span id="err-message" className="error-text" role="alert">
-                                {errors.message}
-                            </span>
-                        )}
-                    </label>
-
-                    <button type="submit" disabled={status.loading}>
-                        {status.loading ? t("contact.buttons.sending") : t("contact.buttons.send")}
-                    </button>
-
-                    <p className="privacy-note">
-                        {t("contact.privacyNote.text")}{" "}
-                        <button
-                            type="button"
-                            className="privacy-note__link"
-                            onClick={() => setShowPrivacy(true)}
-                        >
-                            {t("contact.privacyNote.link")}
-                        </button>
-                        .
-                    </p>
-                </form>
-
-                {status.text && (
+                {/* Header */}
+                <header className="contact-header">
                     <div
-                        className={`form-status ${status.ok ? "ok" : "error"}`}
-                        role="status"
-                        aria-live="polite"
+                        ref={iconRef}
+                        className={`ct-icon ct-icon--${iconPhase}`}
                     >
-                        {status.text}
+                        <div className="ct-icon__nodes" aria-hidden="true">
+                            {ICON_NODES.map((n) => (
+                                <span
+                                    key={n.id}
+                                    className="ct-icon__node"
+                                    style={{ left: n.x, top: n.y }}
+                                />
+                            ))}
+                        </div>
+                        <img
+                            src={contactIcon}
+                            alt=""
+                            aria-hidden="true"
+                            className="ct-icon__img ct-icon__img--base"
+                            draggable="false"
+                            width="160"
+                            height="160"
+                        />
+                        <img
+                            src={contactGlow}
+                            alt=""
+                            aria-hidden="true"
+                            className="ct-icon__img ct-icon__img--lit"
+                            draggable="false"
+                            width="160"
+                            height="160"
+                        />
                     </div>
-                )}
 
-                <hr className="or-divider" />
+                    <div
+                        className="contact-header-hover-area"
+                        onMouseEnter={() => setTitleHovered(true)}
+                        onMouseLeave={() => setTitleHovered(false)}
+                    >
+                        <h2 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
+                            {t("contact.title")}
+                        </h2>
+                    </div>
 
-                <div className="direct-email-container">
-                    <p>{t("contact.or")}</p>
-                    <a href="mailto:shellty@zohomail.eu">shellty@zohomail.eu</a>
+                    <p className="contact-subtitle">{t("contact.subtitle")}</p>
+                </header>
+
+                {/* Intro */}
+                <p className="contact-intro">
+                    {t("contact.intro")}
+                </p>
+
+                {/* Grid: formularz + sidebar */}
+                <div className="contact-grid">
+
+                    {/* Formularz */}
+                    <div className="contact-card">
+                        <form ref={formRef} className="contact-form" onSubmit={handleSubmit} noValidate>
+
+                            <label className={fieldClass("name")}>
+                                <span className="field-label">{t("contact.fields.name")}</span>
+                                <input
+                                    name="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    placeholder={`// ${t("contact.fields.phName")}`}
+                                    aria-invalid={touched.name && !!errors.name}
+                                    aria-describedby="err-name"
+                                />
+                                {touched.name && errors.name && (
+                                    <span id="err-name" className="error-text" role="alert">
+                                    {errors.name}
+                                </span>
+                                )}
+                            </label>
+
+                            <label className={fieldClass("email")}>
+                                <span className="field-label">{t("contact.fields.email")}</span>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    value={form.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    placeholder={`// ${t("contact.fields.phEmail")}`}
+                                    aria-invalid={touched.email && !!errors.email}
+                                    aria-describedby="err-email"
+                                />
+                                {touched.email && errors.email && (
+                                    <span id="err-email" className="error-text" role="alert">
+                                    {errors.email}
+                                </span>
+                                )}
+                            </label>
+
+                            <label className={fieldClass("message")}>
+                                <span className="field-label">{t("contact.fields.message")}</span>
+                                <textarea
+                                    name="message"
+                                    rows="6"
+                                    value={form.message}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    placeholder={`// ${t("contact.fields.phMessage")}`}
+                                    aria-invalid={touched.message && !!errors.message}
+                                    aria-describedby="err-message"
+                                />
+                                {touched.message && errors.message && (
+                                    <span id="err-message" className="error-text" role="alert">
+                                    {errors.message}
+                                </span>
+                                )}
+                            </label>
+
+                            <div className="contact-send">
+                                <button type="submit" disabled={status.loading}>
+                                    <i className="fa-solid fa-paper-plane" />
+                                    {status.loading
+                                        ? t("contact.buttons.sending")
+                                        : t("contact.buttons.send")}
+                                </button>
+
+                                <p className="privacy-note">
+                                    {t("contact.privacyNote.text")}{" "}
+                                    <button
+                                        type="button"
+                                        className="privacy-note__link"
+                                        onClick={() => setShowPrivacy(true)}
+                                    >
+                                        {t("contact.privacyNote.link")}
+                                    </button>
+                                    .
+                                </p>
+                            </div>
+
+                        </form>
+
+                        {status.text && (
+                            <div
+                                className={`form-status ${status.ok ? "ok" : "error"}`}
+                                role="status"
+                                aria-live="polite"
+                            >
+                                {status.text}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Sidebar - kanały kontaktu */}
+                    <aside className="contact-side">
+
+                        <a
+                            href="mailto:shellty@zohomail.eu"
+                            className="ct-channel"
+                        >
+                            <span className="corner tl" />
+                            <span className="corner br" />
+                            <span className="ct-channel__icon">
+                            <i className="fa-solid fa-envelope" />
+                        </span>
+                            <div className="ct-channel__body">
+                                <h4>{t("contact.or")}</h4>
+                                <span className="ct-channel__value">shellty@zohomail.eu</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://github.com/Shellty-IT"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="ct-channel"
+                        >
+                            <span className="corner tl" />
+                            <span className="corner br" />
+                            <span className="ct-channel__icon">
+                            <i className="fa-brands fa-github" />
+                        </span>
+                            <div className="ct-channel__body">
+                                <h4>GitHub</h4>
+                                <span className="ct-channel__value">github.com/Shellty-IT</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/tomasz-skorupski-a078ba389"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="ct-channel"
+                        >
+                            <span className="corner tl" />
+                            <span className="corner br" />
+                            <span className="ct-channel__icon">
+                            <i className="fa-brands fa-linkedin" />
+                        </span>
+                            <div className="ct-channel__body">
+                                <h4>LinkedIn</h4>
+                                <span className="ct-channel__value">linkedin.com/in/tomasz-skorupski</span>
+                            </div>
+                        </a>
+
+                    </aside>
                 </div>
-            </div>
-        </section>
 
-        {showPrivacy && (
-            <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />
-        )}
+            </section>
+
+            {showPrivacy && (
+                <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />
+            )}
         </>
     );
 }

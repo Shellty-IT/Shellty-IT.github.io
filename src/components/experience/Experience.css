@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+/* src/components/experience/Experience.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── Layout sekcji ─── */
 .exp {
     --section-padding-top: 110px;
 
@@ -15,6 +18,7 @@
     margin: 0 auto;
 }
 
+/* ─── Header ─── */
 .exp__header {
     text-align: center;
     margin-bottom: 32px;
@@ -33,37 +37,52 @@
 }
 
 .exp__title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(20px, 3.5vw, 36px);
-    line-height: 1.2;
-    font-weight: 700;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: .06em;
     background: linear-gradient(135deg, #0cc0ff, #0062b0);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin: 0;
-    transition: filter 0.35s ease;
+    margin: 8px 0 0;
+    transition: filter 0.3s ease;
 }
 
 .exp__title.hovered {
-    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+    filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.55));
 }
 
 .exp__kicker {
+    margin-top: 10px;
     color: #94a3b8;
-    margin-top: 8px;
-    font-size: 1.05rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
+.exp__kicker::before,
+.exp__kicker::after {
+    content: "";
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* ─── Ikona ─── */
 .exp-icon {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin-bottom: -20px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: -2px;
     cursor: pointer;
-    will-change: auto;
-    animation: iconFloat 3s ease-in-out infinite;
+    will-change: transform;
+    animation: iconFloat 4.5s ease-in-out infinite;
 }
 
 .exp-icon__nodes {
@@ -90,6 +109,7 @@
     height: 100%;
     object-fit: contain;
     will-change: opacity;
+    filter: drop-shadow(0 0 22px rgba(12, 192, 255, 0.35));
 }
 
 .exp-icon__img--base {
@@ -104,6 +124,7 @@
     z-index: 3;
 }
 
+/* Fazy ikony */
 .exp-icon--hidden .exp-icon__node,
 .exp-icon--hidden .exp-icon__img--base,
 .exp-icon--hidden .exp-icon__img--lit {
@@ -125,22 +146,10 @@
 .exp-icon--nodes .exp-icon__node:nth-child(9) { animation-delay: 0.56s; }
 
 @keyframes expNodeActivate {
-    0% {
-        opacity: 0;
-        transform: scale(0.2);
-    }
-    40% {
-        opacity: 1;
-        transform: scale(1.4);
-    }
-    70% {
-        opacity: 0.7;
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 0.85;
-        transform: scale(1);
-    }
+    0%   { opacity: 0; transform: scale(0.2); }
+    40%  { opacity: 1; transform: scale(1.4); }
+    70%  { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0.85; transform: scale(1); }
 }
 
 .exp-icon--forming .exp-icon__node {
@@ -157,14 +166,8 @@
 }
 
 @keyframes expNodeFade {
-    0% {
-        opacity: 0.85;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.2);
-    }
+    0%   { opacity: 0.85; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.2); }
 }
 
 .exp-icon--visible .exp-icon__img--base {
@@ -213,14 +216,11 @@
 }
 
 @keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-8px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
 }
 
+/* ─── Timeline ─── */
 .exp__timeline {
     list-style: none;
     margin: 32px 0 0;
@@ -231,54 +231,113 @@
 .exp__timeline::before {
     content: "";
     position: absolute;
-    left: 18px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, rgba(12, 192, 255, 0.5) 0%, rgba(12, 192, 255, 0.2) 50%, rgba(255, 255, 255, 0.08) 100%);
-    border-radius: 999px;
+    left: 22px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(
+            180deg,
+            rgba(12, 192, 255, 0.55) 0%,
+            rgba(12, 192, 255, 0.2) 60%,
+            transparent 100%
+    );
 }
 
 .exp__item {
     position: relative;
-    padding-left: 56px;
-    margin-bottom: 24px;
+    padding-left: 60px;
+    margin-bottom: 18px;
 }
 
+/* Pin na timeline */
 .exp__pin {
     position: absolute;
-    left: 11px;
-    top: 24px;
+    left: 14px;
+    top: 26px;
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: #0cc0ff;
-    box-shadow: 0 0 0 4px #0d1520, 0 0 0 6px rgba(12, 192, 255, 0.2), 0 4px 12px rgba(12, 192, 255, 0.35);
+    background: #070b14;
+    border: 2px solid #0cc0ff;
+    box-shadow:
+            0 0 0 4px rgba(7, 11, 20, 1),
+            0 0 0 5px rgba(12, 192, 255, 0.2),
+            0 0 18px rgba(12, 192, 255, 0.45);
 }
 
+.exp__pin::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #0cc0ff;
+}
+
+/* ─── Karta ─── */
 .exp__card {
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 18px 20px 16px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.2);
-    transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    padding: 18px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.035);
+    border-radius: 14px;
+    position: relative;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .exp__card:hover {
+    border-color: rgba(12, 192, 255, 0.28);
+    background: rgba(12, 192, 255, 0.04);
     transform: translateY(-2px);
-    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.25);
-    border-color: rgba(12, 192, 255, 0.2);
 }
 
+/* Corner brackets */
+.exp__card .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #0cc0ff;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.exp__card .corner.tl {
+    top: 10px; left: 10px;
+    border-right: none; border-bottom: none;
+    transform: translate(-4px, -4px);
+}
+
+.exp__card .corner.br {
+    bottom: 10px; right: 10px;
+    border-left: none; border-top: none;
+    transform: translate(4px, 4px);
+}
+
+.exp__card:hover .corner {
+    opacity: 0.8;
+    transform: translate(0, 0);
+}
+
+/* Lewa krawędź akcentowa */
+.exp__card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 2px;
+    background: linear-gradient(180deg, #0cc0ff, transparent 80%);
+    opacity: 0.55;
+    border-radius: 999px;
+}
+
+/* ─── Nagłówek karty ─── */
 .exp__top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 14px;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
 }
 
 .exp__where {
@@ -286,45 +345,59 @@
     align-items: center;
     gap: 10px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 15.5px;
     color: #f1f5f9;
+}
+
+.exp__where svg {
+    color: #0cc0ff;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+/* Nazwa firmy w akcencie */
+.exp__where b {
+    color: #0cc0ff;
 }
 
 .exp__meta {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
-    color: #94a3b8;
-    font-size: 0.9rem;
 }
 
+/* Chip meta (data, lokalizacja) */
 .exp__meta-item {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 4px 10px;
-    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.035);
+    color: #94a3b8;
+    font-size: 12.5px;
 }
 
 .exp__meta-item svg {
-    font-size: 0.85rem;
     color: #0cc0ff;
+    font-size: 11px;
 }
 
+/* ─── Bullet points ─── */
 .exp__bullets {
-    margin: 12px 0 16px 20px;
-    color: #f1f5f9;
-    padding-left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 14px;
 }
 
 .exp__bullets li {
-    margin: 10px 0;
-    line-height: 1.6;
     position: relative;
     padding-left: 18px;
-    list-style: none;
+    margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #e2e8f0;
 }
 
 .exp__bullets li::before {
@@ -332,9 +405,10 @@
     position: absolute;
     left: 0;
     color: #0cc0ff;
-    font-size: 0.9rem;
+    font-size: 13px;
 }
 
+/* ─── Tagi ─── */
 .exp__tags {
     display: flex;
     flex-wrap: wrap;
@@ -342,35 +416,43 @@
 }
 
 .exp__tags .tag {
-    padding: 6px 12px;
-    border-radius: 10px;
-    background-color: rgba(12, 192, 255, 0.08);
-    border: 1px solid rgba(12, 192, 255, 0.15);
-    color: #f1f5f9;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.035);
+    color: #94a3b8;
     font-size: 12px;
     font-weight: 500;
-    transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.exp__tags .tag svg {
+    color: #0cc0ff;
+    font-size: 11px;
 }
 
 .exp__tags .tag:hover {
-    transform: translateY(-1px);
-    background-color: rgba(12, 192, 255, 0.12);
-    border-color: rgba(12, 192, 255, 0.3);
+    color: #f1f5f9;
+    border-color: rgba(12, 192, 255, 0.4);
+    background: rgba(12, 192, 255, 0.06);
 }
 
 #experience {
     scroll-margin-top: 80px;
 }
 
+/* ─── Responsive ─── */
 @media (max-width: 800px) {
     .exp {
         --section-padding-top: 80px;
     }
 
     .exp-icon {
-        width: 170px;
-        height: 170px;
-        margin-bottom: -40px;
+        width: 130px;
+        height: 130px;
     }
 }
 
@@ -380,9 +462,8 @@
     }
 
     .exp-icon {
-        width: 140px;
-        height: 140px;
-        margin-bottom: -15px;
+        width: 110px;
+        height: 110px;
     }
 
     .exp__item {
@@ -405,7 +486,7 @@
     }
 
     .exp__header {
-        margin-bottom: -10px;
+        margin-bottom: 0;
     }
 }
 
@@ -415,9 +496,8 @@
     }
 
     .exp-icon {
-        width: 120px;
-        height: 120px;
-        margin-bottom: -50px;
+        width: 90px;
+        height: 90px;
     }
 
     .exp__card {
@@ -425,11 +505,11 @@
     }
 
     .exp__where {
-        font-size: 1rem;
+        font-size: 14px;
     }
 
-    .exp__meta {
-        font-size: 0.8rem;
+    .exp__meta-item {
+        font-size: 11px;
     }
 }
 
@@ -445,15 +525,7 @@
         transition: opacity 0.01s !important;
     }
 
-    .exp-icon--visible .exp-icon__img--base {
-        opacity: 1;
-    }
-
-    .exp-icon--visible:hover .exp-icon__img--lit {
-        opacity: 0.85;
-    }
-
-    .exp-icon--visible:hover .exp-icon__img--base {
-        opacity: 0.25;
-    }
+    .exp-icon--visible .exp-icon__img--base { opacity: 1; }
+    .exp-icon--visible:hover .exp-icon__img--lit { opacity: 0.85; }
+    .exp-icon--visible:hover .exp-icon__img--base { opacity: 0.25; }
 }

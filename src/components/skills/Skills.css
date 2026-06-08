@@ -1,7 +1,8 @@
 /* src/components/skills/Skills.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* ─── Layout sekcji ─── */
 .skills {
     position: relative;
     padding: clamp(64px, 8vh, 96px) 20px;
@@ -15,6 +16,7 @@
     margin: 0 auto;
 }
 
+/* ─── Header ─── */
 .skills__header {
     text-align: center;
     margin-bottom: 28px;
@@ -33,33 +35,32 @@
 }
 
 .skills__title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(20px, 3.5vw, 36px);
-    line-height: 1.2;
-    font-weight: 700;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: .06em;
     background: linear-gradient(135deg, #0cc0ff, #0062b0);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin: 0;
-    transition: filter 0.35s ease;
+    margin: 8px 0 0;
+    transition: filter 0.3s ease;
 }
 
 .skills__title.hovered {
-    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+    filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.55));
 }
 
-/* ── Ikona sekcji ─────────────────────────────────────────────────────────── */
-
+/* ─── Ikona sekcji ─── */
 .sk-icon-wrap {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin-bottom: -10px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: -2px;
     cursor: pointer;
-    will-change: auto;
-    animation: iconFloat 3s ease-in-out infinite;
+    will-change: transform;
+    animation: iconFloat 4.5s ease-in-out infinite;
 }
 
 .sk-icon-wrap__nodes {
@@ -86,6 +87,7 @@
     height: 100%;
     object-fit: contain;
     will-change: opacity;
+    filter: drop-shadow(0 0 22px rgba(12, 192, 255, 0.35));
 }
 
 .sk-icon-wrap__img--base {
@@ -100,6 +102,7 @@
     z-index: 3;
 }
 
+/* Fazy ikony */
 .sk-icon-wrap--hidden .sk-icon-wrap__node,
 .sk-icon-wrap--hidden .sk-icon-wrap__img--base,
 .sk-icon-wrap--hidden .sk-icon-wrap__img--lit {
@@ -121,22 +124,10 @@
 .sk-icon-wrap--nodes .sk-icon-wrap__node:nth-child(9) { animation-delay: 0.56s; }
 
 @keyframes skNodeActivate {
-    0% {
-        opacity: 0;
-        transform: scale(0.2);
-    }
-    40% {
-        opacity: 1;
-        transform: scale(1.4);
-    }
-    70% {
-        opacity: 0.7;
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 0.85;
-        transform: scale(1);
-    }
+    0%   { opacity: 0; transform: scale(0.2); }
+    40%  { opacity: 1; transform: scale(1.4); }
+    70%  { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0.85; transform: scale(1); }
 }
 
 .sk-icon-wrap--forming .sk-icon-wrap__node {
@@ -153,14 +144,8 @@
 }
 
 @keyframes skNodeFade {
-    0% {
-        opacity: 0.85;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.2);
-    }
+    0%   { opacity: 0.85; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.2); }
 }
 
 .sk-icon-wrap--visible .sk-icon-wrap__img--base {
@@ -209,43 +194,287 @@
 }
 
 @keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-8px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
 }
 
-/* ── Grupy i siatka ───────────────────────────────────────────────────────── */
-
+/* ─── Grupy ─── */
 .sk-group {
-    margin-top: 32px;
+    margin-top: 44px;
+}
+
+/* Nagłówek grupy: "01 / Kluczowe kompetencje ─────── 09" */
+.sk-group__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.sk-group__num {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: #0cc0ff;
+    opacity: .75;
+    letter-spacing: .18em;
 }
 
 .sk-group__title {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #0cc0ff;
-    margin: 0 0 16px;
+    font-family: 'Inter', system-ui, sans-serif;
     font-weight: 700;
-    opacity: 0.9;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    color: #0cc0ff;
+    margin: 0;
 }
 
-.sk-grid {
+.sk-group__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(12, 192, 255, 0.35), transparent 80%);
+}
+
+.sk-group__count {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #64748b;
+    letter-spacing: .12em;
+}
+
+/* ─── Siatka Tier 1 (core) ─── */
+.sk-grid--core {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    align-items: stretch;
 }
 
-@media (max-width: 920px) {
-    .sk-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+@media (max-width: 920px) { .sk-grid--core { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .sk-grid--core { grid-template-columns: 1fr; } }
+
+/* Karta core */
+.sk-core {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: linear-gradient(180deg, rgba(12, 192, 255, 0.04), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .3s ease, background .25s ease;
+    overflow: hidden;
 }
 
+/* Lewa krawędź akcentowa */
+.sk-core::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: linear-gradient(180deg, #0cc0ff, transparent 70%);
+    opacity: .55;
+}
+
+.sk-core:hover {
+    transform: translateY(-3px);
+    border-color: rgba(12, 192, 255, 0.28);
+    background: linear-gradient(180deg, rgba(12, 192, 255, 0.06), rgba(255, 255, 255, 0.025));
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .35), 0 0 0 1px rgba(12, 192, 255, .10) inset;
+}
+
+/* Corner brackets */
+.sk-core .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #0cc0ff;
+    opacity: 0;
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+}
+
+.sk-core .corner.tl {
+    top: 8px; left: 8px;
+    border-right: none; border-bottom: none;
+    transform: translate(-4px, -4px);
+}
+
+.sk-core .corner.br {
+    bottom: 8px; right: 8px;
+    border-left: none; border-top: none;
+    transform: translate(4px, 4px);
+}
+
+.sk-core:hover .corner {
+    opacity: .8;
+    transform: translate(0, 0);
+}
+
+/* Ikona w kółku */
+.sk-core__icon {
+    flex: 0 0 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: radial-gradient(circle at 30% 30%, rgba(12, 192, 255, 0.18), rgba(12, 192, 255, 0.04) 70%);
+    border: 1px solid rgba(12, 192, 255, 0.18);
+    color: #0cc0ff;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.sk-core__icon .sk-icon--twin {
+    color: #ffd56a;
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.sk-core__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.sk-core__name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #f1f5f9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sk-core__meta {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: .22em;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+/* ─── Siatka Tier 2 (solid) ─── */
+.sk-grid--solid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 920px) { .sk-grid--solid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .sk-grid--solid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .sk-grid--solid { grid-template-columns: 1fr; } }
+
+/* Karta solid */
+.sk-solid {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.sk-solid:hover {
+    transform: translateY(-2px);
+    border-color: rgba(12, 192, 255, 0.22);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sk-solid__icon {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    color: #0cc0ff;
+}
+
+.sk-solid__name {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #f1f5f9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ─── Tier 3 tag cloud ─── */
+.sk-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sk-tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 28px;
+    border-radius: 999px;
+    border: 1px dashed rgba(12, 192, 255, 0.28);
+    background: rgba(12, 192, 255, 0.04);
+    color: #94a3b8;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.sk-tag:hover {
+    color: #f1f5f9;
+    border-color: rgba(12, 192, 255, 0.55);
+    background: rgba(12, 192, 255, 0.07);
+}
+
+/* Pulsujący dot po lewej */
+.sk-tag::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    animation: pulseDot 2.2s ease-out infinite;
+}
+
+@keyframes pulseDot {
+    0%  { box-shadow: 0 0 0 0   rgba(12, 192, 255, .55); }
+    70% { box-shadow: 0 0 0 6px rgba(12, 192, 255, 0);   }
+    100%{ box-shadow: 0 0 0 0   rgba(12, 192, 255, 0);   }
+}
+
+.sk-tag__icon {
+    font-size: 15px;
+    color: #0cc0ff;
+    flex-shrink: 0;
+}
+
+.sk-tag__icon--mini {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.sk-tag__name {
+    line-height: 1;
+}
+
+/* ─── Scroll margin ─── */
+#skills {
+    scroll-margin-top: 80px;
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 720px) {
     .skills {
         padding-top: 30px;
@@ -256,138 +485,19 @@
     }
 
     .sk-icon-wrap {
-        width: 160px;
-        height: 160px;
-        margin-bottom: -5px;
-    }
-}
-
-@media (max-width: 620px) {
-    .sk-grid {
-        grid-template-columns: 1fr;
+        width: 130px;
+        height: 130px;
     }
 }
 
 @media (max-width: 480px) {
     .sk-icon-wrap {
-        width: 140px;
-        height: 140px;
+        width: 110px;
+        height: 110px;
     }
 }
 
-/* ── Karta umiejętności ───────────────────────────────────────────────────── */
-
-.sk-item {
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    padding: 14px 16px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.sk-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
-    border-color: rgba(12, 192, 255, 0.2);
-}
-
-.sk-head {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 12px;
-}
-
-.sk-icons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.sk-icon {
-    font-size: 22px;
-    color: #0cc0ff;
-}
-
-.sk-icon--twin {
-    color: #ffd56a;
-}
-
-.sk-icon--mini {
-    font-size: 16px;
-    opacity: 0.75;
-}
-
-.sk-title {
-    font-weight: 600;
-    color: #f1f5f9;
-    font-size: 0.95rem;
-    flex: 1;
-}
-
-/* ── Chmura tagów (poziom "Aktywnie rozwijam") ────────────────────────────── */
-
-.sk-tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.sk-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.04);
-    color: #94a3b8;
-    font-size: 0.88rem;
-    font-weight: 500;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
-    text-decoration: none;
-}
-
-.sk-tag:hover {
-    border-color: rgba(12, 192, 255, 0.25);
-    color: #cbd5e1;
-    background-color: rgba(12, 192, 255, 0.05);
-}
-
-.sk-tag__icon {
-    font-size: 15px;
-    color: #64748b;
-    flex-shrink: 0;
-    transition: color 0.2s ease;
-}
-
-.sk-tag:hover .sk-tag__icon {
-    color: #0cc0ff;
-}
-
-.sk-tag__icon--mini {
-    font-size: 12px;
-}
-
-.sk-tag__name {
-    line-height: 1;
-}
-
-/* ── Scroll margin ────────────────────────────────────────────────────────── */
-
-#skills {
-    scroll-margin-top: 80px;
-}
-
-/* ── Reduced motion ───────────────────────────────────────────────────────── */
-
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
     .sk-icon-wrap {
         animation: none !important;
@@ -400,15 +510,11 @@
         transition: opacity 0.01s !important;
     }
 
-    .sk-icon-wrap--visible .sk-icon-wrap__img--base {
-        opacity: 1;
-    }
+    .sk-icon-wrap--visible .sk-icon-wrap__img--base { opacity: 1; }
+    .sk-icon-wrap--visible:hover .sk-icon-wrap__img--lit { opacity: 0.85; }
+    .sk-icon-wrap--visible:hover .sk-icon-wrap__img--base { opacity: 0.25; }
 
-    .sk-icon-wrap--visible:hover .sk-icon-wrap__img--lit {
-        opacity: 0.85;
-    }
-
-    .sk-icon-wrap--visible:hover .sk-icon-wrap__img--base {
-        opacity: 0.25;
+    .sk-tag::before {
+        animation: none !important;
     }
 }

@@ -1,3 +1,4 @@
+// src/components/experience/Experience.js
 import React, { useState } from "react";
 import "./Experience.css";
 import {
@@ -19,25 +20,25 @@ import experienceGlow from "../../assets/icons/experience/experience_glow.webp";
 
 const TAG_ICONS = {
     servers: FaServer,
-    net: FaNetworkWired,
-    db: FaDatabase,
-    tools: FaCode,
-    print: FaPrint,
-    mon: FaCogs,
-    backup: FaDatabase,
-    win: FaServer,
-    pos: FaCogs,
-    cfg: FaNetworkWired,
+    net:     FaNetworkWired,
+    db:      FaDatabase,
+    tools:   FaCode,
+    print:   FaPrint,
+    mon:     FaCogs,
+    backup:  FaDatabase,
+    win:     FaServer,
+    pos:     FaCogs,
+    cfg:     FaNetworkWired,
 };
 
 const JOBS = [
     { key: "streetcom", bulletCount: 4, tags: ["servers", "net", "db", "tools"] },
-    { key: "ata", bulletCount: 4, tags: ["print", "net", "mon"] },
-    { key: "hisert", bulletCount: 4, tags: ["servers", "net", "backup"] },
-    { key: "rzgw", bulletCount: 4, tags: ["net", "win"] },
-    { key: "exorigo", bulletCount: 3, tags: ["pos", "cfg"] },
-    { key: "wasko", bulletCount: 3, tags: [] },
-    { key: "eot", bulletCount: 3, tags: [] },
+    { key: "ata",       bulletCount: 4, tags: ["print", "net", "mon"] },
+    { key: "hisert",    bulletCount: 4, tags: ["servers", "net", "backup"] },
+    { key: "rzgw",      bulletCount: 4, tags: ["net", "win"] },
+    { key: "exorigo",   bulletCount: 3, tags: ["pos", "cfg"] },
+    { key: "wasko",     bulletCount: 3, tags: [] },
+    { key: "eot",       bulletCount: 3, tags: [] },
 ];
 
 const NODE_POINTS = [
@@ -60,6 +61,8 @@ const Experience = () => {
     return (
         <section id="experience" className="exp">
             <div className="exp__container">
+
+                {/* Header */}
                 <header className="exp__header">
                     <div
                         ref={iconRef}
@@ -80,8 +83,8 @@ const Experience = () => {
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--base"
                             draggable="false"
-                            width="200"
-                            height="200"
+                            width="160"
+                            height="160"
                         />
                         <img
                             src={experienceGlow}
@@ -89,8 +92,8 @@ const Experience = () => {
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--lit"
                             draggable="false"
-                            width="200"
-                            height="200"
+                            width="160"
+                            height="160"
                         />
                     </div>
 
@@ -103,42 +106,71 @@ const Experience = () => {
                             {t("experience.title")}
                         </h2>
                     </div>
+
+                    <p className="exp__kicker">
+                        {t("experience.kicker")}
+                    </p>
                 </header>
 
+                {/* Timeline */}
                 <ol className="exp__timeline">
                     {JOBS.map(({ key, bulletCount, tags }) => (
                         <li key={key} className="exp__item">
+
                             <div className="exp__pin" aria-hidden="true" />
+
                             <div className="exp__card">
+                                {/* Corner brackets */}
+                                <span className="corner tl" aria-hidden="true" />
+                                <span className="corner br" aria-hidden="true" />
+
+                                {/* Nagłówek karty */}
                                 <div className="exp__top">
                                     <div className="exp__where">
-                                        <FaBuilding /> {t(`experience.jobs.${key}.where`)}
+                                        <FaBuilding />
+                                        <span
+                                            dangerouslySetInnerHTML={{
+                                                __html: t(`experience.jobs.${key}.where`)
+                                            }}
+                                        />
                                     </div>
                                     <div className="exp__meta">
                                         <span className="exp__meta-item">
-                                            <FaCalendarAlt /> {t(`experience.jobs.${key}.date`)}
+                                            <FaCalendarAlt />
+                                            {t(`experience.jobs.${key}.date`)}
                                         </span>
                                         <span className="exp__meta-item">
-                                            <FaMapMarkerAlt /> {t(`experience.jobs.${key}.loc`)}
+                                            <FaMapMarkerAlt />
+                                            {t(`experience.jobs.${key}.loc`)}
                                         </span>
                                     </div>
                                 </div>
 
+                                {/* Bullet points */}
                                 <ul className="exp__bullets">
                                     {Array.from({ length: bulletCount }, (_, i) => (
                                         <li key={i}>
-                                            {t(`experience.jobs.${key}.bullets.${i}`)}
+                                            {t(`experience.jobs.${key}.bullets.${i}`)
+                                                .split('\n')
+                                                .map((line, idx) => (
+                                                    <React.Fragment key={idx}>
+                                                        {line}
+                                                        <br />
+                                                    </React.Fragment>
+                                                ))}
                                         </li>
                                     ))}
                                 </ul>
 
+                                {/* Tagi */}
                                 {tags.length > 0 && (
                                     <div className="exp__tags">
                                         {tags.map((tag) => {
                                             const Icon = TAG_ICONS[tag];
                                             return (
                                                 <span key={tag} className="tag">
-                                                    <Icon /> {t(`experience.jobs.${key}.tags.${tag}`)}
+                                                    <Icon />
+                                                    {t(`experience.jobs.${key}.tags.${tag}`)}
                                                 </span>
                                             );
                                         })}
@@ -148,6 +180,7 @@ const Experience = () => {
                         </li>
                     ))}
                 </ol>
+
             </div>
         </section>
     );

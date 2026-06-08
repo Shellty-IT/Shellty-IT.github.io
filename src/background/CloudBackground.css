@@ -8,10 +8,10 @@
     pointer-events: none;
     overflow: hidden;
     background:
-            radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,30,65,0.06) 0%, transparent 100%),
-            radial-gradient(ellipse 55% 45% at 15% 20%, rgba(0,35,75,0.06) 0%, transparent 100%),
-            radial-gradient(ellipse 50% 60% at 82% 55%, rgba(0,30,70,0.05) 0%, transparent 100%),
-            linear-gradient(180deg, #000205 0%, #000408 30%, #00060c 60%, #000306 100%);
+            radial-gradient(1200px 700px at 50% -10%, rgba(12, 192, 255, .08), transparent 60%),
+            radial-gradient(900px 600px at 90% 110%, rgba(0, 98, 176, .10), transparent 60%),
+            radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0, 30, 65, 0.04) 0%, transparent 100%),
+            #070b14;
 }
 
 .cloud-bg-canvas {
