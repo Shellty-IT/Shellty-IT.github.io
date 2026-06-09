@@ -116,6 +116,52 @@
 }
 
 /* ─── Language switcher (prawa krawędź) ─── */
+.nav__lang--drawer {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 16, 32, .65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 999px;
+    position: relative;
+}
+
+.nav__lang--drawer::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: linear-gradient(135deg, #0062b0, rgba(12, 192, 255, .5));
+    border-radius: 999px;
+    transition: transform .25s ease;
+    z-index: 0;
+}
+
+.nav__lang--drawer[data-lang="en"]::before {
+    transform: translateX(100%);
+}
+
+.nav__lang--drawer button {
+    position: relative;
+    z-index: 1;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: .18em;
+    background: transparent;
+    border: 0;
+    color: #94a3b8;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: color .2s ease;
+}
+
+.nav__lang--drawer button.is-active { color: #fff; }
+
 .nav__lang {
     grid-column: 3;
     justify-self: end;
@@ -294,7 +340,7 @@
 
     /* Lang switcher wewnątrz szuflady */
     .nav__lang--drawer {
-        display: inline-grid !important;
+        display: inline-grid;
         justify-self: start;
         margin-top: 12px;
     }

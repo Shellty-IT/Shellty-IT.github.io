@@ -107,7 +107,7 @@ const Navbar = () => {
 
                     {/* Language switcher w szufladzie (tylko mobile) */}
                     <div
-                        className="nav__lang nav__lang--drawer"
+                        className="nav__lang--drawer"
                         data-lang={i18n.language}
                         role="group"
                         aria-label="Wybór języka"
