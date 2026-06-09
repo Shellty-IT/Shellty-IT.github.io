@@ -77,9 +77,9 @@
 /* ─── Ikona ─── */
 .exp-icon {
     position: relative;
-    width: 160px;
-    height: 160px;
-    margin-bottom: -2px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -15px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
@@ -109,7 +109,7 @@
     height: 100%;
     object-fit: contain;
     will-change: opacity;
-    filter: drop-shadow(0 0 22px rgba(12, 192, 255, 0.35));
+    filter: drop-shadow(0 0 20px rgba(12, 192, 255, 0.4));
 }
 
 .exp-icon__img--base {

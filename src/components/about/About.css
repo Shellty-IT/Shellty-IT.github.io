@@ -40,9 +40,9 @@
 /* Ikona sekcji – floating */
 .dna {
     position: relative;
-    width: 160px;
-    height: 160px;
-    margin-bottom: -2px;
+    width: 210px;
+    height: 210px;
+    margin-bottom: -10px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
@@ -77,6 +77,7 @@
     height: 100%;
     object-fit: contain;
     will-change: opacity;
+    filter: drop-shadow(0 0 20px rgba(12, 192, 255, 0.4));
 }
 
 .dna__img--base {
@@ -404,6 +405,14 @@
 
 /* Ikony glow w przyciskach */
 .about__actions .btn-glow-icon { transition: transform 0.2s ease; }
+
+/* Portfolio button icons */
+.about__actions .btn--primary .btn-glow-icon .glow-icon-lit  { opacity: 0; }
+.about__actions .btn--primary:hover .btn-glow-icon .glow-icon-lit  { opacity: 1; }
+.about__actions .btn--primary .btn-glow-icon .glow-icon-base { opacity: 1; }
+.about__actions .btn--primary:hover .btn-glow-icon .glow-icon-base { opacity: 0; }
+
+/* Outline button icons (Contact/etc) */
 .about__actions .btn--outline .btn-glow-icon .glow-icon-lit  { opacity: 0; }
 .about__actions .btn--outline:hover .btn-glow-icon .glow-icon-lit  { opacity: 1; }
 .about__actions .btn--outline .btn-glow-icon .glow-icon-base { opacity: 0.5; }
@@ -764,6 +773,7 @@
     color: #64748b;
     transition: all .2s;
     position: relative;
+    z-index: 1;
 }
 
 .trait-item:hover,
@@ -771,6 +781,7 @@
     border: none;
     background: transparent;
     transform: translateY(-2px);
+    z-index: 10;
 }
 
 .trait-item:focus-visible {
@@ -825,7 +836,7 @@
     color: #cbd5e1;
     text-align: center;
     line-height: 1.55;
-    z-index: 100;
+    z-index: 1000;
     pointer-events: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .55), 0 0 12px rgba(12, 192, 255, .06);
     opacity: 0;

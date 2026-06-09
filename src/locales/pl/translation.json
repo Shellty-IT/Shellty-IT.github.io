@@ -16,7 +16,7 @@
     "ctaContact": "Kontakt",
     "stats": {
       "years": { "num": "7+", "label": "lat w IT" },
-      "projects": { "num": "5+", "label": "projekty własne" },
+      "projects": { "num": "10+", "label": "projekty własne" },
       "english": { "num": "B2", "label": "angielski" }
     },
     "caption": "Technologiczny fundament Twojego biznesu",
@@ -199,18 +199,18 @@
     },
     "projects": {
       "shelltyCMS": {
-        "title": "Shellty CMS - System CMS dla Stron Firmowych",
-        "subtitle": "Shellty CMS to autorski, skalowalny system zarządzania treścią zaprojektowany jako nowoczesna alternatywa dla WordPressa w projektach B2B.",
-        "description": "Powstał z myślą o szybkim wdrażaniu profesjonalnych stron firmowych przy zachowaniu pełnej kontroli nad architekturą, bezpieczeństwem i wydajnością.\n\nSystem umożliwia klonowanie gotowej, przetestowanej architektury dla kolejnych klientów, co skraca czas realizacji projektu z kilku tygodni do paru dni.",
-        "highlightsTitle": "Co wyróżnia projekt:",
+        "title": "Shellty CMS",
+        "subtitle": "— WordPress Alternative for B2B —",
+        "description": "Własny CMS na Next.js i Payload jako lekka alternatywa dla WordPressa. Pełna kontrola nad kodem i treścią bez zbędnego balastu.",
+        "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA:",
         "highlights": [
-          "Lekka architektura oparta na Next.js i Payload CMS.",
-          "Intuicyjny panel administracyjny z kontrolą ról (admin / editor).",
-          "Automatyczna integracja z Cloudinary (upload i auto‑delete przez hooki).",
-          "Bezpieczna konfiguracja środowiska i separacja danych dla klientów.",
-          "Gotowość do skalowania i dalszej rozbudowy (blokowy system stron, wielojęzyczność)."
+          "🔄 Clone & Deploy: 12 gotowych kolekcji, wymiana treści w CMS zamiast pisania kodu od zera",
+          "🌍 i18n PL/EN: Payload localization, [locale] routing i helpery URL out of the box",
+          "🖼️ Cloudinary Plugin: Automatyczny upload i auto-delete mediów na darmowym tierze",
+          "🔒 Bezpieczeństwo: Rate limit Upstash, IP hashing SHA-256, CSRF i honeypot",
+          "🤖 AI Lead Agent (WIP): Widget czatu oparty na Gemini 2.5 Flash i Vercel AI SDK"
         ],
-        "tech": ["Next.js 16", "Payload CMS 3", "TypeScript", "MongoDB Atlas", "Cloudinary", "Tailwind CSS", "Vercel"]
+        "tech": ["Next.js 16", "Payload 3", "TypeScript", "MongoDB Atlas", "Cloudinary", "Tailwind CSS", "Vercel", "Framer Motion"]
       },
       "shelltyPulse": {
         "title": "Shellty Pulse - Monitor Usługi",
@@ -230,23 +230,23 @@
         "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
       },
       "smartQuoteAI": {
-        "title": "Smart Quote - System CRM i Automatyzacji Sprzedaży",
-        "subtitle": "Narzędzie CRM automatyzujące proces od przygotowania oferty z AI i negocjacji online, po e-podpisanie umowy i generowanie szkiców faktur.",
-        "description": "",
-        "highlightsTitle": "Kluczowe rozwiązania:",
+        "title": "SmartQuote",
+        "subtitle": "— CRM & Sales Automation —",
+        "description": "CRM z AI generowaniem ofert, edytorem bloków PDF i integracją z e-fakturami. Wdrożony produkcyjnie.",
+        "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA",
         "highlights": [
-          "Asystent AI i Analiza: Wykorzystanie modelu Gemini do automatycznej oceny rentowności ofert oraz wyciągania wniosków z zakończonych procesów sprzedaży w celu optymalizacji przyszłych działań.",
-          "Interaktywne Oferty i E-podpis: System ofert webowych z wyborem wariantów oraz autorski moduł podpisu umów w przeglądarce, generujący bezpieczne pliki PDF z cyfrowym śladem rewizyjnym.",
-          "Architektura i Integracje: System oparty na czystej architekturze z integracją KSeF (wersja testowa). Optymalizacja bazy danych (80% mniej zapytań) oraz pełna kontrola jakości dzięki 22 testom automatycznym Playwright."
+          "🤖  AI (Gemini 2.5 Flash)\nGenerowanie treści ofert, analiza rentowności, post-mortem",
+          "📄  Dual PDF Engine\nPDFKit (klasyczny) + Puppeteer/Vercel (propozycja)",
+          "✍️  E-podpis z audytem\nCanvas + SHA-256 hash, publiczne strony token-based",
+          "🔗  KSeF Integration\nHMAC-SHA256 webhook, idempotentny send, cache NIP"
         ],
         "tech": [
-          "Next.js 15",
+          "Next.js 16",
           "Node.js",
           "TypeScript",
           "PostgreSQL",
           "Prisma",
-          "Tailwind CSS",
-          "Google Gemini AI",
+          "Gemini AI",
           "Playwright",
           "GitHub Actions"
         ],
