@@ -327,10 +327,17 @@
         "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Oracle Cloud"]
       },
       "postlio": {
-        "title": "Postlio - Smart Social Media Assistant",
-        "subtitle": "Create, schedule, and publish posts on FB, IG, and LinkedIn with AI.",
-        "description": "Postlio is a modern PWA application supporting social media management. It allows for creating and scheduling posts and graphics with the support of various types of AI Agents. The system enables full automation of publication according to a schedule for business accounts (Facebook Pages, Instagram Business, and LinkedIn). For personal profiles, due to platform regulations, the application is used for professional content preparation for manual sharing.\n\nThe project is currently deployed for testing purposes. I am focused on improving UX and finalizing the application approval process by Meta. After obtaining full API access, users will be able to share their materials directly from the application.",
-        "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
+        "title": "Postlio",
+        "subtitle": "— AI Social Media Autopilot —",
+        "description": "A modern PWA application for comprehensive Social Media management with AI support. Enables creating, scheduling, and fully autonomous publishing of content on Facebook, Instagram, and LinkedIn.",
+        "highlightsTitle": "WHAT'S WORTH KNOWING:",
+        "highlights": [
+          "🤖 Autopilot Mode: Autonomous post generation and queuing system based on the brand's unique \"Voice DNA\", running in the background via APScheduler",
+          "🎨 AI Creator: Hybrid text (Gemini/Groq), image (Flux/SDXL), and video engine with an intelligent automatic provider switching mechanism (fallback)",
+          "🔒 Data Protection: Secure storage of OAuth tokens encrypted symmetrically (Fernet AES) and asynchronous backend architecture in FastAPI 0.110",
+          "📲 PWA & Liquid Design: Responsive Next.js 14 interface with glass-morphism effect, fully adapted for smartphone installation and offline use"
+        ],
+        "tech": ["Python 3.11", "FastAPI", "Next.js 14", "PWA", "Gemini AI", "PostgreSQL", "Tailwind CSS", "Framer Motion"]
       },
       "smartQuoteAI": {
         "title": "SmartQuote",
@@ -355,18 +362,6 @@
         ],
         "role": "Developer"
       },
-      "ksefMaster": {
-        "title": "KSeF Master: Advanced E-invoicing Ecosystem",
-        "subtitle": "KSeF API v2 Integration: Full support for tax documents.",
-        "description": "KSeF Master is a professional platform based on .NET 8 architecture and PostgreSQL, providing two-layer authorization and full communication with the government system. The system offers seamless switching between test and production environments and advanced certificate handling.",
-        "highlightsTitle": "Key Advantages:",
-        "highlights": [
-          "Security: Hybrid login (token/certificate), XAdES-BES signatures, and AES-256 data encryption.",
-          "Compliance: PDF generation with QR codes, XML schema validation, and online/offline session support.",
-          "Automation: SmartQuote intelligent waiting room, fraud detection, and financial statistics module."
-        ],
-        "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
-      },
       "shelltyKanban": {
         "title": "Shellty.Kanban - Project Manager",
         "subtitle": "Project Management Application.",
@@ -380,16 +375,17 @@
         "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
       },
       "shelltyBlog": {
-        "title": "Shellty Blog - System CMS",
-        "subtitle": "A lightweight, scalable blog system designed with clean engineering principles.",
-        "description": "A project developed as part of Nerds Family Engineering Academy, emphasizing software engineering, design patterns, and Clean Code principles. It is a modern CMS system based on MVC architecture, fully containerized (Docker) and integrated with a cloud PostgreSQL database (Neon).",
-        "highlightsTitle": "Key features:",
+        "title": "Shellty Blog",
+        "subtitle": "— Modern MVC Blog Platform —",
+        "description": "A modern CMS system built on ASP.NET Core MVC architecture with emphasis on design patterns and Clean Code. Fully containerized application integrated with a cloud PostgreSQL database (Neon).",
+        "highlightsTitle": "TECHNICAL FEATURES:",
         "highlights": [
-          "Democratic permissions: custom role assignment system through administrator voting.",
-          "MVC Architecture: clean code structure following best practices.",
-          "Containerization: full Docker support ensuring easy deployment and scalability."
+          "🗳️ Democratic Roles: Unique permission system requiring unanimous voting from all active administrators",
+          "🏗️ MVC Architecture: Clean code structure based on file-scoped namespaces, nullable reference types, and zero compiler warnings",
+          "🖼️ Image Handling: Advanced image upload module with server-side size and format validation and client-side preview",
+          "🐳 Dockerized: Full containerization ensuring stable deployment on Render using lightweight Linux x64 images"
         ],
-        "tech": ["C#", ".NET 8", "PostgreSQL", "Docker", "Identity", "Render"],
+        "tech": ["C# 12", ".NET 8", "ASP.NET MVC", "PostgreSQL", "EF Core 8", "Docker", "Identity", "Bootstrap 5"],
         "role": "Developer"
       },
       "mobiSalon": {
@@ -414,6 +410,19 @@
         "subtitle": "Simple One Page website (student project).",
         "description": "A very simple, static one-page website prepared during studies as part of one of the tasks. It presents selected, interesting animal species in short sections with basic information and trivia. I treat it as a modest supplementary material showing consistency in documenting progress. I am aware that this is not a project representative of my current skills and I will soon replace it with newer, original projects.",
         "tech": ["HTML", "CSS", "JavaScript"]
+      },
+      "ksefMaster": {
+        "title": "KSeF Master",
+        "subtitle": "— National E-Invoicing Ecosystem —",
+        "description": "Professional platform for integration with the government e-invoicing system (KSeF). .NET 8 and React 19 architecture providing full support for FA(2) documents, XML schema validation, and PDF visualizations.",
+        "highlightsTitle": "KEY SOLUTIONS:",
+        "highlights": [
+          "⚙️ API v2 Integration: Full communication with the Ministry of Finance gateway, online/offline session handling, and authorization via tokens and certificates",
+          "📄 FA(2) Compliance: Generation of validatable XML documents and instant PDF visualizations with QR codes using the QuestPDF engine",
+          "🔄 Monorepo Workflow: Unified lifecycle of React 19 frontend and ASP.NET Core 8 backend in a single repository with automated CI/CD",
+          "🏗️ Enterprise Architecture: Use of EF Core 8, FluentValidation, and JWT to ensure the highest data quality and transaction security"
+        ],
+        "tech": ["React 19", ".NET 8", "PostgreSQL", "TypeScript", "Vite 7", "QuestPDF", "Docker", "CI/CD"]
       },
       "budmaxTheme": {
         "title": "BudMax Theme",

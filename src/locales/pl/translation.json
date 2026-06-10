@@ -202,7 +202,7 @@
         "title": "Shellty CMS",
         "subtitle": "— WordPress Alternative for B2B —",
         "description": "Własny CMS na Next.js i Payload jako lekka alternatywa dla WordPressa. Pełna kontrola nad kodem i treścią bez zbędnego balastu.",
-        "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA:",
+        "highlightsTitle": "ROZWIĄZANIA TECHNICZNE:",
         "highlights": [
           "🔄 Clone & Deploy: 12 gotowych kolekcji, wymiana treści w CMS zamiast pisania kodu od zera",
           "🌍 i18n PL/EN: Payload localization, [locale] routing i helpery URL out of the box",
@@ -213,27 +213,36 @@
         "tech": ["Next.js 16", "Payload 3", "TypeScript", "MongoDB Atlas", "Cloudinary", "Tailwind CSS", "Vercel", "Framer Motion"]
       },
       "shelltyPulse": {
-        "title": "Shellty Pulse - Monitor Usługi",
-        "subtitle": "Monitor stanu usługi i funkcja podtrzymywania aktywności.",
-        "description": "Narzędzie klasy Service Health Monitor służące do monitorowania dostępności usług webowych w czasie rzeczywistym. Pełni funkcję inteligentnego mechanizmu \"keep-alive\" dla aplikacji na darmowych instancjach (np. Render), zapobiegając ich usypianiu poprzez cykliczne, konfigurowalne zapytania.",
-        "highlightsTitle": "Kluczowe osiągnięcia:",
+        "title": "Shellty Pulse",
+        "subtitle": "— Service Health Monitor & Keep-Alive —",
+        "description": "Monitor dostępności usług webowych z automatycznym keep-alive dla aplikacji na darmowych tierach. Flask + APScheduler na Oracle Cloud Always Free - działa 24/7 bez żadnych kosztów.",
+        "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
-          "Infrastruktura jako kod i konteneryzacja: połączenie Docker Compose z Ansible w celu zapewnienia w pełni automatycznego provisioningu oraz powtarzalnych wdrożeń na dowolnym serwerze.",
-          "Pełna automatyzacja CI/CD: kompletny pipeline w GitHub Actions obejmujący build obrazów, testy endpointów API oraz automatyczny deployment, gwarantujący stabilność każdej zmiany."
+          "🛡️ SSRF Protection: Blokada requestów do localhost, metadanych chmury i link-local - bezpieczny do wystawienia publicznie",
+          "⏰ Business Hours: Automatyczne pingi tylko w skonfigurowanych godzinach pracy ze strefą czasową Europe/Warsaw",
+          "🐳 Infrastructure as Code: Docker Compose + Ansible - pełny provisioning serwera jedną komendą",
+          "⚙️ CI/CD Pipeline: GitHub Actions - lint, testy, build obrazu Docker i deploy przez SSH przy każdym pushu na main"
         ],
-        "tech": ["Python", "Flask", "Docker", "Ansible", "GitHub Actions", "CI/CD", "Monitoring", "Oracle Cloud"]
+        "tech": ["Python", "Flask", "Docker", "Ansible", "APScheduler", "GitHub Actions", "Oracle Cloud", "Gunicorn"]
       },
       "postlio": {
-        "title": "Postlio - Inteligentny Asystent Social Media",
-        "subtitle": "Twórz, planuj i publikuj posty na FB, IG i LinkedIn z pomocą AI.",
-        "description": "Postlio to nowoczesna aplikacja PWA wspomagająca zarządzanie mediami społecznościowymi. Pozwala na tworzenie i planowanie postów oraz grafik przy wsparciu różnego rodzaju Agentów AI. System umożliwia pełną automatyzację publikacji według harmonogramu dla kont firmowych (Facebook Pages, Instagram Business oraz LinkedIn). Dla profili osobistych, ze względu na regulacje platform, aplikacja służy do profesjonalnego przygotowania treści do udostępnienia ręcznego.\n\nProjekt jest obecnie wdrożony w celach testowych. Koncentruję się na dopracowaniu UX oraz finalizacji procesu zatwierdzania aplikacji przez Meta. Po uzyskaniu pełnego dostępu do API, użytkownicy będą mogli udostępniać swoje materiały bezpośrednio z poziomu aplikacji.",
-        "tech": ["Next.js", "TypeScript", "TailwindCSS", "PWA", "PostgreSQL", "Python", "Netlify", "Render"]
+        "title": "Postlio",
+        "subtitle": "— AI Social Media Autopilot —",
+        "description": "Nowoczesna aplikacja PWA do kompleksowego zarządzania obecnością w Social Media przy wsparciu AI. Umożliwia tworzenie, planowanie i w pełni autonomiczną publikację treści na Facebook, Instagram i LinkedIn.",
+        "highlightsTitle": "CO WARTO WIEDZIEĆ:",
+        "highlights": [
+          "🤖 Tryb Autopilot: System autonomicznego generowania i kolejkowania postów w oparciu o unikalne \"Voice DNA\" marki, działający w tle dzięki APScheduler",
+          "🎨 Kreator AI: Hybrydowy silnik tekstu (Gemini/Groq), obrazu (Flux/SDXL) i wideo z inteligentnym mechanizmem automatycznego przełączania dostawców (fallback)",
+          "🔒 Ochrona danych: Bezpieczne przechowywanie tokenów OAuth szyfrowanych symetrycznie (Fernet AES) oraz asynchroniczna architektura backendu w FastAPI 0.110",
+          "📲 PWA & Liquid Design: Responsywny interfejs Next.js 14 z efektem glass-morphismu, w pełni przystosowany do instalacji na smartfonie i pracy w trybie offline"
+        ],
+        "tech": ["Python 3.11", "FastAPI", "Next.js 14", "PWA", "Gemini AI", "PostgreSQL", "Tailwind CSS", "Framer Motion"]
       },
       "smartQuoteAI": {
         "title": "SmartQuote",
         "subtitle": "— CRM & Sales Automation —",
-        "description": "CRM z AI generowaniem ofert, edytorem bloków PDF i integracją z e-fakturami. Wdrożony produkcyjnie.",
-        "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA",
+        "description": "CRM z AI generowaniem ofert, edytorem bloków PDF i integracją z e-fakturami. Korzystam z aplikacji do przygotowywania ofert.",
+        "highlightsTitle": "CZYM SIĘ WYRÓŻNIA:",
         "highlights": [
           "🤖  AI (Gemini 2.5 Flash)\nGenerowanie treści ofert, analiza rentowności, post-mortem",
           "📄  Dual PDF Engine\nPDFKit (klasyczny) + Puppeteer/Vercel (propozycja)",
@@ -253,40 +262,43 @@
         "role": "Developer"
       },
       "ksefMaster": {
-        "title": "KSeF Master: Ekosystem e-fakturowania",
-        "subtitle": "Integracja z API KSeF v2: pełna obsługa dokumentów skarbowych.",
-        "description": "KSeF Master to profesjonalna platforma oparta na architekturze .NET 8 i PostgreSQL, zapewniająca dwuwarstwową autoryzację oraz pełną komunikację z systemem rządowym. System oferuje płynne przełączanie między środowiskiem testowym a produkcyjnym oraz zaawansowaną obsługę certyfikatów.",
-        "highlightsTitle": "Kluczowe zalety:",
+        "title": "KSeF Master",
+        "subtitle": "— National E-Invoicing Ecosystem —",
+        "description": "Profesjonalna platforma do integracji z rządowym systemem e-faktur (KSeF). Architektura .NET 8 i React 19 zapewniająca pełną obsługę dokumentów FA(2), walidację schematów XML oraz wizualizacje PDF.",
+        "highlightsTitle": "KLUCZOWE ROZWIĄZANIA:",
         "highlights": [
-          "Bezpieczeństwo: Hybrydowe logowanie (token/certyfikat), podpisy XAdES-BES oraz szyfrowanie danych AES-256.",
-          "Zgodność: Generowanie PDF z kodami QR, walidacja schematów XML oraz obsługa sesji online/offline.",
-          "Automatyzacja: Inteligentna poczekalnia SmartQuote, wykrywanie fraudów oraz moduł statystyk finansowych."
+          "⚙️ Integracja API v2: Pełna komunikacja z bramką Ministerstwa Finansów, obsługa sesji online/offline oraz autoryzacja tokenami i certyfikatami",
+          "📄 Zgodność FA(2): Generowanie walidowalnych dokumentów XML oraz natychmiastowe wizualizacje PDF z kodami QR przy użyciu silnika QuestPDF",
+          "🔄 Monorepo Workflow: Spójny cykl życia frontendu React 19 i backendu ASP.NET Core 8 w jednym repozytorium z automatycznym CI/CD",
+          "🏗️ Architektura Enterprise: Wykorzystanie EF Core 8, FluentValidation i JWT dla zapewnienia najwyższej jakości danych oraz bezpieczeństwa transakcji"
         ],
-        "tech": ["React", "TypeScript", "Vite", ".NET 8", "C#", "PostgreSQL", "REST API", "XAdES", "AES-256", "Docker", "QuestPDF"]
+        "tech": ["React 19", ".NET 8", "PostgreSQL", "TypeScript", "Vite 7", "QuestPDF", "Docker", "CI/CD"]
       },
       "shelltyKanban": {
-        "title": "Shellty.Kanban - Menadżer Projektów",
-        "subtitle": "Aplikacja do zarządzania projektami.",
-        "description": "Kompleksowa aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej. System zbudowany od podstaw, który pozwala w prosty i czytelny sposób kontrolować przepływ pracy w każdym zespole.",
-        "highlightsTitle": "Kluczowe osiągnięcia:",
+        "title": "Shellty.Kanban",
+        "subtitle": "— Collaborative Project Management —",
+        "description": "Fullstack aplikacja Kanban zbudowana na ASP.NET Core 10 i React 18, wdrożona produkcyjnie na Azure. Zarządzanie tablicami, kartami i zespołem z drag & drop i powiadomieniami w czasie rzeczywistym.",
+        "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
-          "Wydajny system zarządzania: Nowoczesna tablica Kanban zbudowana w .NET 10 i React 18.",
-          "Bezpieczeństwo sesji: Zaawansowane uwierzytelnianie JWT z rotacją tokenów.",
-          "Automatyzacja i jakość: Pełne CI/CD oraz wysoka stabilność potwierdzona przez 60+ testów z pokryciem kodu powyżej 95%."
+          "🔐 JWT + Refresh Token: Rotacja tokenów przy każdym użyciu, auto-refresh przez interceptor axios, rate limit 5 req/min na rejestrację i logowanie",
+          "🖱️ Drag & Drop: Przeciąganie kart i kolumn przez @hello-pangea/dnd z zachowaniem kolejności pozycji w bazie",
+          "🧪 105 testów: 60 xUnit (pokrycie 95-100% na cardach, kolumnach i projektach) + 45 Vitest, wszystkie przechodzą w CI",
+          "⚙️ CI/CD na Azure: GitHub Actions buduje, testuje i deployuje backend (.NET) i frontend (React/Vite) przy każdym pushu na main"
         ],
-        "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
+        "tech": ["ASP.NET Core", ".NET 10", "React 18", "Azure", "EF Core", "xUnit", "Vitest", "GitHub Actions", "JWT"]
       },
       "shelltyBlog": {
-        "title": "Shellty Blog - System CMS",
-        "subtitle": "Lekki i skalowalny CMS blogowy zbudowany w oparciu o MVC.",
-        "description": "Projekt zrealizowany w ramach Nerds Family Engineering Academy, kładący nacisk na inżynierię oprogramowania, wzorce projektowe i zasady Clean Code. Jest to nowoczesny system CMS oparty o architekturę MVC, w pełni skonteneryzowany (Docker) i zintegrowany z chmurową bazą PostgreSQL (Neon).",
-        "highlightsTitle": "Kluczowe funkcjonalności:",
+        "title": "Shellty Blog",
+        "subtitle": "— Modern MVC Blog Platform —",
+        "description": "Nowoczesny system CMS zbudowany w architekturze ASP.NET Core MVC z naciskiem na wzorce projektowe i Clean Code. W pełni skonteneryzowana aplikacja zintegrowana z chmurową bazą PostgreSQL (Neon).",
+        "highlightsTitle": "CECHY TECHNICZNE:",
         "highlights": [
-          "Demokratyczne uprawnienia: autorski system nadawania ról poprzez głosowanie administratorów.",
-          "Architektura MVC: przejrzysta struktura kodu zgodna z najlepszymi praktykami.",
-          "Konteneryzacja: pełna obsługa Docker zapewniająca łatwe wdrożenie i skalowalność."
+          "🗳️ Democratic Roles: Unikalny system nadawania uprawnień wymagający jednomyślnego głosowania wszystkich obecnych administratorów",
+          "🏗️ MVC Architecture: Czysta struktura kodu oparta na file-scoped namespaces, nullable reference types i zerowej liczbie ostrzeżeń kompilatora",
+          "🖼️ Image Handling: Zaawansowany moduł wgrywania grafik z walidacją rozmiaru i formatu po stronie serwera oraz podglądem u klienta",
+          "🐳 Dockerized: Pełna konteneryzacja zapewniająca stabilne wdrożenie na platformie Render przy użyciu lekkich obrazów Linux x64"
         ],
-        "tech": ["C#", ".NET 8", "PostgreSQL", "Docker", "Identity", "Render"],
+        "tech": ["C# 12", ".NET 8", "ASP.NET MVC", "PostgreSQL", "EF Core 8", "Docker", "Identity", "Bootstrap 5"],
         "role": "Developer"
       },
       "mobiSalon": {
@@ -314,17 +326,17 @@
       },
       "budmaxTheme": {
         "title": "BudMax Theme",
-        "subtitle": "Autorski motyw WordPress zaprojektowany dla firmy budowlanej BudMax. Minimalistyczny design, wydajność i pełna kontrola treści przez ACF.",
-        "description": "Projekt powstał jako kompletne rozwiązanie marketingowe - od architektury PHP przez animacje CSS/JS po formularze AJAX z ochroną antyspamową. Motyw nie korzysta z block editora, co gwarantuje szybkość i przewidywalność kodu.",
-        "highlightsTitle": "Kluczowe cechy projektu:",
+        "subtitle": "— Premium WordPress Construction Theme —",
+        "year": "2026",
+        "description": "Autorski motyw WordPress dla branży budowlanej, stawiający na czysty kod i wysoką wydajność. Pełna edycja treści przez ACF bez użycia ciężkich i nieprzewidywalnych page builderów.",
+        "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA:",
         "highlights": [
-          "Własny system i18n (PL/EN) oparty na cookie i query param - bez WooCommerce Multilingual czy WPML.",
-          "Speed Dial FAB z modalem kontaktowym, honeypot i rate-limitingiem.",
-          "Focal point (kadrowanie zdjęć) sterowane z panelu ACF przez object-position.",
-          "SEO: hreflang, canonical, Open Graph - generowane dynamicznie.",
-          "Deploy na Pantheon przez Git z cache bustingiem przez filemtime()."
+          "🏗️ Custom PHP Theme: Zoptymalizowany motyw bez block editora, zapewniający pełną kontrolę nad strukturą i szybkością ładowania strony",
+          "🌍 Native i18n: Autorski system wielojęzyczności (PL/EN) działający bez narzutu ciężkich wtyczek typu WPML czy WooCommerce Multilingual",
+          "🛠️ Advanced ACF: Zaawansowana konfiguracja pól (Focal point, SEO, Open Graph) umożliwiająca kompletną edycję wizualną z poziomu panelu admina",
+          "🚀 Pantheon DevOps: Profesjonalny workflow wdrożeniowy oparty na Git i środowisku DDEV z automatycznym cache bustingiem przez filetime()"
         ],
-        "tech": ["WordPress", "PHP", "ACF", "CSS", "JavaScript", "Pantheon", "AJAX", "i18n"]
+        "tech": ["WordPress", "PHP 8.2", "ACF", "Pantheon", "DDEV", "AJAX", "JavaScript", "SEO"]
       }
     }
   },
